@@ -272,7 +272,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   reviews-v2-548c57f459-w9dvq.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
   reviews-v3-6dd79655b9-t8mcw.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
   ```
-## Step 11 Crete ingress rule and genarate some more traffic
+## Step 11 Create ingress rule and genarate some more traffic
   1. Create ingress rule for route traffic to example application 
   ```shell
   cat <<EOF |kubectl apply -f -
