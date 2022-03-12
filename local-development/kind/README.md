@@ -1,4 +1,4 @@
-# How to create Kubernetes local development
+# Create Kubernetes local development with [kind](https://kind.sigs.k8s.io)
 ## Table of contents
   - [Prerequisites](#prerequisites)
   - [Step 1 - Create Kubernetes cluster(1 Master 2 Worker)](#step-1---create-kubernetes-cluster1-master-2-worker)
@@ -37,7 +37,7 @@ EOF
 ```
 Note:   
 If you need 1 node just remove line content `- role: worker`   
-  
+
 The output looks similar to the following:
 ```shell
 Creating cluster "test-cluster" ...
