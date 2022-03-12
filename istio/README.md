@@ -271,26 +271,31 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   reviews-v2-548c57f459-w9dvq.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
   reviews-v3-6dd79655b9-t8mcw.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
   ```
-  10. Setup ingress and genarate traffic
-  ```
+## Step 11 Crete ingress rule and genarate some more traffic
+  1. Create ingress rule for route traffic to example application 
+  ```shell
   cat <<EOF |kubectl apply -f -
   apiVersion: networking.k8s.io/v1
   kind: Ingress
   metadata:
-    name: bookinfo
-    namespace: default
+   name: bookinfo
+   namespace: default
   spec:
-    rules:
-    - http:
-        paths:
+   rules:
+   - http:
+       paths:
        - pathType: Prefix
           path: "/productpage"
           backend:
             service:
               name: productpage
               port:
-               number: 9080
+                number: 9080
   EOF
+  ```
+  2. Genarate taffic
+  ```shell
+  while sleep 1;do curl localhost/productpage &> /dev/null; done
   ```
 ## Step 11 - Install Addons
   1. Install Prometheus & Grafana for Istio   
