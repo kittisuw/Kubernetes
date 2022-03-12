@@ -106,7 +106,7 @@ curl localhost/foo
 # should output "bar"
 curl localhost/bar
 ```
-Reference : https://kind.sigs.k8s.io/docs/user/ingress/#ingress-nginx
-
+## Reference
+ - https://kind.sigs.k8s.io/docs/user/ingress/#ingress-nginx
 
 
