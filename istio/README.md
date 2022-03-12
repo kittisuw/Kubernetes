@@ -234,5 +234,19 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   pod "reviews-v2-548c57f459-r7vm8" deleted
   pod "reviews-v3-6dd79655b9-r597g" deleted
   ```
+  7. Let check our pod again as you can see all of pod have 2 containers that indicate our pod has sidecar
+  ```shell
+  kubectl get pod
+  ```
+  The output looks similar to the following:
+  ```
+  NAME                              READY   STATUS    RESTARTS   AGE
+  details-v1-5498c86cf5-6sgd7       2/2     Running   0          6m16s
+  productpage-v1-65b75f6885-m8mcf   2/2     Running   0          6m16s
+  ratings-v1-b477cf6cf-k6f7c        2/2     Running   0          6m16s
+  reviews-v1-79d546878f-nk972       2/2     Running   0          6m16s
+  reviews-v2-548c57f459-w9dvq       2/2     Running   0          6m16s
+  reviews-v3-6dd79655b9-t8mcw       2/2     Running   0          6m15s
+  ```
 
 Ref: https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
