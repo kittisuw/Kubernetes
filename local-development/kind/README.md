@@ -72,5 +72,5 @@ test-cluster-worker          Ready    <none>                 2m7s    v1.22.5
 test-cluster-worker2         Ready    <none>                 2m7s    v1.22.5
 ```
 ## Reference
- - [kind quick-start[(https://kind.sigs.k8s.io/docs/user/quick-start/)
+[kind quick-start[(https://kind.sigs.k8s.io/docs/user/quick-start/)
   
