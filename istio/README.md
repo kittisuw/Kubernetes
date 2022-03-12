@@ -30,7 +30,23 @@ no running Istio pods in "istio-system"
 istioctl x precheck
 ```
 The output looks similar to the following:
-```
+```shell
 ✔ No issues found when checking the cluster. Istio is safe to install or upgrade!
   To get started, check out https://istio.io/latest/docs/setup/getting-started/
 ```
+## Check Available istio profile
+```shell
+istioctl profile list
+```
+The output looks similar to the following:
+```shell
+    default
+    demo
+    empty
+    external
+    minimal
+    openshift
+    preview
+    remote
+```
+Notes:[Istio profile](https://istio.io/latest/docs/setup/additional-setup/config-profiles)
