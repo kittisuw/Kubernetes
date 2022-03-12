@@ -1,4 +1,4 @@
-# How to install ingress-nginx
+# Deploy and Access the Kubernetes Dashboard
 ## Table of contents
   - [Prerequisites](#prerequisites)
   - [Step 4 - Verify that the ingress works](#step-4---verify-that-the-ingress-works)
@@ -45,6 +45,10 @@ kubectl proxy
 ```
 Dashboard available at : http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
+## Create Kubernetes test resorce Eg. pod with log 100mb
+```shell
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/test-resources/100mb-of-logs-pod.yaml
+```
 ## Reference
- - [Setting Up An Ingress Controller](https://kind.sigs.k8s.io/docs/user/ingress/#ingress-nginx)
-
+ - [Deploy and Access the Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)
+ - [Kubernetes dashbord test resource](https://github.com/kubernetes/dashboard/tree/master/aio/test-resources)
