@@ -166,7 +166,11 @@ NOT SENT means that Istiod hasn’t sent anything to Envoy. This usually is beca
 STALE means that Istiod has sent an update to Envoy but has not received an acknowledgement. This usually indicates a networking issue between Envoy and Istiod or a bug with Istio itself.   
 
 ## Step 10 - Deploy example application on default namespace and inject sidecar
-  1. 
+  1. Switch to default namespace
+  ```shell
+  kns default
+  ``` 
+  2. Deploy example application on default namespace  
   ```shell
   cd istio-1.13.1
   kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
@@ -187,6 +191,18 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   service/productpage created
   serviceaccount/bookinfo-productpage created
   deployment.apps/productpage-v1 created
+  ```
+  3. Check status of pod
+  ```shell
+  ...
+  NAME                                    READY   STATUS    RESTARTS   AGE
+  ...
+  details-v1-5498c86cf5-vgwdw             1/1     Running   0          4m43s
+  productpage-v1-65b75f6885-9c2tj         1/1     Running   0          4m43s
+  ratings-v1-b477cf6cf-bvrlq              1/1     Running   0          4m43s
+  reviews-v1-79d546878f-prctw             1/1     Running   0          4m43s
+  reviews-v2-548c57f459-69989             1/1     Running   0          4m43s
+  reviews-v3-6dd79655b9-gwp8q             1/1     Running   0          4m43s
   ```
 
 Ref: https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
