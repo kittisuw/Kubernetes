@@ -4,7 +4,10 @@
 ## Prerequisites
 1. [Docker Desktop](https://docs.docker.com/desktop)
 2. [kubectl](https://kubernetes.io/docs/tasks/tools/)
-3. A [Git](https://git-scm.com/downloads) client, to clone the `kube-prometheus-stack` repository.
+3. [kubectx + kubens](https://github.com/ahmetb/kubectx) Tools for swith contextss(Clusters) and namespaces easily (Option)
+kubectx is a tool to switch between contexts (clusters) on kubectl faster.
+kubens is a tool to switch between Kubernetes namespaces (and configure them for kubectl) easily.
+1. A [Git](https://git-scm.com/downloads) client, to clone the `kube-prometheus-stack` repository.
 
 ## Step 1 - Creaet cluster
 ```shell
