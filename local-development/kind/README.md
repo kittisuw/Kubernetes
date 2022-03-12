@@ -4,6 +4,7 @@
   - [Step 1 - Create Kubernetes cluster(1 Master 2 Worker)](#step-1---create-kubernetes-cluster1-master-2-worker)
   - [Step 2 - Get Cluster information](#step-2---get-cluster-information)
   - [Step 3 - Get Cluster node information](#step-3---get-cluster-node-information)
+  - [Advance](#advance)
   - [Clean up](#clean-up)
   - [Reference](#reference)
 ## Prerequisites
@@ -75,6 +76,9 @@ test-cluster-control-plane   Ready    control-plane,master   2m44s   v1.22.5
 test-cluster-worker          Ready    <none>                 2m7s    v1.22.5
 test-cluster-worker2         Ready    <none>                 2m7s    v1.22.5
 ```
+## Advance
+- [Deploy ingress-nginx](ingress/../ingress-nginx/README.md)
+- [Deploy and Access the Kubernetes Dashboard](kubernetes-dashboard/README.md)
 ## Clean up
 ```shell
 kind delete cluster test-cluster

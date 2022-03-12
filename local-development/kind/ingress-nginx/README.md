@@ -1,4 +1,4 @@
-# How to install ingress-nginx
+# Deploy ingress-nginx
 ## Table of contents
   - [Prerequisites](#prerequisites)
   - [Step 1 - Install ingress-nginx](#step-1---install-ingress-nginx)
