@@ -293,7 +293,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
                 number: 9080
   EOF
   ```
-  2. Genarate taffic
+  2. Genarate traffic
   ```shell
   while sleep 1;do curl localhost/productpage &> /dev/null; done
   ```
