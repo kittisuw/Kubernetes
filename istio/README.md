@@ -75,3 +75,13 @@ NAME                                    READY   STATUS    RESTARTS   AGE
 istio-ingressgateway-66ff9c7b6f-f4p6n   1/1     Running   0          16m
 istiod-7656645d8c-wrqfq                 1/1     Running   0          21m
 ```
+## Step 8 - Overview your mesh
+```shell
+istioctl proxy-status
+```
+The output looks similar to the following:
+```shell
+NAME                                                   CLUSTER        CDS        LDS        EDS        RDS          ISTIOD                      VERSION
+istio-ingressgateway-66ff9c7b6f-f4p6n.istio-system     Kubernetes     SYNCED     SYNCED     SYNCED     NOT SENT     istiod-7656645d8c-wrqfq     1.13.1
+```
+Ref: https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
