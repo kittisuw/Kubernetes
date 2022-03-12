@@ -65,10 +65,11 @@ Making this installation the default for injection and validation.
 
 Thank you for installing Istio 1.13.  Please take a few minutes to tell us about your install/upgrade experience!  https://forms.gle/pzWZpAvMVBecaQ9h9
 ```
-## Step 7 Verify installation
+## Step 7 - Verify installation
 ```shell
 istioctl verify-install
 ```
+The output looks similar to the following:
 ```shell
 1 Istio control planes detected, checking --revision "default" only
 ✔ ClusterRole: istiod-istio-system.istio-system checked successfully
@@ -128,7 +129,7 @@ Checked 15 custom resource definitions
 Checked 2 Istio Deployments
 ✔ Istio is installed and verified successfully
 ```
-##  Step 7 - Check istio pod status
+##  Step 8 - Check istio pod status
 ```shell
 kubectl get pod -n istio-system
 ```
