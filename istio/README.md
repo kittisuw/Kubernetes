@@ -271,6 +271,27 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   reviews-v2-548c57f459-w9dvq.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
   reviews-v3-6dd79655b9-t8mcw.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
   ```
+  10. Setup ingress and genarate traffic
+  ```
+  cat <<EOF |kubectl apply -f -
+  apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    name: bookinfo
+    namespace: default
+  spec:
+    rules:
+    - http:
+        paths:
+       - pathType: Prefix
+          path: "/productpage"
+          backend:
+            service:
+              name: productpage
+              port:
+               number: 9080
+  EOF
+  ```
 ## Step 11 - Install Addons
   1. Install Prometheus & Grafana for Istio   
   ```
@@ -330,6 +351,8 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   ...
   kiali-c946fb5bc-xp52g                   1/1     Running   0          2m18s
   ...
+
+  istioctl dashboard kiali
   ```
 
 Reference : 
