@@ -109,5 +109,5 @@ curl localhost/foo
 curl localhost/bar
 ```
 ## Reference
- - [Setting Up An Ingress Controller]https://kind.sigs.k8s.io/docs/user/ingress/#ingress-nginx
+ - [Setting Up An Ingress Controller](https://kind.sigs.k8s.io/docs/user/ingress/#ingress-nginx)
 
