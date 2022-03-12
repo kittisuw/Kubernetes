@@ -50,7 +50,7 @@ The output looks similar to the following:
     remote
 ```
 Notes:[Istio profile](https://istio.io/latest/docs/setup/additional-setup/config-profiles)
-## Install istio with default profile *This profile is recommended for production
+##  Step 6 - Install istio with default profile *This profile is recommended for production
 ```shell
 istioctl install --set profile=default
 ```
@@ -64,4 +64,13 @@ This will install the Istio 1.13.1 default profile with ["Istio core" "Istiod" "
 Making this installation the default for injection and validation.
 
 Thank you for installing Istio 1.13.  Please take a few minutes to tell us about your install/upgrade experience!  https://forms.gle/pzWZpAvMVBecaQ9h9
+```
+##  Step 7 - Check istio pod status
+```shell
+kubectl get pod -n istio-system
+```
+```shell
+NAME                                    READY   STATUS    RESTARTS   AGE
+istio-ingressgateway-66ff9c7b6f-f4p6n   1/1     Running   0          16m
+istiod-7656645d8c-wrqfq                 1/1     Running   0          21m
 ```
