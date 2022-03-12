@@ -36,7 +36,8 @@ nodes:
 EOF
 ```
 Note:   
-- If you need 1 node just remove line content `- role: worker`   
+If you need 1 node just remove line content `- role: worker`   
+  
 The output looks similar to the following:
 ```shell
 Creating cluster "test-cluster" ...
