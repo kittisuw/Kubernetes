@@ -239,7 +239,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   kubectl get pod
   ```
   The output looks similar to the following:
-  ```
+  ```shell
   NAME                              READY   STATUS    RESTARTS   AGE
   details-v1-5498c86cf5-6sgd7       2/2     Running   0          6m16s
   productpage-v1-65b75f6885-m8mcf   2/2     Running   0          6m16s
@@ -247,6 +247,15 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   reviews-v1-79d546878f-nk972       2/2     Running   0          6m16s
   reviews-v2-548c57f459-w9dvq       2/2     Running   0          6m16s
   reviews-v3-6dd79655b9-t8mcw       2/2     Running   0          6m15s
+  ```
+  8. Check anything wrong again
+  ```shell
+  istioctl analyze
+  ```
+  The output looks similar to the following:
+  ```shell
+
+  ✔ No validation issues found when analyzing namespace: default.
   ```
 
 Ref: https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
