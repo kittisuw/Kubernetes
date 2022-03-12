@@ -139,6 +139,17 @@ NAME                                    READY   STATUS    RESTARTS   AGE
 istio-ingressgateway-66ff9c7b6f-f4p6n   1/1     Running   0          16m
 istiod-7656645d8c-wrqfq                 1/1     Running   0          21m
 ```
+
+## Step 9 - Verify Istio version
+```shell
+istioctl version
+```
+The output looks similar to the following:
+```shell
+lient version: 1.13.1
+control plane version: 1.13.1
+data plane version: 1.13.1 (1 proxies)
+```
 ## Step 9 - Get an overview of your mesh
 ```shell
 istioctl proxy-status
