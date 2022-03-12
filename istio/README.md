@@ -364,6 +364,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   ```shell
   istioctl dashboard grafana
   ```
+  The output looks similar to the following:
   ```shell
   http://localhost:3000
   ```
@@ -371,6 +372,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   ```shell
   istioctl dashboard kiali
   ```
+  The output looks similar to the following:
   ```shell
   http://localhost:20001/kiali
   ```
