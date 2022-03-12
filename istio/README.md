@@ -292,8 +292,36 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   deployment.apps/grafana created
   configmap/istio-grafana-dashboards created
   configmap/istio-services-grafana-dashboards created
-  ```
 
+    kubectl get pod -n istio-system
+
+  NAME                                    READY   STATUS    RESTARTS   AGE
+  ...
+  grafana-67f5ccd9d7-zgprx                1/1     Running   0          21m
+  prometheus-7cc96d969f-764nr             2/2     Running   0          15m
+  ...
+  ```
+  1. Install kiali
+  ```shell
+  kubectl apply -f  samples/addons/kiali.yaml
+  
+  serviceaccount/kiali created
+  configmap/kiali created
+  clusterrole.rbac.authorization.k8s.io/kiali-viewer created
+  clusterrole.rbac.authorization.k8s.io/kiali created
+  clusterrolebinding.rbac.authorization.k8s.io/kiali created
+  role.rbac.authorization.k8s.io/kiali-controlplane created
+  rolebinding.rbac.authorization.k8s.io/kiali-controlplane created
+  service/kiali created
+  deployment.apps/kiali created
+
+  kubectl get pod -n istio-system
+
+  NAME                                    READY   STATUS    RESTARTS   AGE
+  ...
+  kiali-c946fb5bc-xp52g                   1/1     Running   0          2m18s
+  ...
+  ```
 
 Reference : 
  - https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
