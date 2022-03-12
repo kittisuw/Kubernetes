@@ -358,7 +358,24 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   kiali-c946fb5bc-xp52g                   1/1     Running   0          2m18s
   ...
   ```
-  1. Install jaeger
+  3. Install jaeger
+  ```shell
+  kubectl apply -f  samples/addons/jaeger.yaml
+
+  deployment.apps/jaeger unchanged
+  service/tracing unchanged
+  service/zipkin unchanged
+  service/jaeger-collector unchanged
+
+  kubectl rollout status deploy/jaeger -n istio-system
+  deployment "jaeger" successfully rolled out
+
+  kubectl get pod -n istio-system
+  NAME                                    READY   STATUS    RESTARTS   AGE
+  ...
+  jaeger-78cb4f7d4b-kwjzn                 1/1     Running   0          40m
+  ...
+  ```
 ## Step 12 - Seting port-forward to view dashboard
   1. Grafana
   ```shell
