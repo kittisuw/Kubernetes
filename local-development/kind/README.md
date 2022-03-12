@@ -88,5 +88,5 @@ The output looks similar to the following:
 Deleted clusters: ["test-cluster"]
 ```
 ## Reference
-- [Quick start](https://kind.sigs.k8s.io/docs/user/quick-start/)
+- [kind Quick start](https://kind.sigs.k8s.io/docs/user/quick-start/)
   
