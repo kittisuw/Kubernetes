@@ -83,12 +83,11 @@ The output looks similar to the following:
 ```shell
 NAME                                                   CLUSTER        CDS        LDS        EDS        RDS          ISTIOD                      VERSION
 istio-ingressgateway-66ff9c7b6f-f4p6n.istio-system     Kubernetes     SYNCED     SYNCED     SYNCED     NOT SENT     istiod-7656645d8c-wrqfq     1.13.1
-```
-Note : 
+``` 
 If a proxy is missing from this list it means that it is not currently connected to a Istiod instance so will not be receiving any configuration.
 
-SYNCED means that Envoy has acknowledged the last configuration Istiod has sent to it.
-NOT SENT means that Istiod hasn’t sent anything to Envoy. This usually is because Istiod has nothing to send.
-STALE means that Istiod has sent an update to Envoy but has not received an acknowledgement. This usually indicates a networking issue between Envoy and Istiod or a bug with Istio itself.
+SYNCED means that Envoy has acknowledged the last configuration Istiod has sent to it.   
+NOT SENT means that Istiod hasn’t sent anything to Envoy. This usually is because Istiod has nothing to send.   
+STALE means that Istiod has sent an update to Envoy but has not received an acknowledgement. This usually indicates a networking issue between Envoy and Istiod or a bug with Istio itself.   
 
 Ref: https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
