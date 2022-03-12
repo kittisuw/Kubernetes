@@ -4,7 +4,7 @@
 ## Prerequisites
 1. [Docker Desktop](https://docs.docker.com/desktop)
 2. [kubectl](https://kubernetes.io/docs/tasks/tools/)
-3. [kubectx + kubens](https://github.com/ahmetb/kubectx) Tools for switch `Kubernetest` contexts(Clusters) and namespaces easily(Option)
+3. [kubectx + kubens](https://github.com/ahmetb/kubectx) Tools for switch `Kubernetes` contexts(Clusters) and namespaces easily(Option)
 ## Step 1 - Creaet cluster
 ```shell
 CLUSER_VERSION=1.22.5
