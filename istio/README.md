@@ -2,7 +2,7 @@
 ## Table of contents
   - [Prerequisites](#prerequisites)
 ## Prerequisites
-1. Kubernetes cluster or Kubernetes local development with [kind](../local-development/kind/README.md)
+1. Kubernetes cluster or Kubernetes local development with [kind](../local-development/kind/README.md)   
 2.[Kubernetes client kubectl](https://kubernetes.io/docs/tasks/tools/)
 ## Check Kubernetes cluster
 ```shell
