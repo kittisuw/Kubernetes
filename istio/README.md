@@ -10,12 +10,13 @@ kubectl get node
 NAME                  STATUS     ROLES                  AGE   VERSION
 istio-control-plane   NotReady   control-plane,master   14s   v1.23.0
 ```
-## Step 2 - Install istio CLI specific version Eg. 1.13.1
+## Step 2 - Install istio CLI specific version
 ```shell
 curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.13.1 TARGET_ARCH=x86_64 sh -
 cd istio-1.13.1
 export PATH=$PWD/bin:$PATH
 ```
+This demo we're using Istio version 1.13.1
 ## Step 3 - Check istio CLI version
 ```shell
 istioctl version
