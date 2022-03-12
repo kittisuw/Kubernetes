@@ -5,7 +5,8 @@
 1. [Docker Desktop](https://docs.docker.com/desktop)
 2. [kubectl](https://kubernetes.io/docs/tasks/tools/)
 3. [kubectx + kubens](https://github.com/ahmetb/kubectx) Tools for switch `Kubernetes` contexts(Clusters) and namespaces easily(Option)
-## Step 1 - Create Kubernetes cluster
+## Step 1 - Create Kubernetes cluster(1 Master 2 Worker node)
+*o
 ```shell
 CLUSER_VERSION=1.22.5
 cat <<EOF | kind create cluster --name test-cluster --image kindest/node:v${CLUSER_VERSION} --config=-
