@@ -54,3 +54,14 @@ Notes:[Istio profile](https://istio.io/latest/docs/setup/additional-setup/config
 ```shell
 istioctl install --set profile=default
 ```
+The output looks similar to the following:
+```shell
+This will install the Istio 1.13.1 default profile with ["Istio core" "Istiod" "Ingress gateways"] components into the cluster. Proceed? (y/N) y
+✔ Istio core installed
+✔ Istiod installed
+✔ Ingress gateways installed
+✔ Installation complete
+Making this installation the default for injection and validation.
+
+Thank you for installing Istio 1.13.  Please take a few minutes to tell us about your install/upgrade experience!  https://forms.gle/pzWZpAvMVBecaQ9h9
+```
