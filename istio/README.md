@@ -333,7 +333,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   prometheus-7cc96d969f-764nr             2/2     Running   0          15m
   ...
   ```
-  1. Install kiali
+  2. Install kiali
   ```shell
   kubectl apply -f  samples/addons/kiali.yaml
   
