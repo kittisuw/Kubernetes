@@ -194,7 +194,9 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   ```
   3. Check status of pod
   ```shell
-  ...
+  kubectl get pod
+  ```
+  ```shell
   NAME                                    READY   STATUS    RESTARTS   AGE
   ...
   details-v1-5498c86cf5-vgwdw             1/1     Running   0          4m43s
