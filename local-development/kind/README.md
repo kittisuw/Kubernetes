@@ -7,8 +7,9 @@
 3. [kubectx + kubens](https://github.com/ahmetb/kubectx) Tools for switch `Kubernetes` contexts(Clusters) and namespaces easily(Option)
 ## Step 1 - Create Kubernetes cluster(1 Master 2 Worker)
 ```shell
+CLUSTER_NAME=test-cluster
 CLUSER_VERSION=1.22.5
-cat <<EOF | kind create cluster --name test-cluster --image kindest/node:v${CLUSER_VERSION} --config=-
+cat <<EOF | kind create cluster --name ${CLUSTER_NAME} --image kindest/node:v${CLUSER_VERSION} --config=-
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
