@@ -234,7 +234,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   pod "reviews-v2-548c57f459-r7vm8" deleted
   pod "reviews-v3-6dd79655b9-r597g" deleted
   ```
-  7. Let check our pod again as you can see all of pod have 2 containers that indicate our pod has sidecar
+  7. Let check our pod again as you can see all of pod have 2 containers that indicate they have sidcars injected to each one of them.
   ```shell
   kubectl get pod
   ```
