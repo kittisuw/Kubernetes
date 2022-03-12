@@ -256,5 +256,21 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   ```shell
   ✔ No validation issues found when analyzing namespace: default.
   ```
+  10. Get an overview of your mesh again
+  ```shell
+  istioctl proxy-status
+  ```
+  The output looks similar to the following:
+  ```shell
+  NAME                                                   CLUSTER        CDS        LDS        EDS        RDS          ISTIOD                      VERSION
+  details-v1-5498c86cf5-6sgd7.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
+  istio-ingressgateway-66ff9c7b6f-f4p6n.istio-system     Kubernetes     SYNCED     SYNCED     SYNCED     NOT SENT     istiod-7656645d8c-wrqfq     1.13.1
+  productpage-v1-65b75f6885-m8mcf.default                Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
+  ratings-v1-b477cf6cf-k6f7c.default                     Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
+  reviews-v1-79d546878f-nk972.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
+  reviews-v2-548c57f459-w9dvq.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
+  reviews-v3-6dd79655b9-t8mcw.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
+  ```
+  
 
 Ref: https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
