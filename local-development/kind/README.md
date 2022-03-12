@@ -1,4 +1,10 @@
-1. Create cluster
+# How to create Kubernetest local development
+## Table of contents
+  - [Prerequisites](#prerequisites)
+## Prerequisites
+1. A [Git](https://git-scm.com/downloads) client, to clone the `kube-prometheus-stack` repository.
+
+## Step 1 - Creaet cluster
 ```shell
 CLUSER_VERSION=1.22.5
 cat <<EOF | kind create cluster --name test-cluster --image kindest/node:v${CLUSER_VERSION} --config=-
