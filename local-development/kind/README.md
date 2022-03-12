@@ -74,6 +74,14 @@ test-cluster-control-plane   Ready    control-plane,master   2m44s   v1.22.5
 test-cluster-worker          Ready    <none>                 2m7s    v1.22.5
 test-cluster-worker2         Ready    <none>                 2m7s    v1.22.5
 ```
+## Clean up
+```shell
+kind delete cluster test-cluster
+```
+The output looks similar to the following:
+```
+Deleted clusters: ["test-cluster"]
+```
 ## Reference
 - [Quick start](https://kind.sigs.k8s.io/docs/user/quick-start/)
   
