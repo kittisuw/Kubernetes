@@ -30,7 +30,7 @@ nodes:
 - role: worker
 EOF
 ```
-Note: If you need 1 node just remove line content `- role: worker`
+Note: If you need 1 node just remove line content `- role: worker`   
 The output looks similar to the following:
 ```
 Creating cluster "test-cluster" ...
