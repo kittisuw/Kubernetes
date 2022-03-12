@@ -211,7 +211,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   ```shell
   istioctl analyze
   ```
-  The output looks similar to the following: It say this namespace not enabled for Instio injection let do follow suggestion
+  The output looks similar to the following: It say this namespace not enabled for istio injection let do follow suggestion
   ```shell
   Info [IST0102] (Namespace default) The namespace is not enabled for Istio injection. Run 'kubectl label namespace default istio-injection=enabled' to enable it, or 'kubectl label namespace default istio-injection=disabled' to explicitly mark it as not needing injection.
   ```
