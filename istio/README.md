@@ -192,7 +192,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   serviceaccount/bookinfo-productpage created
   deployment.apps/productpage-v1 created
   ```
-  3. Check status of pod
+  1. Check status of pod as you can see all of pod is only 1 container
   ```shell
   kubectl get pod
   ```
@@ -205,6 +205,34 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   reviews-v1-79d546878f-prctw             1/1     Running   0          4m43s
   reviews-v2-548c57f459-69989             1/1     Running   0          4m43s
   reviews-v3-6dd79655b9-gwp8q             1/1     Running   0          4m43s
+  ```
+  4. Check anything wrong
+  ```shell
+  istioctl analyze
+  ```
+  The output looks similar to the following: It say this namespace not enabled for Instio injection let do follow suggestion
+  ```shell
+  Info [IST0102] (Namespace default) The namespace is not enabled for Istio injection. Run 'kubectl label namespace default istio-injection=enabled' to enable it, or 'kubectl label namespace default istio-injection=disabled' to explicitly mark it as not needing injection.
+  ```
+  5. Enable Istio injection
+  ```shell
+  kubectl label namespace default istio-injection=enabled
+  ```
+  ```shell
+  namespace/default labeled
+  ```
+  6. Restart all pods to get sidecar injected
+  ```shell
+  kubectl delete pods --all
+  ```
+  The output looks similar to the following:
+  ```shell
+  pod "details-v1-5498c86cf5-6fh64" deleted
+  pod "productpage-v1-65b75f6885-xjlwp" deleted
+  pod "ratings-v1-b477cf6cf-jld8c" deleted
+  pod "reviews-v1-79d546878f-sk9xh" deleted
+  pod "reviews-v2-548c57f459-r7vm8" deleted
+  pod "reviews-v3-6dd79655b9-r597g" deleted
   ```
 
 Ref: https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
