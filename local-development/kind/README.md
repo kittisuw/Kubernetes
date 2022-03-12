@@ -1,6 +1,9 @@
 # How to create Kubernetes local development
 ## Table of contents
   - [Prerequisites](#prerequisites)
+  - [Step 1 - Create Kubernetes cluster(1 Master 2 Worker)](#step-1---create-kubernetes-cluster1-master-2-worker)
+  - [Step 2 - Get Cluster information](#step-2---get-cluster-information)
+  - [Step 3 - Get Cluster node information](#step-3---get-cluster-node-information)
 ## Prerequisites
 1. [Docker Desktop](https://docs.docker.com/desktop)
 2. [kubectl](https://kubernetes.io/docs/tasks/tools/)
@@ -33,7 +36,7 @@ EOF
 ```
 Note: If you need 1 node just remove line content `- role: worker`   
 The output looks similar to the following:
-```
+```shell
 Creating cluster "test-cluster" ...
  ✓ Ensuring node image (kindest/node:v1.22.5) 🖼 
  ✓ Preparing nodes 📦 📦 📦  
