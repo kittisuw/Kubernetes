@@ -139,7 +139,7 @@ NAME                                    READY   STATUS    RESTARTS   AGE
 istio-ingressgateway-66ff9c7b6f-f4p6n   1/1     Running   0          16m
 istiod-7656645d8c-wrqfq                 1/1     Running   0          21m
 ```
-## Step 8 - Get an overview of your mesh
+## Step 9 - Get an overview of your mesh
 ```shell
 istioctl proxy-status
 ```
