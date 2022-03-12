@@ -1,11 +1,11 @@
-# How to create Kubernetest local development
+# How to create Kubernetes local development
 ## Table of contents
   - [Prerequisites](#prerequisites)
 ## Prerequisites
 1. [Docker Desktop](https://docs.docker.com/desktop)
 2. [kubectl](https://kubernetes.io/docs/tasks/tools/)
 3. [kubectx + kubens](https://github.com/ahmetb/kubectx) Tools for switch `Kubernetes` contexts(Clusters) and namespaces easily(Option)
-## Step 1 - Creaet cluster
+## Step 1 - Create Kubernetes cluster
 ```shell
 CLUSER_VERSION=1.22.5
 cat <<EOF | kind create cluster --name test-cluster --image kindest/node:v${CLUSER_VERSION} --config=-
@@ -29,4 +29,29 @@ nodes:
 - role: worker
 - role: worker
 EOF
+```
+The output looks similar to the following:
+```
+Creating cluster "test-cluster" ...
+ ✓ Ensuring node image (kindest/node:v1.22.5) 🖼 
+ ✓ Preparing nodes 📦 📦 📦  
+ ✓ Writing configuration 📜 
+ ✓ Starting control-plane 🕹️ 
+ ✓ Installing CNI 🔌 
+ ✓ Installing StorageClass 💾 
+ ✓ Joining worker nodes 🚜 
+Set kubectl context to "kind-test-cluster"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-test-cluster
+
+Have a nice day! 👋
+```
+## Step 2 - Get Cluster information
+```shell
+kind get clusters
+```
+The output looks similar to the following:
+```shell
+test-cluster
 ```
