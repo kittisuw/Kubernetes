@@ -39,7 +39,7 @@ EOF
 ```
 Note:   
 - If you need 1 node just remove line content `- role: worker`   
-- List version available https://hub.docker.com/r/kindest/node/tags
+- List kubernetes image version available https://hub.docker.com/r/kindest/node/tags
 
 The output looks similar to the following:
 ```shell
