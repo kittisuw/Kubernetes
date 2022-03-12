@@ -293,7 +293,13 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   configmap/istio-grafana-dashboards created
   configmap/istio-services-grafana-dashboards created
 
-    kubectl get pod -n istio-system
+
+  kubectl rollout status deploy/grafana -n istio-system
+  deployment "grafana" successfully rolled out
+  kubectl rollout status deploy/prometheus -n istio-system
+  deployment "prometheus" successfully rolled out
+
+  kubectl get pod -n istio-system
 
   NAME                                    READY   STATUS    RESTARTS   AGE
   ...
@@ -314,6 +320,9 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   rolebinding.rbac.authorization.k8s.io/kiali-controlplane created
   service/kiali created
   deployment.apps/kiali created
+
+  kubectl rollout status deploy/kiali -n istio-system
+  deployment "kiali" successfully rolled out
 
   kubectl get pod -n istio-system
 
