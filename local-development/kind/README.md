@@ -57,7 +57,14 @@ The output looks similar to the following:
 ```shell
 test-cluster
 ```
-Get cluster node information
+## Step 3 - Get Cluster node information
 ```
 kubectl get node
+```
+The output looks similar to the following:
+```
+NAME                         STATUS   ROLES                  AGE     VERSION
+test-cluster-control-plane   Ready    control-plane,master   2m44s   v1.22.5
+test-cluster-worker          Ready    <none>                 2m7s    v1.22.5
+test-cluster-worker2         Ready    <none>                 2m7s    v1.22.5
 ```
