@@ -254,7 +254,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   ```
   The output looks similar to the following:
   ```shell
-
+    
   ✔ No validation issues found when analyzing namespace: default.
   ```
 
