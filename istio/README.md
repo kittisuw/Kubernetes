@@ -16,3 +16,12 @@ curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.13.1 TARGET_ARCH=x86_64
 cd istio-1.13.1
 export PATH=$PWD/bin:$PATH
 ```
+## Check istio CLI version
+```shell
+istioctl version
+```
+The output looks similar to the following:
+```shell
+no running Istio pods in "istio-system"
+1.13.1
+```
