@@ -358,7 +358,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   ...
   ```
   1. Install jaeger
-## Step 12 - View dashboard
+## Step 12 - Seting port-forward to view dashboard
   1. Grafana
   ```shell
   istioctl dashboard grafana
