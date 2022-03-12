@@ -39,6 +39,7 @@ EOF
 ```
 Note:   
 - If you need 1 node just remove line content `- role: worker`   
+- If some kubernetes resorce can't create maybe increse limit cpu,memory resorce in docker desktop https://kind.sigs.k8s.io/docs/user/known-issues/
 - List kubernetes image version available https://hub.docker.com/r/kindest/node/tags
 
 The output looks similar to the following:
