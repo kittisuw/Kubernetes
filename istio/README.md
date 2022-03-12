@@ -3,7 +3,7 @@
   - [Prerequisites](#prerequisites)
 ## Prerequisites
 1. Kubernetes cluster or Kubernetes local development with [kind](../local-development/kind/README.md)   
-2. [Kubernetes client kubectl](https://kubernetes.io/docs/tasks/tools/)
+2. Kubernetes client [kubectl](https://kubernetes.io/docs/tasks/tools/)
 ## Step 1 - Check Kubernetes cluster
 ```shell
 kubectl get node
