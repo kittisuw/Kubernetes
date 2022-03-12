@@ -275,8 +275,8 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   1. Install   
   ```
   cd istio-1.13.1
-  k apply -f  samples/addons/grafana.yaml
-  
+  kubectl apply -f samples/addons/grafana.yaml
+
   serviceaccount/grafana created
   configmap/grafana created
   service/grafana created
