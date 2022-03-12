@@ -27,7 +27,7 @@ no running Istio pods in "istio-system"
 ```
 ## Check compatability with target cluster
 ```shell
-istioctl x prechec
+istioctl x precheck
 ```
 The output looks similar to the following:
 ```
