@@ -1,7 +1,12 @@
 # Deploy and Access the Kubernetes Dashboard
 ## Table of contents
   - [Prerequisites](#prerequisites)
-  - [Step 4 - Verify that the ingress works](#step-4---verify-that-the-ingress-works)
+  - [Step 1 - Install Kubernetes dashboard](#step-1---install-kubernetes-dashboard)
+  - [Step 2 - Create service Account](#step-2---create-service-account)
+  - [Step 3 - Get token for access dashboard](#step-3---get-token-for-access-dashboard)
+  - [Step 4 - Set port-forwarding](#step-4---set-port-forwarding)
+  - [Step 5 - Create Kubernetes test resorce Eg. pod with log 100mb](#step-5---create-kubernetes-test-resorce-eg-pod-with-log-100mb)
+  - [Reference](#reference)
 ## Prerequisites
 1. [Install cluster](../README.md)
 ## Step 1 - Install Kubernetes dashboard
@@ -45,7 +50,7 @@ kubectl proxy
 ```
 Dashboard available at : http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
-## Create Kubernetes test resorce Eg. pod with log 100mb
+## Step 5 - Create Kubernetes test resorce Eg. pod with log 100mb
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/test-resources/100mb-of-logs-pod.yaml
 ```
