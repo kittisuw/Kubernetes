@@ -57,3 +57,7 @@ The output looks similar to the following:
 ```shell
 test-cluster
 ```
+Get cluster node information
+```
+kubectl get node
+```
