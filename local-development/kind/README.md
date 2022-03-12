@@ -85,7 +85,7 @@ test-cluster-worker2         Ready    <none>                 2m7s    v1.22.5
 kind delete cluster test-cluster
 ```
 The output looks similar to the following:
-```
+```shell
 Deleted clusters: ["test-cluster"]
 ```
 ## Reference
