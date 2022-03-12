@@ -359,6 +359,23 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
 
   istioctl dashboard kiali
   ```
+## Step 12 - View dashboard
+  1. Grafana
+  ```shell
+  istioctl dashboard grafana
+  ```
+  ```shell
+  http://localhost:3000
+  ```
+  2. Kiali
+  ```shell
+  istioctl dashboard kiali
+  ```
+  ```shell
+  http://localhost:20001/kiali
+  ```
+
+
 
 Reference : 
  - https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
