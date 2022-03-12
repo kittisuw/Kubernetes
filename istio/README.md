@@ -69,6 +69,7 @@ Thank you for installing Istio 1.13.  Please take a few minutes to tell us about
 ```shell
 kubectl get pod -n istio-system
 ```
+The output looks similar to the following:
 ```shell
 NAME                                    READY   STATUS    RESTARTS   AGE
 istio-ingressgateway-66ff9c7b6f-f4p6n   1/1     Running   0          16m
