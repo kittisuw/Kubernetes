@@ -271,6 +271,22 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   reviews-v2-548c57f459-w9dvq.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
   reviews-v3-6dd79655b9-t8mcw.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
   ```
+## Step 11 - Install Addons
+  1. Install   
+  ```
+  cd istio-1.13.1
+  k apply -f  samples/addons/grafana.yaml
   
+  serviceaccount/grafana created
+  configmap/grafana created
+  service/grafana created
+  deployment.apps/grafana created
+  configmap/istio-grafana-dashboards created
+  configmap/istio-services-grafana-dashboards created
+  ```
 
-Ref: https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
+
+Reference : 
+ - https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
+ - https://www.eksworkshop.com/advanced/310_servicemesh_with_istio/deploy/
+ - 
