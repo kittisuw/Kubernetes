@@ -356,9 +356,8 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   ...
   kiali-c946fb5bc-xp52g                   1/1     Running   0          2m18s
   ...
-
-  istioctl dashboard kiali
   ```
+  1. Install jaeger
 ## Step 12 - View dashboard
   1. Grafana
   ```shell
@@ -375,6 +374,14 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   The output looks similar to the following:
   ```shell
   http://localhost:20001/kiali
+  ```
+  3. Jaeger
+  ```shell
+  istioctl dashboard jaeger
+  ```
+  The output looks similar to the following:
+  ```shell
+  http://localhost:16686
   ```
 
 
