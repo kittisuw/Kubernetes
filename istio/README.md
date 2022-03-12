@@ -165,4 +165,28 @@ SYNCED means that Envoy has acknowledged the last configuration Istiod has sent 
 NOT SENT means that Istiod hasn’t sent anything to Envoy. This usually is because Istiod has nothing to send.   
 STALE means that Istiod has sent an update to Envoy but has not received an acknowledgement. This usually indicates a networking issue between Envoy and Istiod or a bug with Istio itself.   
 
+## Step 10 - Deploy example application on default namespace and inject sidecar
+  1. 
+  ```shell
+  cd istio-1.13.1
+  kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+  ```
+  The output looks similar to the following:
+  ```shell
+  service/details created
+  serviceaccount/bookinfo-details created
+  deployment.apps/details-v1 created
+  service/ratings created
+  serviceaccount/bookinfo-ratings created
+  deployment.apps/ratings-v1 created
+  service/reviews created
+  serviceaccount/bookinfo-reviews created
+  deployment.apps/reviews-v1 created
+  deployment.apps/reviews-v2 created
+  deployment.apps/reviews-v3 created
+  service/productpage created
+  serviceaccount/bookinfo-productpage created
+  deployment.apps/productpage-v1 created
+  ```
+
 Ref: https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
