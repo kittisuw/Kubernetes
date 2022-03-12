@@ -256,7 +256,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   ```shell
   ✔ No validation issues found when analyzing namespace: default.
   ```
-  10. Get an overview of your mesh again
+  10. Get an overview of your mesh follow Step 9 again
   ```shell
   istioctl proxy-status
   ```
