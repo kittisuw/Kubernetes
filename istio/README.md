@@ -289,4 +289,3 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
 Reference : 
  - https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
  - https://www.eksworkshop.com/advanced/310_servicemesh_with_istio/deploy/
- - 
