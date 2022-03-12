@@ -192,7 +192,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   serviceaccount/bookinfo-productpage created
   deployment.apps/productpage-v1 created
   ```
-  1. Check status of pod as you can see all of pod is only 1 container
+  3. Check status of pod as you can see all of pod is only 1 container
   ```shell
   kubectl get pod
   ```
