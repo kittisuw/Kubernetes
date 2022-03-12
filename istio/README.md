@@ -272,9 +272,18 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   reviews-v3-6dd79655b9-t8mcw.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
   ```
 ## Step 11 - Install Addons
-  1. Install   
+  1. Install Prometheus & Grafana for Istio   
   ```
   cd istio-1.13.1
+  kubectl apply -f samples/addons/prometheus.yaml
+
+  serviceaccount/prometheus created
+  configmap/prometheus created
+  clusterrole.rbac.authorization.k8s.io/prometheus created
+  clusterrolebinding.rbac.authorization.k8s.io/prometheus created
+  service/prometheus created
+  deployment.apps/prometheus create
+
   kubectl apply -f samples/addons/grafana.yaml
 
   serviceaccount/grafana created
