@@ -13,7 +13,7 @@
   - [Step 9 - Verify Istio version](#step-9---verify-istio-version)
   - [Step 10 - Get an overview of your mesh](#step-10---get-an-overview-of-your-mesh)
   - [Step 11 - Deploy an example application on default namespace and Installing the Sidecar](#step-11---deploy-an-example-application-on-default-namespace-and-installing-the-sidecar)
-  - [Step 12 Create ingress rule and genarate some more traffic](#step-12-create-ingress-rule-and-genarate-some-more-traffic)
+  - [Step 12 - Create ingress rule and genarate some more traffic](#step-12---create-ingress-rule-and-genarate-some-more-traffic)
   - [Step 13 - Install Addons](#step-13---install-addons)
   - [Step 14 - Seting port-forward to view dashboard](#step-14---seting-port-forward-to-view-dashboard)
   - [Reference](#reference)
@@ -295,7 +295,7 @@ reviews-v1-79d546878f-nk972.default                    Kubernetes     SYNCED    
 reviews-v2-548c57f459-w9dvq.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
 reviews-v3-6dd79655b9-t8mcw.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
 ```
-## Step 12 Create ingress rule and genarate some more traffic
+## Step 12 - Create ingress rule and genarate some more traffic
   1. Create ingress rule for route traffic to example application 
 ```shell
 cat <<EOF |kubectl apply -f -
