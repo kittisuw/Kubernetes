@@ -16,6 +16,7 @@
   - [Step 12 Create ingress rule and genarate some more traffic](#step-12-create-ingress-rule-and-genarate-some-more-traffic)
   - [Step 13 - Install Addons](#step-13---install-addons)
   - [Step 14 - Seting port-forward to view dashboard](#step-14---seting-port-forward-to-view-dashboard)
+  - [Reference](#reference)
 ## Prerequisites
 1. Kubernetes cluster or Kubernetes local development with [kind](../local-development/kind/README.md) with ingress-nginx.
 2. Kubernetes client [kubectl](https://kubernetes.io/docs/tasks/tools/)
@@ -426,8 +427,6 @@ The output looks similar to the following:
 http://localhost:16686
 ```
 ![jaeger!](assets/images/jaeger.png)
-
-
-Reference : 
+## Reference
  - https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/
  - https://www.eksworkshop.com/advanced/310_servicemesh_with_istio/deploy/
