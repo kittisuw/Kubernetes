@@ -30,7 +30,7 @@
 ```shell
 kubectl get node
 NAME                  STATUS     ROLES                  AGE   VERSION
-istio-control-plane   NotReady   control-plane,master   14s   v1.23.0
+istio-control-plane   Ready      control-plane,master   14s   v1.23.0
 ```
 ## Step 2 - Install istio CLI
 ```shell
