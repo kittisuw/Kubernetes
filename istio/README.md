@@ -413,7 +413,7 @@ The output looks similar to the following:
 ```shell
 http://localhost:16686
 ```
-
+![jaeger!](assets/images/jaeger.png)
 
 
 Reference : 
