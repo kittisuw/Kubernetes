@@ -165,7 +165,7 @@ istioctl version
 ```
 The output looks similar to the following:
 ```shell
-lient version: 1.13.1
+client version: 1.13.1
 control plane version: 1.13.1
 data plane version: 1.13.1 (1 proxies)
 ```
