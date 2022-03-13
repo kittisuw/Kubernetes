@@ -184,6 +184,7 @@ NOT SENT means that Istiod hasn’t sent anything to Envoy. This usually is beca
 STALE means that Istiod has sent an update to Envoy but has not received an acknowledgement. This usually indicates a networking issue between Envoy and Istiod or a bug with Istio itself.   
 
 ## Step 11 - Deploy example application on default namespace and inject sidecar
+![booking!](assets/images/istio_bookinfo_architecture.png)
   1. Switch to default namespace
 ```shell
 kns default
