@@ -336,8 +336,11 @@ kubectl apply -f samples/addons/prometheus.yaml
 kubectl apply -f samples/addons/grafana.yaml
 --
 kubectl rollout status deploy/grafana -n istio-system
-deployment "grafana" successfully rolled out
 kubectl rollout status deploy/prometheus -n istio-system
+```
+The output looks similar to the following:
+```shell
+deployment "grafana" successfully rolled out
 deployment "prometheus" successfully rolled out
 ```
   2. Install kiali
@@ -345,6 +348,9 @@ deployment "prometheus" successfully rolled out
 kubectl apply -f  samples/addons/kiali.yaml
 --
 kubectl rollout status deploy/kiali -n istio-system
+```
+The output looks similar to the following:
+```shell
 deployment "kiali" successfully rolled out
 ```
   3. Install jaeger
@@ -352,6 +358,9 @@ deployment "kiali" successfully rolled out
 kubectl apply -f  samples/addons/jaeger.yaml
 --
 kubectl rollout status deploy/jaeger -n istio-system
+```
+The output looks similar to the following:
+```shell
 deployment "jaeger" successfully rolled out
 ```
 ## Step 14 - Seting port-forward to view dashboard
