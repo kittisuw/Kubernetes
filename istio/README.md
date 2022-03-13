@@ -3,6 +3,8 @@
   - [Prerequisites](#prerequisites)
   - [Step 1 - Check Kubernetes cluster](#step-1---check-kubernetes-cluster)
   - [Step 2 - Install istio CLI](#step-2---install-istio-cli)
+  - [Step 3 - Check istio CLI version](#step-3---check-istio-cli-version)
+  - [Step 4 - Check compatability with target cluster](#step-4---check-compatability-with-target-cluster)
 ## Prerequisites
 1. Kubernetes cluster or Kubernetes local development with [kind](../local-development/kind/README.md) with ingress-nginx.
 2. Kubernetes client [kubectl](https://kubernetes.io/docs/tasks/tools/)
