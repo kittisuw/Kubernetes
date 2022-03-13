@@ -12,7 +12,7 @@
   - [Step 8 - Check istio pod status](#step-8---check-istio-pod-status)
   - [Step 9 - Verify Istio version](#step-9---verify-istio-version)
   - [Step 10 - Get an overview of your mesh](#step-10---get-an-overview-of-your-mesh)
-  - [Step 11 - Deploy example application on default namespace and inject sidecar](#step-11---deploy-example-application-on-default-namespace-and-inject-sidecar)
+  - [Step 11 - Deploy an example application on default namespace and Installing the Sidecar](#step-11---deploy-an-example-application-on-default-namespace-and-installing-the-sidecar)
   - [Step 12 Create ingress rule and genarate some more traffic](#step-12-create-ingress-rule-and-genarate-some-more-traffic)
   - [Step 13 - Install Addons](#step-13---install-addons)
   - [Step 14 - Seting port-forward to view dashboard](#step-14---seting-port-forward-to-view-dashboard)
@@ -184,7 +184,7 @@ SYNCED means that Envoy has acknowledged the last configuration Istiod has sent 
 NOT SENT means that Istiod hasn’t sent anything to Envoy. This usually is because Istiod has nothing to send.   
 STALE means that Istiod has sent an update to Envoy but has not received an acknowledgement. This usually indicates a networking issue between Envoy and Istiod or a bug with Istio itself.   
 
-## Step 11 - Deploy example application on default namespace and inject sidecar
+## Step 11 - Deploy an example application on default namespace and Installing the Sidecar
 ![booking!](assets/images/istio_bookinfo_architecture.png)
   1. Switch to default namespace
 ```shell
