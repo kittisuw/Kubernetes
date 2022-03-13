@@ -235,10 +235,10 @@ The output looks similar to the following: It say this namespace not enabled for
 ```shell
 Info [IST0102] (Namespace default) The namespace is not enabled for Istio injection. Run 'kubectl label namespace default istio-injection=enabled' to enable it, or 'kubectl label namespace default istio-injection=disabled' to explicitly mark it as not needing injection.
 ```
-  5. Install the SideCar(Envoy)
+  5. Install the SideCar(Envoy) to default namespace
 ```shell
 kubectl label namespace default istio-injection=enabled
-kubectl delete pod --all
+kubectl delete pod --all -n default
 ```
 The output looks similar to the following:
 ```shell
@@ -250,10 +250,10 @@ pod "reviews-v1-79d546878f-nk972" deleted
 pod "reviews-v2-548c57f459-w9dvq" deleted
 pod "reviews-v3-6dd79655b9-t8mcw" deleted
 ```
-  For Uninstall the Sidecar(Envoy) using command : 
+  For Uninstall the Sidecar(Envoy) from default namespace using command : 
 ```shell
 kubectl label namespace default istio-injection-
-kubectl delete pod --all
+kubectl delete pod --all -n default
 ``` 
   6. Let check our pod again as you can see all of pod have 2 containers that indicate they have sidcars injected to each one of them.
 ```shell
