@@ -71,7 +71,7 @@ Notes:[Istio profile](https://istio.io/latest/docs/setup/additional-setup/config
 ```shell
 istioctl install --set profile=default
 ```
-Note : Default This profile is recommended for production   
+Note : Default This profile is recommended for Production   
 The output looks similar to the following:
 ```shell
 This will install the Istio 1.13.1 default profile with ["Istio core" "Istiod" "Ingress gateways"] components into the cluster. Proceed? (y/N) y
