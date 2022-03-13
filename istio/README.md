@@ -389,7 +389,7 @@ istioctl dashboard grafana
 ```shell
 http://localhost:3000
 ```
-  1. Kiali
+  2. Kiali
 ```shell
 istioctl dashboard kiali
 ```
