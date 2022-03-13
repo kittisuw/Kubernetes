@@ -334,7 +334,7 @@ while sleep 1;do curl localhost/productpage &> /dev/null; done
 cd istio-1.13.1
 kubectl apply -f samples/addons/prometheus.yaml
 kubectl apply -f samples/addons/grafana.yaml
---
+
 kubectl rollout status deploy/grafana -n istio-system
 kubectl rollout status deploy/prometheus -n istio-system
 ```
@@ -346,7 +346,7 @@ deployment "prometheus" successfully rolled out
   2. Install kiali
 ```shell
 kubectl apply -f  samples/addons/kiali.yaml
---
+
 kubectl rollout status deploy/kiali -n istio-system
 ```
 The output looks similar to the following:
@@ -356,7 +356,7 @@ deployment "kiali" successfully rolled out
   3. Install jaeger
 ```shell
 kubectl apply -f  samples/addons/jaeger.yaml
---
+
 kubectl rollout status deploy/jaeger -n istio-system
 ```
 The output looks similar to the following:
