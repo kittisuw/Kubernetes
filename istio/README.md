@@ -274,7 +274,7 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   ```
 ## Step 11 Create ingress rule and genarate some more traffic
   1. Create ingress rule for route traffic to example application 
-  ```shell
+  ```yaml
 cat <<EOF |kubectl apply -f -
 apiVersion: networking.k8s.io/v1
 kind: Ingress
