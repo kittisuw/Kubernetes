@@ -292,6 +292,15 @@ spec:
             name: productpage
             port:
               number: 9080
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/static"
+        backend:
+          service:
+            name: productpage
+            port:
+              number: 9080
 EOF
 ```
   2. Genarate traffic
