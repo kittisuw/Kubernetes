@@ -51,10 +51,11 @@ The output looks similar to the following:
     remote
 ```
 Notes:[Istio profile](https://istio.io/latest/docs/setup/additional-setup/config-profiles)
-##  Step 6 - Install istio with default profile *This profile is recommended for production
+##  Step 6 - Install istio with default profile
 ```shell
 istioctl install --set profile=default
 ```
+Note : Default This profile is recommended for production   
 The output looks similar to the following:
 ```shell
 This will install the Istio 1.13.1 default profile with ["Istio core" "Istiod" "Ingress gateways"] components into the cluster. Proceed? (y/N) y
