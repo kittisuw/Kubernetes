@@ -235,29 +235,27 @@ The output looks similar to the following: It say this namespace not enabled for
 ```shell
 Info [IST0102] (Namespace default) The namespace is not enabled for Istio injection. Run 'kubectl label namespace default istio-injection=enabled' to enable it, or 'kubectl label namespace default istio-injection=disabled' to explicitly mark it as not needing injection.
 ```
-  5. Enable Istio injection
+  5. Install the SideCar(Envoy)
 ```shell
 kubectl label namespace default istio-injection=enabled
+kubectl delete pod --all
 ```
 The output looks similar to the following:
 ```shell
 namespace/default labeled
+pod "details-v1-5498c86cf5-6sgd7" deleted
+pod "productpage-v1-65b75f6885-xmv2w" deleted
+pod "ratings-v1-b477cf6cf-k6f7c" deleted
+pod "reviews-v1-79d546878f-nk972" deleted
+pod "reviews-v2-548c57f459-w9dvq" deleted
+pod "reviews-v3-6dd79655b9-t8mcw" deleted
 ```
-  For diable using command : `kubectl label namespace default istio-injection-`   
-  6. Restart all pods to get sidecar injected
+  For Uninstall the Sidecar(Envoy) using command : 
 ```shell
-kubectl delete pods --all
-```
-The output looks similar to the following:
-```shell
-pod "details-v1-5498c86cf5-6fh64" deleted
-pod "productpage-v1-65b75f6885-xjlwp" deleted
-pod "ratings-v1-b477cf6cf-jld8c" deleted
-pod "reviews-v1-79d546878f-sk9xh" deleted
-pod "reviews-v2-548c57f459-r7vm8" deleted
-pod "reviews-v3-6dd79655b9-r597g" deleted
-```
-  7. Let check our pod again as you can see all of pod have 2 containers that indicate they have sidcars injected to each one of them.
+kubectl label namespace default istio-injection-
+kubectl delete pod --all
+``` 
+  6. Let check our pod again as you can see all of pod have 2 containers that indicate they have sidcars injected to each one of them.
 ```shell
 kubectl get pod
 ```
@@ -271,7 +269,7 @@ reviews-v1-79d546878f-nk972       2/2     Running   0          6m16s
 reviews-v2-548c57f459-w9dvq       2/2     Running   0          6m16s
 reviews-v3-6dd79655b9-t8mcw       2/2     Running   0          6m15s
 ```
-8. Check anything wrong again
+  7. Check anything wrong again
 ```shell
 istioctl analyze
 ```
