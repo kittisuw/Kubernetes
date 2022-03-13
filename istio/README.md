@@ -387,7 +387,7 @@ jaeger-78cb4f7d4b-kwjzn                 1/1     Running   0          40m
 ...
 ```
 ## Step 12 - Seting port-forward to view dashboard
-  1. Grafana
+  1. port-forward Grafana
 ```shell
 istioctl dashboard grafana
 ```
@@ -395,7 +395,7 @@ istioctl dashboard grafana
 ```shell
 http://localhost:3000
 ```
-  2. Kiali
+  2. port-forward Kiali
 ```shell
 istioctl dashboard kiali
 ```
@@ -403,6 +403,7 @@ The output looks similar to the following:
 ```shell
 http://localhost:20001/kiali
 ```
+![kaiali!](assets/images/kiali.png)
   3. Jaeger
 ```shell
 istioctl dashboard jaeger
