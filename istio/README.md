@@ -240,7 +240,7 @@ Info [IST0102] (Namespace default) The namespace is not enabled for Istio inject
 kubectl label namespace default istio-injection=enabled
 kubectl delete pod --all -n default
 ```
-The output looks similar to the following:
+  The output looks similar to the following:
 ```shell
 namespace/default labeled
 pod "details-v1-5498c86cf5-6sgd7" deleted
@@ -255,6 +255,7 @@ pod "reviews-v3-6dd79655b9-t8mcw" deleted
 kubectl label namespace default istio-injection-
 kubectl delete pod --all -n default
 ``` 
+  Ref : https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/
   6. Let check our pod again as you can see all of pod have 2 containers that indicate they have sidcars injected to each one of them.
 ```shell
 kubectl get pod
