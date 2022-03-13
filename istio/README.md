@@ -53,6 +53,7 @@ The output looks similar to the following:
 ✔ No issues found when checking the cluster. Istio is safe to install or upgrade!
   To get started, check out https://istio.io/latest/docs/setup/getting-started/
 ```
+istioctl commands reference : https://istio.io/latest/docs/reference/commands/istioctl/
 ## Step 5 - Check Available istio profile
 ```shell
 istioctl profile list
