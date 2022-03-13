@@ -279,28 +279,28 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
   apiVersion: networking.k8s.io/v1
   kind: Ingress
   metadata:
-   name: bookinfo
-   namespace: default
+  name: bookinfo
+  namespace: default
   spec:
-   rules:
-   - http:
-       paths:
-       - pathType: Prefix
-          path: "/productpage"
-          backend:
-            service:
-              name: productpage
-              port:
-                number: 9080
-   - http:
-       paths:
-       - pathType: Prefix
-          path: "/static"
-          backend:
-            service:
-              name: productpage
-              port:
-                number: 9080
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/productpage"
+        backend:
+          service:
+            name: productpage
+            port:
+              number: 9080
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/static"
+        backend:
+          service:
+            name: productpage
+            port:
+              number: 9080
   EOF
   ```
   2. Genarate traffic
