@@ -333,71 +333,26 @@ while sleep 1;do curl localhost/productpage &> /dev/null; done
 ```
 cd istio-1.13.1
 kubectl apply -f samples/addons/prometheus.yaml
-
-serviceaccount/prometheus created
-configmap/prometheus created
-clusterrole.rbac.authorization.k8s.io/prometheus created
-clusterrolebinding.rbac.authorization.k8s.io/prometheus created
-service/prometheus created
-deployment.apps/prometheus create
-
 kubectl apply -f samples/addons/grafana.yaml
-
-serviceaccount/grafana created
-configmap/grafana created
-service/grafana created
-deployment.apps/grafana created
-configmap/istio-grafana-dashboards created
-configmap/istio-services-grafana-dashboards created
-
+--
 kubectl rollout status deploy/grafana -n istio-system
 deployment "grafana" successfully rolled out
 kubectl rollout status deploy/prometheus -n istio-system
 deployment "prometheus" successfully rolled out
-
-kubectl get pod -n istio-system
-
-NAME                                    READY   STATUS    RESTARTS   AGE
-...
-grafana-67f5ccd9d7-zgprx                1/1     Running   0          21m
-prometheus-7cc96d969f-764nr             2/2     Running   0          15m
-...
 ```
   2. Install kiali
 ```shell
 kubectl apply -f  samples/addons/kiali.yaml
-  
-serviceaccount/kiali created
-configmap/kiali created
-clusterrole.rbac.authorization.k8s.io/kiali-viewer created
-clusterrole.rbac.authorization.k8s.io/kiali created
-clusterrolebinding.rbac.authorization.k8s.io/kiali created
-role.rbac.authorization.k8s.io/kiali-controlplane created
-rolebinding.rbac.authorization.k8s.io/kiali-controlplane created
-service/kiali created
-deployment.apps/kiali created
+--
 kubectl rollout status deploy/kiali -n istio-system
 deployment "kiali" successfully rolled out
-kubectl get pod -n istio-system
-NAME                                    READY   STATUS    RESTARTS   AGE
-...
-kiali-c946fb5bc-xp52g                   1/1     Running   0          2m18s
-...
 ```
   3. Install jaeger
 ```shell
 kubectl apply -f  samples/addons/jaeger.yaml
-deployment.apps/jaeger unchanged
-service/tracing unchanged
-service/zipkin unchanged
-service/jaeger-collector unchanged
+--
 kubectl rollout status deploy/jaeger -n istio-system
 deployment "jaeger" successfully rolled out
-kubectl get pod -n istio-system
-NAME                                    READY   STATUS    RESTARTS   AGE
-...
-jaeger-78cb4f7d4b-kwjzn                 1/1     Running   0          40m
-...
 ```
 ## Step 14 - Seting port-forward to view dashboard
   1. port-forward Grafana
