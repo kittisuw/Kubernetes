@@ -243,7 +243,7 @@ The output looks similar to the following:
 ```shell
 namespace/default labeled
 ```
-For diable using command : `kubectl label namespace default istio-injection-`   
+  For diable using command : `kubectl label namespace default istio-injection-`   
   6. Restart all pods to get sidecar injected
 ```shell
 kubectl delete pods --all
