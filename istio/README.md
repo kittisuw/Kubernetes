@@ -239,11 +239,11 @@ Info [IST0102] (Namespace default) The namespace is not enabled for Istio inject
 ```shell
 kubectl label namespace default istio-injection=enabled
 ```
-For diable using command : `kubectl label namespace default istio-injection-`
 The output looks similar to the following:
 ```shell
 namespace/default labeled
 ```
+For diable using command : `kubectl label namespace default istio-injection-`   
   6. Restart all pods to get sidecar injected
 ```shell
 kubectl delete pods --all
