@@ -255,7 +255,7 @@ pod "reviews-v3-6dd79655b9-t8mcw" deleted
 kubectl label namespace default istio-injection-
 kubectl delete pod --all -n default
 ``` 
-Installing the Sidecar : https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/   
+  Installing the Sidecar : https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/   
   6. Let check our pod again as you can see all of pod have 2 containers that indicate they have sidcars injected to each one of them.
 ```shell
 kubectl get pod
