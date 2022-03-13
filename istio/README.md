@@ -2,7 +2,7 @@
 ## Table of contents
   - [Prerequisites](#prerequisites)
   - [Step 1 - Check Kubernetes cluster](#step-1---check-kubernetes-cluster)
-  - [Step 2 - Install istio CLI specific version](#step-2---install-istio-cli-specific-version)
+  - [Step 2 - Install istio CLI](#step-2---install-istio-cli)
 ## Prerequisites
 1. Kubernetes cluster or Kubernetes local development with [kind](../local-development/kind/README.md) with ingress-nginx.
 2. Kubernetes client [kubectl](https://kubernetes.io/docs/tasks/tools/)
@@ -13,7 +13,7 @@ kubectl get node
 NAME                  STATUS     ROLES                  AGE   VERSION
 istio-control-plane   NotReady   control-plane,master   14s   v1.23.0
 ```
-## Step 2 - Install istio CLI specific version
+## Step 2 - Install istio CLI
 ```shell
 curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.13.1 TARGET_ARCH=x86_64 sh -
 cd istio-1.13.1
