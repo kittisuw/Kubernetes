@@ -6,6 +6,16 @@
   - [Step 2 - Install istio CLI](#step-2---install-istio-cli)
   - [Step 3 - Check istio CLI version](#step-3---check-istio-cli-version)
   - [Step 4 - Check compatability with target cluster](#step-4---check-compatability-with-target-cluster)
+  - [Step 5 - Check Available istio profile](#step-5---check-available-istio-profile)
+  - [Step 6 - Install istio](#step-6---install-istio)
+  - [Step 7 - Verify installation](#step-7---verify-installation)
+  - [Step 8 - Check istio pod status](#step-8---check-istio-pod-status)
+  - [Step 9 - Verify Istio version](#step-9---verify-istio-version)
+  - [Step 10 - Get an overview of your mesh](#step-10---get-an-overview-of-your-mesh)
+  - [Step 11 - Deploy example application on default namespace and inject sidecar](#step-11---deploy-example-application-on-default-namespace-and-inject-sidecar)
+  - [Step 12 Create ingress rule and genarate some more traffic](#step-12-create-ingress-rule-and-genarate-some-more-traffic)
+  - [Step 13 - Install Addons](#step-13---install-addons)
+  - [Step 14 - Seting port-forward to view dashboard](#step-14---seting-port-forward-to-view-dashboard)
 ## Prerequisites
 1. Kubernetes cluster or Kubernetes local development with [kind](../local-development/kind/README.md) with ingress-nginx.
 2. Kubernetes client [kubectl](https://kubernetes.io/docs/tasks/tools/)
@@ -158,7 +168,7 @@ lient version: 1.13.1
 control plane version: 1.13.1
 data plane version: 1.13.1 (1 proxies)
 ```
-## Step 9 - Get an overview of your mesh
+## Step 10 - Get an overview of your mesh
 ```shell
 istioctl proxy-status
 ```
@@ -173,7 +183,7 @@ SYNCED means that Envoy has acknowledged the last configuration Istiod has sent 
 NOT SENT means that Istiod hasn’t sent anything to Envoy. This usually is because Istiod has nothing to send.   
 STALE means that Istiod has sent an update to Envoy but has not received an acknowledgement. This usually indicates a networking issue between Envoy and Istiod or a bug with Istio itself.   
 
-## Step 10 - Deploy example application on default namespace and inject sidecar
+## Step 11 - Deploy example application on default namespace and inject sidecar
   1. Switch to default namespace
 ```shell
 kns default
@@ -281,7 +291,7 @@ reviews-v1-79d546878f-nk972.default                    Kubernetes     SYNCED    
 reviews-v2-548c57f459-w9dvq.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
 reviews-v3-6dd79655b9-t8mcw.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
 ```
-## Step 11 Create ingress rule and genarate some more traffic
+## Step 12 Create ingress rule and genarate some more traffic
   1. Create ingress rule for route traffic to example application 
 ```shell
 cat <<EOF |kubectl apply -f -
@@ -316,7 +326,7 @@ EOF
 ```shell
 while sleep 1;do curl localhost/productpage &> /dev/null; done
 ```
-## Step 11 - Install Addons
+## Step 13 - Install Addons
   1. Install Prometheus & Grafana for Istio   
 ```
 cd istio-1.13.1
@@ -387,7 +397,7 @@ NAME                                    READY   STATUS    RESTARTS   AGE
 jaeger-78cb4f7d4b-kwjzn                 1/1     Running   0          40m
 ...
 ```
-## Step 12 - Seting port-forward to view dashboard
+## Step 14 - Seting port-forward to view dashboard
   1. port-forward Grafana
 ```shell
 istioctl dashboard grafana
