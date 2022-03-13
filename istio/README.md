@@ -395,7 +395,8 @@ istioctl dashboard grafana
 ```shell
 http://localhost:3000
 ```
-  2. port-forward Kiali
+![grafana!](assets/images/grafana.png)
+  1. port-forward Kiali
 ```shell
 istioctl dashboard kiali
 ```
