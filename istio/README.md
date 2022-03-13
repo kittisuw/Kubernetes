@@ -1,5 +1,5 @@
 # Deploy Istio
-![arch!](assets/images/arch.avg)
+![arch!](assets/images/arch.jpeg)
 ## Table of contents
   - [Prerequisites](#prerequisites)
   - [Step 1 - Check Kubernetes cluster](#step-1---check-kubernetes-cluster)
