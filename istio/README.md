@@ -51,7 +51,7 @@ The output looks similar to the following:
     remote
 ```
 Notes:[Istio profile](https://istio.io/latest/docs/setup/additional-setup/config-profiles)
-##  Step 6 - Install istio with default profile
+##  Step 6 - Install istio
 ```shell
 istioctl install --set profile=default
 ```
