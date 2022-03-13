@@ -292,6 +292,15 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
               name: productpage
               port:
                 number: 9080
+   - http:
+       paths:
+       - pathType: Prefix
+          path: "/static"
+          backend:
+            service:
+              name: productpage
+              port:
+                number: 9080
   EOF
   ```
   2. Genarate traffic
