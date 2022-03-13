@@ -168,110 +168,112 @@ STALE means that Istiod has sent an update to Envoy but has not received an ackn
 
 ## Step 10 - Deploy example application on default namespace and inject sidecar
   1. Switch to default namespace
-  ```shell
-  kns default
-  ``` 
+```shell
+kns default
+``` 
   2. Deploy example application on default namespace  
-  ```shell
-  cd istio-1.13.1
-  kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
-  ```
-  The output looks similar to the following:
-  ```shell
-  service/details created
-  serviceaccount/bookinfo-details created
-  deployment.apps/details-v1 created
-  service/ratings created
-  serviceaccount/bookinfo-ratings created
-  deployment.apps/ratings-v1 created
-  service/reviews created
-  serviceaccount/bookinfo-reviews created
-  deployment.apps/reviews-v1 created
-  deployment.apps/reviews-v2 created
-  deployment.apps/reviews-v3 created
-  service/productpage created
-  serviceaccount/bookinfo-productpage created
-  deployment.apps/productpage-v1 created
-  ```
-  3. Check status of pod as you can see all of pod is only 1 container
-  ```shell
-  kubectl get pod
-  ```
-  ```shell
-  NAME                                    READY   STATUS    RESTARTS   AGE
-  ...
-  details-v1-5498c86cf5-vgwdw             1/1     Running   0          4m43s
-  productpage-v1-65b75f6885-9c2tj         1/1     Running   0          4m43s
-  ratings-v1-b477cf6cf-bvrlq              1/1     Running   0          4m43s
-  reviews-v1-79d546878f-prctw             1/1     Running   0          4m43s
-  reviews-v2-548c57f459-69989             1/1     Running   0          4m43s
-  reviews-v3-6dd79655b9-gwp8q             1/1     Running   0          4m43s
-  ```
-  4. Check anything wrong
-  ```shell
-  istioctl analyze
-  ```
-  The output looks similar to the following: It say this namespace not enabled for istio injection let do follow suggestion
-  ```shell
-  Info [IST0102] (Namespace default) The namespace is not enabled for Istio injection. Run 'kubectl label namespace default istio-injection=enabled' to enable it, or 'kubectl label namespace default istio-injection=disabled' to explicitly mark it as not needing injection.
-  ```
+```shell
+cd istio-1.13.1
+kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+```
+The output looks similar to the following:
+```shell
+service/details created
+serviceaccount/bookinfo-details created
+deployment.apps/details-v1 created
+service/ratings created
+serviceaccount/bookinfo-ratings created
+deployment.apps/ratings-v1 created
+service/reviews created
+serviceaccount/bookinfo-reviews created
+deployment.apps/reviews-v1 created
+deployment.apps/reviews-v2 created
+deployment.apps/reviews-v3 created
+service/productpage created
+serviceaccount/bookinfo-productpage created
+deployment.apps/productpage-v1 created
+```
+   3. Check status of pod as you can see all of pod is only 1 container
+```shell
+kubectl get pod
+```
+The output looks similar to the following:
+```shell
+NAME                                    READY   STATUS    RESTARTS   AGE
+...
+details-v1-5498c86cf5-vgwdw             1/1     Running   0          4m43s
+productpage-v1-65b75f6885-9c2tj         1/1     Running   0          4m43s
+ratings-v1-b477cf6cf-bvrlq              1/1     Running   0          4m43s
+reviews-v1-79d546878f-prctw             1/1     Running   0          4m43s
+reviews-v2-548c57f459-69989             1/1     Running   0          4m43s
+reviews-v3-6dd79655b9-gwp8q             1/1     Running   0          4m43s
+```
+   4. Check anything wrong
+```shell
+istioctl analyze
+```
+The output looks similar to the following: It say this namespace not enabled for istio injection let do follow suggestion
+```shell
+Info [IST0102] (Namespace default) The namespace is not enabled for Istio injection. Run 'kubectl label namespace default istio-injection=enabled' to enable it, or 'kubectl label namespace default istio-injection=disabled' to explicitly mark it as not needing injection.
+```
   5. Enable Istio injection
-  ```shell
-  kubectl label namespace default istio-injection=enabled
-  ```
-  ```shell
-  namespace/default labeled
-  ```
+```shell
+kubectl label namespace default istio-injection=enabled
+```
+The output looks similar to the following:
+```shell
+namespace/default labeled
+```
   6. Restart all pods to get sidecar injected
-  ```shell
-  kubectl delete pods --all
-  ```
-  The output looks similar to the following:
-  ```shell
-  pod "details-v1-5498c86cf5-6fh64" deleted
-  pod "productpage-v1-65b75f6885-xjlwp" deleted
-  pod "ratings-v1-b477cf6cf-jld8c" deleted
-  pod "reviews-v1-79d546878f-sk9xh" deleted
-  pod "reviews-v2-548c57f459-r7vm8" deleted
-  pod "reviews-v3-6dd79655b9-r597g" deleted
-  ```
+```shell
+kubectl delete pods --all
+```
+The output looks similar to the following:
+```shell
+pod "details-v1-5498c86cf5-6fh64" deleted
+pod "productpage-v1-65b75f6885-xjlwp" deleted
+pod "ratings-v1-b477cf6cf-jld8c" deleted
+pod "reviews-v1-79d546878f-sk9xh" deleted
+pod "reviews-v2-548c57f459-r7vm8" deleted
+pod "reviews-v3-6dd79655b9-r597g" deleted
+```
   7. Let check our pod again as you can see all of pod have 2 containers that indicate they have sidcars injected to each one of them.
-  ```shell
-  kubectl get pod
-  ```
-  The output looks similar to the following:
-  ```shell
-  NAME                              READY   STATUS    RESTARTS   AGE
-  details-v1-5498c86cf5-6sgd7       2/2     Running   0          6m16s
-  productpage-v1-65b75f6885-m8mcf   2/2     Running   0          6m16s
-  ratings-v1-b477cf6cf-k6f7c        2/2     Running   0          6m16s
-  reviews-v1-79d546878f-nk972       2/2     Running   0          6m16s
-  reviews-v2-548c57f459-w9dvq       2/2     Running   0          6m16s
-  reviews-v3-6dd79655b9-t8mcw       2/2     Running   0          6m15s
-  ```
-  8. Check anything wrong again
-  ```shell
-  istioctl analyze
-  ```
-  The output looks similar to the following:
-  ```shell
-  ✔ No validation issues found when analyzing namespace: default.
-  ```
+```shell
+kubectl get pod
+```
+The output looks similar to the following:
+```shell
+NAME                              READY   STATUS    RESTARTS   AGE
+details-v1-5498c86cf5-6sgd7       2/2     Running   0          6m16s
+productpage-v1-65b75f6885-m8mcf   2/2     Running   0          6m16s
+ratings-v1-b477cf6cf-k6f7c        2/2     Running   0          6m16s
+reviews-v1-79d546878f-nk972       2/2     Running   0          6m16s
+reviews-v2-548c57f459-w9dvq       2/2     Running   0          6m16s
+reviews-v3-6dd79655b9-t8mcw       2/2     Running   0          6m15s
+```
+8. Check anything wrong again
+```shell
+istioctl analyze
+```
+The output looks similar to the following:
+```shell
+✔ No validation issues found when analyzing namespace: default.
+```
   9. Get an overview of your mesh follow Step 9 again
-  ```shell
-  istioctl proxy-status
-  ```
-  The output looks similar to the following:
-  ```shell
-  NAME                                                   CLUSTER        CDS        LDS        EDS        RDS          ISTIOD                      VERSION
-  details-v1-5498c86cf5-6sgd7.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
-  istio-ingressgateway-66ff9c7b6f-f4p6n.istio-system     Kubernetes     SYNCED     SYNCED     SYNCED     NOT SENT     istiod-7656645d8c-wrqfq     1.13.1
-  productpage-v1-65b75f6885-m8mcf.default                Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
-  ratings-v1-b477cf6cf-k6f7c.default                     Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
-  reviews-v1-79d546878f-nk972.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
-  reviews-v2-548c57f459-w9dvq.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
-  reviews-v3-6dd79655b9-t8mcw.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
-  ```
+```shell
+istioctl proxy-status
+```
+The output looks similar to the following:
+```shell
+NAME                                                   CLUSTER        CDS        LDS        EDS        RDS          ISTIOD                      VERSION
+details-v1-5498c86cf5-6sgd7.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
+istio-ingressgateway-66ff9c7b6f-f4p6n.istio-system     Kubernetes     SYNCED     SYNCED     SYNCED     NOT SENT     istiod-7656645d8c-wrqfq     1.13.1
+productpage-v1-65b75f6885-m8mcf.default                Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
+ratings-v1-b477cf6cf-k6f7c.default                     Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
+reviews-v1-79d546878f-nk972.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
+reviews-v2-548c57f459-w9dvq.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
+reviews-v3-6dd79655b9-t8mcw.default                    Kubernetes     SYNCED     SYNCED     SYNCED     SYNCED       istiod-7656645d8c-wrqfq     1.13.1
+```
 ## Step 11 Create ingress rule and genarate some more traffic
   1. Create ingress rule for route traffic to example application 
 ```shell
@@ -304,112 +306,105 @@ spec:
 EOF
 ```
   2. Genarate traffic
-  ```shell
-  while sleep 1;do curl localhost/productpage &> /dev/null; done
-  ```
+```shell
+while sleep 1;do curl localhost/productpage &> /dev/null; done
+```
 ## Step 11 - Install Addons
   1. Install Prometheus & Grafana for Istio   
-  ```
-  cd istio-1.13.1
-  kubectl apply -f samples/addons/prometheus.yaml
+```
+cd istio-1.13.1
+kubectl apply -f samples/addons/prometheus.yaml
 
-  serviceaccount/prometheus created
-  configmap/prometheus created
-  clusterrole.rbac.authorization.k8s.io/prometheus created
-  clusterrolebinding.rbac.authorization.k8s.io/prometheus created
-  service/prometheus created
-  deployment.apps/prometheus create
+serviceaccount/prometheus created
+configmap/prometheus created
+clusterrole.rbac.authorization.k8s.io/prometheus created
+clusterrolebinding.rbac.authorization.k8s.io/prometheus created
+service/prometheus created
+deployment.apps/prometheus create
 
-  kubectl apply -f samples/addons/grafana.yaml
+kubectl apply -f samples/addons/grafana.yaml
 
-  serviceaccount/grafana created
-  configmap/grafana created
-  service/grafana created
-  deployment.apps/grafana created
-  configmap/istio-grafana-dashboards created
-  configmap/istio-services-grafana-dashboards created
+serviceaccount/grafana created
+configmap/grafana created
+service/grafana created
+deployment.apps/grafana created
+configmap/istio-grafana-dashboards created
+configmap/istio-services-grafana-dashboards created
 
+kubectl rollout status deploy/grafana -n istio-system
+deployment "grafana" successfully rolled out
+kubectl rollout status deploy/prometheus -n istio-system
+deployment "prometheus" successfully rolled out
 
-  kubectl rollout status deploy/grafana -n istio-system
-  deployment "grafana" successfully rolled out
-  kubectl rollout status deploy/prometheus -n istio-system
-  deployment "prometheus" successfully rolled out
+kubectl get pod -n istio-system
 
-  kubectl get pod -n istio-system
-
-  NAME                                    READY   STATUS    RESTARTS   AGE
-  ...
-  grafana-67f5ccd9d7-zgprx                1/1     Running   0          21m
-  prometheus-7cc96d969f-764nr             2/2     Running   0          15m
-  ...
-  ```
+NAME                                    READY   STATUS    RESTARTS   AGE
+...
+grafana-67f5ccd9d7-zgprx                1/1     Running   0          21m
+prometheus-7cc96d969f-764nr             2/2     Running   0          15m
+...
+```
   2. Install kiali
-  ```shell
-  kubectl apply -f  samples/addons/kiali.yaml
+```shell
+kubectl apply -f  samples/addons/kiali.yaml
   
-  serviceaccount/kiali created
-  configmap/kiali created
-  clusterrole.rbac.authorization.k8s.io/kiali-viewer created
-  clusterrole.rbac.authorization.k8s.io/kiali created
-  clusterrolebinding.rbac.authorization.k8s.io/kiali created
-  role.rbac.authorization.k8s.io/kiali-controlplane created
-  rolebinding.rbac.authorization.k8s.io/kiali-controlplane created
-  service/kiali created
-  deployment.apps/kiali created
-
-  kubectl rollout status deploy/kiali -n istio-system
-  deployment "kiali" successfully rolled out
-
-  kubectl get pod -n istio-system
-
-  NAME                                    READY   STATUS    RESTARTS   AGE
-  ...
-  kiali-c946fb5bc-xp52g                   1/1     Running   0          2m18s
-  ...
-  ```
+serviceaccount/kiali created
+configmap/kiali created
+clusterrole.rbac.authorization.k8s.io/kiali-viewer created
+clusterrole.rbac.authorization.k8s.io/kiali created
+clusterrolebinding.rbac.authorization.k8s.io/kiali created
+role.rbac.authorization.k8s.io/kiali-controlplane created
+rolebinding.rbac.authorization.k8s.io/kiali-controlplane created
+service/kiali created
+deployment.apps/kiali created
+kubectl rollout status deploy/kiali -n istio-system
+deployment "kiali" successfully rolled out
+kubectl get pod -n istio-system
+NAME                                    READY   STATUS    RESTARTS   AGE
+...
+kiali-c946fb5bc-xp52g                   1/1     Running   0          2m18s
+...
+```
   3. Install jaeger
-  ```shell
-  kubectl apply -f  samples/addons/jaeger.yaml
-
-  deployment.apps/jaeger unchanged
-  service/tracing unchanged
-  service/zipkin unchanged
-  service/jaeger-collector unchanged
-
-  kubectl rollout status deploy/jaeger -n istio-system
-  deployment "jaeger" successfully rolled out
-
-  kubectl get pod -n istio-system
-  NAME                                    READY   STATUS    RESTARTS   AGE
-  ...
-  jaeger-78cb4f7d4b-kwjzn                 1/1     Running   0          40m
-  ...
-  ```
+```shell
+kubectl apply -f  samples/addons/jaeger.yaml
+deployment.apps/jaeger unchanged
+service/tracing unchanged
+service/zipkin unchanged
+service/jaeger-collector unchanged
+kubectl rollout status deploy/jaeger -n istio-system
+deployment "jaeger" successfully rolled out
+kubectl get pod -n istio-system
+NAME                                    READY   STATUS    RESTARTS   AGE
+...
+jaeger-78cb4f7d4b-kwjzn                 1/1     Running   0          40m
+...
+```
 ## Step 12 - Seting port-forward to view dashboard
   1. Grafana
-  ```shell
-  istioctl dashboard grafana
-  ```
+```shell
+istioctl dashboard grafana
+```
   The output looks similar to the following:
-  ```shell
-  http://localhost:3000
-  ```
-  2. Kiali
-  ```shell
-  istioctl dashboard kiali
-  ```
-  The output looks similar to the following:
-  ```shell
-  http://localhost:20001/kiali
-  ```
+```shell
+http://localhost:3000
+```
+  1. Kiali
+```shell
+istioctl dashboard kiali
+```
+The output looks similar to the following:
+```shell
+http://localhost:20001/kiali
+```
   3. Jaeger
-  ```shell
-  istioctl dashboard jaeger
-  ```
-  The output looks similar to the following:
-  ```shell
-  http://localhost:16686
-  ```
+```shell
+istioctl dashboard jaeger
+```
+The output looks similar to the following:
+```shell
+http://localhost:16686
+```
 
 
 
