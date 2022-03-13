@@ -277,7 +277,7 @@ The output looks similar to the following:
 ```shell
 ✔ No validation issues found when analyzing namespace: default.
 ```
-  9. Get an overview of your mesh follow Step 9 again
+  8. Get an overview of your mesh follow Step 9 again
 ```shell
 istioctl proxy-status
 ```
