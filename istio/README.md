@@ -43,6 +43,7 @@ The output looks similar to the following:
 no running Istio pods in "istio-system"
 1.13.1
 ```
+Getting Started : https://istio.io/latest/docs/setup/getting-started/#download
 ## Step 4 - Check compatability with target cluster
 ```shell
 istioctl x precheck
