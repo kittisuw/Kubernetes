@@ -6,7 +6,7 @@
    - Observe : Monitor How traffic is flowing,connection,Response time and Tracing
    - Control : Authentication between pod   
   
-  The main module in Control plane is
+  The main module in Control plane(Istiod) is
   - Pilot :  Configuration discovery
   - Citadel : Certificates 
   - Gallary : Configuration
