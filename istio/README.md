@@ -4,7 +4,12 @@
    - Secure : mTLS between pod
    - Connect : Canary deployment,Retry policy,Circuit breaker
    - Observe : Monitor How traffic is flowing,connection,Response time and Tracing
-   - Control : Authentication between pod
+   - Control : Authentication between pod   
+  
+  The main module in Control plane is
+  - Pilot :  Configuration discovery
+  - Citadel : Certificates 
+  - Gallary : Configuration
 ## Table of contents
   - [Prerequisites](#prerequisites)
   - [Step 1 - Check Kubernetes cluster](#step-1---check-kubernetes-cluster)
