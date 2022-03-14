@@ -339,7 +339,7 @@ spec:
               number: 9080
 EOF
 ```
-  2. Genarate traffic
+  2. Generate traffic
 ```shell
 while sleep 0.1;do curl localhost/productpage &> /dev/null; done
 ```
