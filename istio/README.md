@@ -8,7 +8,7 @@
   
   The main module in Control plane(Istiod) is
   - Pilot :  Configuration discovery (Automate inject Envoy proxy)
-  - Citadel : Certificates management(mTLS between Envoy proxy)
+  - Citadel : Certificates management (mTLS between Envoy proxy)
   - Gallary : Configuration
 ## Table of contents
   - [Prerequisites](#prerequisites)
