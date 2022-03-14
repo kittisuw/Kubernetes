@@ -341,7 +341,7 @@ EOF
 ```
   2. Genarate traffic
 ```shell
-while sleep 1;do curl localhost/productpage &> /dev/null; done
+while sleep 0.1;do curl localhost/productpage &> /dev/null; done
 ```
 ## Step 13 - Install Addons
   1. Install Prometheus & Grafana for Istio   
