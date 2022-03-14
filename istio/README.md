@@ -9,7 +9,7 @@
   The main module in Control plane(Istiod) is
   - Pilot :  Configuration discovery (Automate inject Envoy proxy to pod)
   - Citadel : Certificates management (mTLS between Envoy proxy)
-  - Gallary : Configuration
+  - Gallary : Configuration(translate Istio CRDs communicate with Envoy proxy)
 ## Table of contents
   - [Prerequisites](#prerequisites)
   - [Step 1 - Check Kubernetes cluster](#step-1---check-kubernetes-cluster)
