@@ -1,6 +1,6 @@
 # Deploy Istio
 ![arch!](assets/images/arch.jpeg)   
-  Instio is a service mesh for manage comunication between microservices core of this concept is 
+  Istio is a "Service Mesh" for manage comunication between Microservices inside Kubernetes Core concept of Istio is 
    - Secure : mTLS between pod
    - Connect : Canary deployment,Retry policy,Circuit breaker
    - Observe : Monitor How traffic is flowing,connection,Response time and Tracing
