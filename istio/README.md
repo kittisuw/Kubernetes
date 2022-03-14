@@ -7,7 +7,7 @@
    - Control : Authentication between pod   
   
   The main module in Control plane(Istiod) is
-  - Pilot :  Configuration discovery
+  - Pilot :  Configuration discovery (Automate inject Envoy proxy)
   - Citadel : Certificates management for mTLS between Envoy proxy pod
   - Gallary : Configuration
 ## Table of contents
