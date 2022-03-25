@@ -83,7 +83,7 @@ test-cluster-worker2         Ready    <none>                 2m7s    v1.22.5
 - [Deploy and Access the Kubernetes Dashboard](kubernetes-dashboard/README.md)
 ## Clean up
 ```shell
-kind delete cluster test-cluster
+kind delete cluster --name test-cluster
 ```
 The output looks similar to the following:
 ```shell
