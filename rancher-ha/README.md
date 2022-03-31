@@ -66,12 +66,15 @@ rke config --empty
 ## Step 4 - Deploying RKE Cluster
 ```shell
 rke up
-cp kube_config_cluster.yml ~/.kube/
 ```
 
 ## Step 5 - Check RKE cluster
 ```shell
-kubectl get nodes
+kubectl --kubeconfig ./kube_config_cluster.yml get node
+#or 
+cp kube_config_cluster.yml ~/.kube/config
+kubectl get node
+#By default, kubectl checks ~/.kube/config
 
 NAME                          STATUS    ROLES                      AGE       VERSION
 165.227.114.63                Ready     controlplane,etcd,worker   11m       v1.13.5
