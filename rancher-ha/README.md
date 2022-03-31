@@ -115,3 +115,4 @@ https://cloudraya.com/knowledge-base/high-availability-kubernetes-using-rke-in-c
 https://itnext.io/setup-a-basic-kubernetes-cluster-with-ease-using-rke-a5f3cc44f26f   
 https://www.youtube.com/watch?v=I9kNkoWdlwc   
 
+port requirement : https://rancher.com/docs/rancher/v2.5/en/installation/requirements/ports/
