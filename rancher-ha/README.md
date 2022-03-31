@@ -8,7 +8,7 @@
 3. helm
 
 ## Step 0 - Prepare 3 node for RKE
-```
+```shell
 #Install docker
 sudo apt-get update
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
