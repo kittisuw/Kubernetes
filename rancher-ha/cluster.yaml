@@ -1,3 +1,4 @@
+cluster_name: my-rke-cluster
 nodes:
     - address: node1 #public
       user: rkeuser
