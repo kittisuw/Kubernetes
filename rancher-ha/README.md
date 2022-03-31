@@ -124,11 +124,11 @@ kubectl get po --namespace cert-manager
 ```
 ## Step 7 - Install Rancher
 ```shell
-helm repo add rancher-latest https://releases.rancher.com/server-charts/stable
+helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 
 kubectl create namespace cattle-system
 
-helm install rancher rancher-latest/rancher \
+helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
   --set hostname=rancher.my.org \
   --set replicas=3 \
