@@ -23,6 +23,9 @@ sudo usermod -aG docker ${USER}
 su - ${USER}
 groups
 sudo usermod -aG docker username
+
+#Letting iptables see bridged traffic
+sysctl net.bridge.bridge-nf-call-iptables=1
 ```
 Ref :  https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
 
@@ -72,5 +75,5 @@ kubectl -n cattle-system get deploy rancher
 ```
 
 Ref:
-https://www.youtube.com/watch?v=IEoyxoLqPVc
+https://www.youtube.com/watch?v=IEoyxoLqPVc   
 https://gist.github.com/kiranchavala/893ec350dd55f9fb4747b602208bb4fc
