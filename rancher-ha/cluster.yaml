@@ -1,7 +1,7 @@
 # If you intended to deploy Kubernetes in an air-gapped environment,
 # please consult the documentation on how to configure custom RKE images.
 nodes:
-- address: 10.10.0.1
+- address: 10.10.1.1
   port: "22"
   internal_address: 192.168.1.1
   role:
@@ -11,47 +11,12 @@ nodes:
   hostname_override: ""
   user: rkeuser
   docker_socket: /var/run/docker.sock
-  ssh_key: thisisprivatekey
-  ssh_key_path: ""
+  ssh_key: "thisisprivatekey"
+  ssh_key_path: ~/.ssh/id_rsa
   ssh_cert: ""
   ssh_cert_path: ""
   labels: {}
   taints: []
-
-- address: 10.10.0.1
-  port: "22"
-  internal_address: 192.168.1.1
-  role:
-  - controlplane
-  - worker
-  - etcd
-  hostname_override: ""
-  user: rkeuser
-  docker_socket: /var/run/docker.sock
-  ssh_key: thisisprivatekey
-  ssh_key_path: ""
-  ssh_cert: ""
-  ssh_cert_path: ""
-  labels: {}
-  taints: []
-
-- address: 10.10.0.1
-  port: "22"
-  internal_address: 192.168.1.1
-  role:
-  - controlplane
-  - worker
-  - etcd
-  hostname_override: ""
-  user: rkeuser
-  docker_socket: /var/run/docker.sock
-  ssh_key: thisisprivatekey
-  ssh_key_path: ""
-  ssh_cert: ""
-  ssh_cert_path: ""
-  labels: {}
-  taints: []
-
 services:
   etcd:
     image: ""
@@ -114,7 +79,7 @@ services:
     win_extra_args: {}
     win_extra_binds: []
     win_extra_env: []
-    cluster_domain: testcluster.com
+    cluster_domain: cluster.local
     infra_container_image: ""
     cluster_dns_server: 10.43.0.10
     fail_swap_on: false
@@ -238,13 +203,3 @@ restore:
   snapshot_name: ""
 rotate_encryption_key: false
 dns: null
-
-# Etcd snapshots
-services:
-  etcd:
-    backup_config:
-      interval_hours: 12
-      retention: 6
-    snapshot: true
-    creation: 6h
-    retention: 24h
