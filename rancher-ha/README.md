@@ -8,36 +8,7 @@
 3. helm
 4. kubectl
 
-## Step 1 - Install kubectl,RKE client,helm and add mapping host
-```shell
-#Install kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
-kubectl version --client
-
-#Install RKE
-wget https://github.com/rancher/rke/releases/download/v1.2.19/rke_linux-amd64
-sudo cp rke_linux-amd64 /usr/local/bin/rke
-sudo chmod +x /usr/local/bin/rke
-which rke
-rke --help
-
-#Install helm
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh
-./get_helm.sh
-
-#Add mapping host by public IP
-sudo vi /etc/hosts
-...
-10.51.234.165 rke-poc-0001
-10.51.138.250 rke-poc-0002
-10.51.204.135 rke-poc-0003
-...
-```
-Ref: https://github.com/rancher/rke/releases
-## Step 2 - Prepare node for RKE
+## Step 1 - Prepare node for RKE
 ```shell
 ##### Prepare the kubernetes nodes
 
@@ -72,6 +43,35 @@ Ref :
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04   
 https://www.linkedin.com/pulse/deploy-highly-available-kubernetes-cluster-using-rancher-elemam/   
 https://rancher.com/docs/rancher/v2.5/en/installation/requirements/installing-docker/   
+## Step 2 - Prepare node for RKE Client
+```shell
+#Install kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+kubectl version --client
+
+#Install RKE
+wget https://github.com/rancher/rke/releases/download/v1.2.19/rke_linux-amd64
+sudo cp rke_linux-amd64 /usr/local/bin/rke
+sudo chmod +x /usr/local/bin/rke
+which rke
+rke --help
+
+#Install helm
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+
+#Add mapping host by public IP
+sudo vi /etc/hosts
+...
+10.51.234.165 rke-poc-0001
+10.51.138.250 rke-poc-0002
+10.51.204.135 rke-poc-0003
+...
+```
+Ref: https://github.com/rancher/rke/releases
 ## Step 3 - Genarate RKE cluster configuaration
 ```shell
 rke config --empty
