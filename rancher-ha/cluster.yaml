@@ -11,7 +11,10 @@ nodes:
   hostname_override: ""
   user: rkeuser
   docker_socket: /var/run/docker.sock
-  ssh_key: "thisisprivatekey"
+  ssh_key: | -
+-----BEGIN RSA PRIVATE KEY-----
+pfoportrtr
+-----END RSA PRIVATE KEY-----
   ssh_key_path: ~/.ssh/id_rsa
   ssh_cert: ""
   ssh_cert_path: ""
