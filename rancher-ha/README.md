@@ -7,7 +7,7 @@
 2. Prepare 3 VMs and install [Requirements](https://rancher.com/docs/rke/latest/en/os/)
 ## Step 1 - Genarate RKE cluster configuaration
 ```shell
-rke config
+rke config --empty --name cluster.yml
 ```
 ## Step 2 - Deploying Kubernetes with RKE
 ```shell
@@ -24,4 +24,7 @@ NAME                          STATUS    ROLES                      AGE       VER
 165.227.116.167               Ready     controlplane,etcd,worker   11m       v1.13.5
 165.227.127.226               Ready     controlplane,etcd,worker   11m       v1.13.5
 ```
-Note : https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/
+Note : 
+https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/
+https://computingforgeeks.com/install-kubernetes-production-cluster-using-rancher-rke/
+

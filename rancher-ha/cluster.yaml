@@ -1,0 +1,6 @@
+cluster_name: test-cluster
+nodes:
+- address: 10.1.1.6
+    internal_address: 10.1.1.6
+    user: ubuntu
+    role: [controlplane,worker,etcd]
