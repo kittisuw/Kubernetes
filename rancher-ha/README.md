@@ -146,5 +146,5 @@ https://www.youtube.com/watch?v=I9kNkoWdlwc
 
 Install rancher ok K8s : https://rancher.com/docs/rancher/v2.5/en/installation/install-rancher-on-k8s/   
 Rancher release : https://github.com/rancher/rke/releases   
-Port requirement : https://rancher.com/docs/rancher/v2.5/en/installation/requirements/ports/
+Port requirement : https://rancher.com/docs/rancher/v2.5/en/installation/requirements/ports/   
 install RKE : https://www.youtube.com/watch?v=1j5lhDzlFUM
