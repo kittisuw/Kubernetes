@@ -22,6 +22,14 @@ sudo cp rke_linux-amd64 /usr/local/bin/rke
 sudo chmod +x /usr/local/bin/rke
 which rke
 rke --help
+
+#Add mapping host by public IP
+sudo vi /etc/hosts
+...
+10.51.234.165 rke-poc-0001
+10.51.138.250 rke-poc-0002
+10.51.204.135 rke-poc-0003
+...
 ```
 Ref: https://github.com/rancher/rke/releases
 ## Step 2 - Prepare node for RKE
@@ -74,10 +82,10 @@ export KUBECONFIG=./kube_config_cluster.yml
 kubectl get node
 #By default, kubectl checks ~/.kube/config.You can copy this file to $HOME/.kube/config if you don’t have any other kubernetes cluster.
 
-NAME                          STATUS    ROLES                      AGE       VERSION
-165.227.114.63                Ready     controlplane,etcd,worker   11m       v1.13.5
-165.227.116.167               Ready     controlplane,etcd,worker   11m       v1.13.5
-165.227.127.226               Ready     controlplane,etcd,worker   11m       v1.13.5
+NAME           STATUS   ROLES                      AGE   VERSION
+rke-poc-0001   Ready    controlplane,etcd,worker   19m   v1.20.15
+rke-poc-0002   Ready    controlplane,etcd,worker   19m   v1.20.15
+rke-poc-0003   Ready    controlplane,etcd,worker   19m   v1.20.15
 ```
 Note :   
 https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/   
