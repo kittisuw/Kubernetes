@@ -1,15 +1,15 @@
 nodes:
-    - address: rke-poc-0001 #public
-      user: rkeuser
-      internal_address: 10.51.234.165 #internal
+    - address: rke-poc-0001 #The public DNS or IP address
+      user: rkeuser #A user that can run docker commands
+      internal_address: 10.51.234.165 #The private DNS or IP address for internal cluster traffic
       role: [controlplane, etcd, worker]
-    - address: rke-poc-0002 #public
-      user: rkeuser
-      internal_address: 10.51.138.250 #internal
+    - address: rke-poc-0002 #The public DNS or IP address
+      user: rkeuser #A user that can run docker commands
+      internal_address: 10.51.138.250 #The private DNS or IP address for internal cluster traffic
       role: [controlplane, etcd, worker]
-    - address: rke-poc-0003 #public
-      user: rkeuser
-      internal_address: 10.51.204.135 #internal
+    - address: rke-poc-0003 #The public DNS or IP address
+      user: rkeuser #A user that can run docker commands
+      internal_address: 10.51.204.135 #The private DNS or IP address for internal cluster traffic
       role: [controlplane, etcd, worker]
 network:
   plugin: calico
