@@ -3,11 +3,9 @@
   - [Prerequisites](#prerequisites)
   - [Step 1 - Check Kubernetes cluster](#step-1---check-kubernetes-cluster)
 ## Prerequisites
-1. Prepare 3 VMs and install [requirement](https://rancher.com/docs/rke/latest/en/os/)
-2. 
-
-3. Kubernetes client [kubectl](https://kubernetes.io/docs/tasks/tools/)
-4. [Curl](https://curl.se/download.html), for testing the examples (backend applications).
+1. Download RKE binary [dowload] (https://rancher.com/docs/rke/latest/en/installation/#download-the-rke-binary)
+2. Prepare 3 VMs and install [requirement](https://rancher.com/docs/rke/latest/en/os/)
+3. 
 ## Step 1 - Check Kubernetes cluster
 ```shell
 kubectl get node
