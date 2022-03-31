@@ -24,5 +24,4 @@ NAME                          STATUS    ROLES                      AGE       VER
 165.227.116.167               Ready     controlplane,etcd,worker   11m       v1.13.5
 165.227.127.226               Ready     controlplane,etcd,worker   11m       v1.13.5
 ```
-Note : 
-https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/
+Note : https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/
