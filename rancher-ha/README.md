@@ -32,12 +32,6 @@ curl https://releases.rancher.com/install-docker/20.10.sh | sh
 sudo adduser rkeuser
 #sudo passwd rkeuser >/dev/null 2>&1
 sudo usermod -aG docker rkeuser
-
-#Set up passwordless SSH Logins on all nodes (Copy public key to all node)
-ssh-keygen -t rsa -b 2048
-ssh-copy-id rkeuser@172.17.1.100
-ssh-copy-id rkeuser@172.17.1.101
-ssh-copy-id rkeuser@172.17.1.102
 ```
 Ref :   
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04   
@@ -70,8 +64,13 @@ sudo vi /etc/hosts
 10.51.138.250 rke-poc-0002
 10.51.204.135 rke-poc-0003
 ...
+
+#Set up passwordless SSH Logins on all nodes (Copy public key to all node)
+ssh-keygen -t rsa -b 2048
+ssh-copy-id rkeuser@rke-poc-0001
+ssh-copy-id rkeuser@rke-poc-0002
+ssh-copy-id rkeuser@rke-poc-0003
 ```
-Ref: https://github.com/rancher/rke/releases
 ## Step 3 - Genarate RKE cluster configuaration
 ```shell
 rke config --empty
@@ -126,4 +125,5 @@ https://cloudraya.com/knowledge-base/high-availability-kubernetes-using-rke-in-c
 https://itnext.io/setup-a-basic-kubernetes-cluster-with-ease-using-rke-a5f3cc44f26f   
 https://www.youtube.com/watch?v=I9kNkoWdlwc   
 
+Rancher release : https://github.com/rancher/rke/releases   
 Port requirement : https://rancher.com/docs/rancher/v2.5/en/installation/requirements/ports/
