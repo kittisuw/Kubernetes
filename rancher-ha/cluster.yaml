@@ -1,9 +1,9 @@
 # If you intended to deploy Kubernetes in an air-gapped environment,
 # please consult the documentation on how to configure custom RKE images.
 nodes:
-- address: 10.10.1.1
+- address: 10.10.1.1 #public
   port: "22"
-  internal_address: 192.168.1.1
+  internal_address: 192.168.1.1 #private
   role:
   - controlplane
   - worker
