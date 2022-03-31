@@ -8,8 +8,15 @@
 3. helm
 4. kubectl
 
-## Step 1 - Download RKE Binary
+## Step 1 - Install kubectl,RKE client
 ```shell
+#Install kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+kubectl version --client
+
+#Install RKE
 wget https://github.com/rancher/rke/releases/download/v1.2.19/rke_linux-amd64
 sudo cp rke_linux-amd64 /usr/local/bin/rke
 sudo chmod +x /usr/local/bin/rke
