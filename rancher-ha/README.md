@@ -5,18 +5,19 @@
 ## Prerequisites
 1. Download RKE binary [Dowload](https://rancher.com/docs/rke/latest/en/installation/#download-the-rke-binary)
 2. Prepare 3 VMs and install [Requirements](https://rancher.com/docs/rke/latest/en/os/)
+3. helm
 ## Step 1 - Genarate RKE cluster configuaration
 ```shell
-rke config --empty --name cluster.yml
+rke config --empty
 ```
-## Step 2 - Deploying Kubernetes with RKE
+## Step 2 - Deploying RKE Cluster
 ```shell
 rke up
+cp kube_config_cluster.yml ~/.kube/
 ```
 
-## Step 2 - Test cluster
+## Step 2 - Check RKE cluster
 ```shell
-export KUBECONFIG=$(pwd)/kube_config_cluster.yml
 kubectl get nodes
 
 NAME                          STATUS    ROLES                      AGE       VERSION
@@ -28,3 +29,16 @@ Note :
 https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/
 https://computingforgeeks.com/install-kubernetes-production-cluster-using-rancher-rke/
 
+## Step 3 - Add stable chart for rancher
+```shell
+helm repo add rancher-latest https://releases.rancher.com/server-charts/stable
+kubectl create namespace cattle-system
+```
+
+## Step 4 - Install the cert manager
+```
+helm repo add jetstack https://charts.jetstack.io
+kubectl create namespace cert-manager
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.5.1/cert-manager.crds.yaml
+helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.5.1
+```

@@ -1,6 +1,19 @@
 cluster_name: test-cluster
 nodes:
-- address: 10.1.1.6
-    internal_address: 10.1.1.6
-    user: ubuntu
+- address: 10.1.1.1
+    port: "22"
+    internal_address: 172.68.1.1
     role: [controlplane,worker,etcd]
+    hostname_override: rke-01
+    user: ubuntu
+
+
+# Etcd snapshots
+services:
+  etcd:
+    backup_config:
+      interval_hours: 12
+      retention: 6
+    snapshot: true
+    creation: 6h
+    retention: 24h
