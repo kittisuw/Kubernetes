@@ -96,7 +96,7 @@ https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha
 https://computingforgeeks.com/install-kubernetes-production-cluster-using-rancher-rke/
 ## Step 6 - Install the cert manager   
 * You should skip this step if you are bringing your own certificate files
-```
+```shell
 # If you have installed the CRDs manually instead of with the `--set installCRDs=true` option added to your Helm install command, you should upgrade your CRD resources before upgrading the Helm chart:
 kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.1/cert-manager.crds.yaml
 
