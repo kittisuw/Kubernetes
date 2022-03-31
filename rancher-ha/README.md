@@ -91,9 +91,11 @@ rke-poc-0001   Ready    controlplane,etcd,worker   19m   v1.20.15
 rke-poc-0002   Ready    controlplane,etcd,worker   19m   v1.20.15
 rke-poc-0003   Ready    controlplane,etcd,worker   19m   v1.20.15
 ```
-Note :   
-https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/   
-https://computingforgeeks.com/install-kubernetes-production-cluster-using-rancher-rke/
+Save a copy of the following files in a secure location:
+
+rancher-cluster.yml: The RKE cluster configuration file.
+kube_config_cluster.yml: The Kubeconfig file for the cluster, this file contains credentials for full access to the cluster.
+rancher-cluster.rkestate: The Kubernetes Cluster State file, this file contains credentials for full access to the cluster.
 
 ## Step x - Install metal-lb with nginx-ingress
 ```shell
@@ -142,7 +144,10 @@ https://gist.github.com/kiranchavala/893ec350dd55f9fb4747b602208bb4fc
 https://blog.tekspace.io/rancher-kubernetes-single-node-setup   
 https://cloudraya.com/knowledge-base/high-availability-kubernetes-using-rke-in-cloudraya-part-1/   
 https://itnext.io/setup-a-basic-kubernetes-cluster-with-ease-using-rke-a5f3cc44f26f   
-https://www.youtube.com/watch?v=I9kNkoWdlwc   
+https://www.youtube.com/watch?v=I9kNkoWdlwc     
+https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/   
+https://computingforgeeks.com/install-kubernetes-production-cluster-using-rancher-rke/   
+
 
 Install rancher ok K8s : https://rancher.com/docs/rancher/v2.5/en/installation/install-rancher-on-k8s/   
 Rancher release : https://github.com/rancher/rke/releases   
