@@ -70,11 +70,9 @@ rke up
 
 ## Step 5 - Check RKE cluster
 ```shell
-kubectl --kubeconfig ./kube_config_cluster.yml get node
-#or 
-cp kube_config_cluster.yml ~/.kube/config
+export KUBECONFIG=./kube_config_cluster.yml
 kubectl get node
-#By default, kubectl checks ~/.kube/config
+#By default, kubectl checks ~/.kube/config.You can copy this file to $HOME/.kube/config if you don’t have any other kubernetes cluster.
 
 NAME                          STATUS    ROLES                      AGE       VERSION
 165.227.114.63                Ready     controlplane,etcd,worker   11m       v1.13.5
