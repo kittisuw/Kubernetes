@@ -26,10 +26,11 @@ ssh-copy-id root@172.17.1.101
 ssh-copy-id root@172.17.1.102
 
 ##### Prepare the kubernetes nodes
-#Disable firewall
+
+#Disable swap and firewall
 ufw disable
-#Disable swap
 swapoff -a; sed -i '/swap/d' /etc/fstab
+
 #Update sysctl settings for Kubernetes networking
 cat >>/etc/sysctl.d/kubernetes.conf<<EOF
 net.bridge.bridge-nf-call-ip6tables = 1
@@ -39,15 +40,18 @@ sysctl --system
 
 #Install docker
 sudo apt-get update
-sudo apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo apt update && sudo apt install -y docker-ce containerd.io
-sudo systemctl start docker && systemctl enable docker
-sudo usermod -aG docker ${USER}
+sudo apt-get upgrade
+curl https://releases.rancher.com/install-docker/20.10.sh | sh
+
+#Add new User and add to docker group
+sudo adduser rkeuser
+sudo passwd rkeuser >/dev/null 2>&1
+sudo usermod -aG docker rkeuser
 ```
 Ref :   
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04   
-https://www.linkedin.com/pulse/deploy-highly-available-kubernetes-cluster-using-rancher-elemam/
+https://www.linkedin.com/pulse/deploy-highly-available-kubernetes-cluster-using-rancher-elemam/   
+https://rancher.com/docs/rancher/v2.5/en/installation/requirements/installing-docker/   
 ## Step 3 - Genarate RKE cluster configuaration
 ```shell
 rke config --empty
@@ -96,3 +100,4 @@ kubectl -n cattle-system get deploy rancher
 Ref:   
 https://www.youtube.com/watch?v=IEoyxoLqPVc   
 https://gist.github.com/kiranchavala/893ec350dd55f9fb4747b602208bb4fc   
+https://blog.tekspace.io/rancher-kubernetes-single-node-setup   
