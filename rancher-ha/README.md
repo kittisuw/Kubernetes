@@ -10,7 +10,7 @@
 
 ## Step 1 - Download RKE Binary
 ```shell
-wget https://github.com/rancher/rke/releases/download/v1.2.9/rke_linux-amd64
+wget https://github.com/rancher/rke/releases/download/v1.2.19/rke_linux-amd64
 chmod +x rke_linux-amd64
 cp rke_linux-amd64 /usr/local/bin/rke 
 which rke
