@@ -8,7 +8,7 @@
 3. helm
 4. kubectl
 
-## Step 1 - Install kubectl,RKE client
+## Step 1 - Install kubectl,RKE client,helm and add mapping host
 ```shell
 #Install kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -22,6 +22,11 @@ sudo cp rke_linux-amd64 /usr/local/bin/rke
 sudo chmod +x /usr/local/bin/rke
 which rke
 rke --help
+
+#Install helm
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
 
 #Add mapping host by public IP
 sudo vi /etc/hosts
