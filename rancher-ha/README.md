@@ -34,12 +34,12 @@ sysctl --system
 
 #Install docker
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get -y upgrade
 curl https://releases.rancher.com/install-docker/20.10.sh | sh
 
 #Add new User and add to docker group
 sudo adduser rkeuser
-sudo passwd rkeuser >/dev/null 2>&1
+#sudo passwd rkeuser >/dev/null 2>&1
 sudo usermod -aG docker rkeuser
 
 #Set up passwordless SSH Logins on all nodes (Copy public key to all node)
@@ -104,4 +104,4 @@ https://blog.tekspace.io/rancher-kubernetes-single-node-setup
 https://cloudraya.com/knowledge-base/high-availability-kubernetes-using-rke-in-cloudraya-part-1/   
 https://itnext.io/setup-a-basic-kubernetes-cluster-with-ease-using-rke-a5f3cc44f26f   
 https://www.youtube.com/watch?v=I9kNkoWdlwc   
-  
+
