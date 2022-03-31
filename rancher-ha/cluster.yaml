@@ -1,16 +1,15 @@
-cluster_name: my-rke-cluster
 nodes:
-    - address: node1 #public
+    - address: rke-poc-0001 #public
       user: rkeuser
-      internal_address: 10.1.1.205 #internal
+      internal_address: 10.51.234.165 #internal
       role: [controlplane, etcd, worker]
-    - address: node2 #public
+    - address: rke-poc-0002 #public
       user: rkeuser
-      internal_address: 10.1.1.47 #internal
+      internal_address: 10.51.138.250 #internal
       role: [controlplane, etcd, worker]
-    - address: node3 #public
+    - address: rke-poc-0003 #public
       user: rkeuser
-      internal_address: 10.1.1.238 #internal
+      internal_address: 10.51.204.135 #internal
       role: [controlplane, etcd, worker]
 network:
   plugin: calico
@@ -26,7 +25,7 @@ services:
     retention: 24h
 # Required for external TLS termination with
 # ingress-nginx v0.22+
-ingress:
-  provider: nginx
-  options:
-    use-forwarded-headers: "true"
+#ingress:
+#  provider: nginx
+#  options:
+#    use-forwarded-headers: "true"
