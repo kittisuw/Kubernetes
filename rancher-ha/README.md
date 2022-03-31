@@ -93,9 +93,9 @@ rke-poc-0003   Ready    controlplane,etcd,worker   19m   v1.20.15
 ```
 Save a copy of the following files in a secure location:
 
-rancher-cluster.yml: The RKE cluster configuration file.
-kube_config_cluster.yml: The Kubeconfig file for the cluster, this file contains credentials for full access to the cluster.
-rancher-cluster.rkestate: The Kubernetes Cluster State file, this file contains credentials for full access to the cluster.
+rancher-cluster.yml: The RKE cluster configuration file.   
+kube_config_cluster.yml: The Kubeconfig file for the cluster, this file contains credentials for full access to the cluster.   
+rancher-cluster.rkestate: The Kubernetes Cluster State file, this file contains credentials for full access to the cluster.   
 
 ## Step x - Install metal-lb with nginx-ingress
 ```shell
