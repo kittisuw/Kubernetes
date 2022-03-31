@@ -6,9 +6,29 @@
 1. Download RKE binary [Dowload](https://rancher.com/docs/rke/latest/en/installation/#download-the-rke-binary)
 2. Prepare 3 VMs and install [Requirements](https://rancher.com/docs/rke/latest/en/os/)
 3. helm
+4. kubectl
 
 ## Step 0 - Prepare 3 node for RKE
 ```shell
+#Set up passwordless SSH Logins on all nodes
+ssh-keygen -t rsa -b 2048
+ssh-copy-id root@172.17.1.100
+ssh-copy-id root@172.17.1.101
+ssh-copy-id root@172.17.1.102
+
+##### Prepare the kubernetes nodes
+#Disable firewall
+ufw disable
+#Disable swap
+swapoff -a; sed -i '/swap/d' /etc/fstab
+
+#Update sysctl settings for Kubernetes networking
+cat >>/etc/sysctl.d/kubernetes.conf<<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl --system
+
 #Install docker
 sudo apt-get update
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
@@ -23,9 +43,6 @@ sudo usermod -aG docker ${USER}
 su - ${USER}
 groups
 sudo usermod -aG docker username
-
-#Letting iptables see bridged traffic
-sysctl net.bridge.bridge-nf-call-iptables=1
 ```
 Ref :  https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
 
@@ -76,4 +93,5 @@ kubectl -n cattle-system get deploy rancher
 
 Ref:   
 https://www.youtube.com/watch?v=IEoyxoLqPVc   
-https://gist.github.com/kiranchavala/893ec350dd55f9fb4747b602208bb4fc
+https://gist.github.com/kiranchavala/893ec350dd55f9fb4747b602208bb4fc   
+https://www.linkedin.com/pulse/deploy-highly-available-kubernetes-cluster-using-rancher-elemam/
