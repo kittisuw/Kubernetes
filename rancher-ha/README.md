@@ -78,7 +78,7 @@ rke up
 
 ## Step 5 - Check RKE cluster
 ```shell
-export KUBECONFIG=./kube_config_cluster.yml
+export KUBECONFIG=$(pwd)/kube_config_cluster.yml
 kubectl get node
 #By default, kubectl checks ~/.kube/config.You can copy this file to $HOME/.kube/config if you don’t have any other kubernetes cluster.
 
