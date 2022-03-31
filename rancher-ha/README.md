@@ -101,3 +101,4 @@ Ref:
 https://www.youtube.com/watch?v=IEoyxoLqPVc   
 https://gist.github.com/kiranchavala/893ec350dd55f9fb4747b602208bb4fc   
 https://blog.tekspace.io/rancher-kubernetes-single-node-setup   
+https://cloudraya.com/knowledge-base/high-availability-kubernetes-using-rke-in-cloudraya-part-1/   
