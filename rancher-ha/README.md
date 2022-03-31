@@ -30,21 +30,15 @@ sysctl --system
 
 #Install docker
 sudo apt-get update
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-apt-cache policy docker-ce
-sudo apt install docker-ce
-sudo systemctl status docker
-
-#Executing the Docker Command Without Sudo
+sudo apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt update && sudo apt install -y docker-ce containerd.io
+sudo systemctl start docker && systemctl enable docker
 sudo usermod -aG docker ${USER}
-su - ${USER}
-groups
-sudo usermod -aG docker username
 ```
-Ref :  https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
-
+Ref :   
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04   
+https://www.linkedin.com/pulse/deploy-highly-available-kubernetes-cluster-using-rancher-elemam/
 ## Step 1 - Genarate RKE cluster configuaration
 ```shell
 rke config --empty
@@ -93,4 +87,3 @@ kubectl -n cattle-system get deploy rancher
 Ref:   
 https://www.youtube.com/watch?v=IEoyxoLqPVc   
 https://gist.github.com/kiranchavala/893ec350dd55f9fb4747b602208bb4fc   
-https://www.linkedin.com/pulse/deploy-highly-available-kubernetes-cluster-using-rancher-elemam/
