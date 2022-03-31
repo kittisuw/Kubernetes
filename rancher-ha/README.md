@@ -139,5 +139,6 @@ https://cloudraya.com/knowledge-base/high-availability-kubernetes-using-rke-in-c
 https://itnext.io/setup-a-basic-kubernetes-cluster-with-ease-using-rke-a5f3cc44f26f   
 https://www.youtube.com/watch?v=I9kNkoWdlwc   
 
+Install rancher ok K8s : https://rancher.com/docs/rancher/v2.5/en/installation/install-rancher-on-k8s/
 Rancher release : https://github.com/rancher/rke/releases   
 Port requirement : https://rancher.com/docs/rancher/v2.5/en/installation/requirements/ports/
