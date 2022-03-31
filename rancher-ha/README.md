@@ -91,6 +91,7 @@ rke-poc-0001   Ready    controlplane,etcd,worker   19m   v1.20.15
 rke-poc-0002   Ready    controlplane,etcd,worker   19m   v1.20.15
 rke-poc-0003   Ready    controlplane,etcd,worker   19m   v1.20.15
 ```
+The files mentioned below are needed to maintain, troubleshoot and upgrade your cluster.   
 Save a copy of the following files in a secure location:
 
 rancher-cluster.yml: The RKE cluster configuration file.   
