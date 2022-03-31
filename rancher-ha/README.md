@@ -94,6 +94,11 @@ rke-poc-0003   Ready    controlplane,etcd,worker   19m   v1.20.15
 Note :   
 https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/   
 https://computingforgeeks.com/install-kubernetes-production-cluster-using-rancher-rke/
+
+## Step x - Install metal-lb with nginx-ingress
+```shell
+https://www.youtube.com/watch?v=iqVt5mbvlJ0
+```
 ## Step 6 - Install the cert manager   
 * You should skip this step if you are bringing your own certificate files
 ```shell
