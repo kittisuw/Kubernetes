@@ -21,7 +21,6 @@ ssh-copy-id root@172.17.1.102
 ufw disable
 #Disable swap
 swapoff -a; sed -i '/swap/d' /etc/fstab
-
 #Update sysctl settings for Kubernetes networking
 cat >>/etc/sysctl.d/kubernetes.conf<<EOF
 net.bridge.bridge-nf-call-ip6tables = 1
