@@ -4,7 +4,7 @@ nodes:
     port: "22"
     internal_address: 172.68.1.1
     role: [controlplane,worker,etcd]
-    hostname_override: rke-01
+    hostname_override: ""
     user: ubuntu
 
 
