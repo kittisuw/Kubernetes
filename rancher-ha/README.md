@@ -94,15 +94,23 @@ rke-poc-0003   Ready    controlplane,etcd,worker   19m   v1.20.15
 Note :   
 https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/   
 https://computingforgeeks.com/install-kubernetes-production-cluster-using-rancher-rke/
-## Step 6 - Install the cert manager
+## Step 6 - Install the cert manager   
+* You should skip this step if you are bringing your own certificate files
 ```
+# If you have installed the CRDs manually instead of with the `--set installCRDs=true` option added to your Helm install command, you should upgrade your CRD resources before upgrading the Helm chart:
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.1/cert-manager.crds.yaml
+
+# Add the Jetstack Helm repository
 helm repo add jetstack https://charts.jetstack.io
 
-kubectl create namespace cert-manager
+# Update your local Helm chart repository cache
+helm repo update
 
-kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.5.1/cert-manager.crds.yaml
-
-helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.5.1
+# Install the cert-manager Helm chart
+helm install cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version v1.5.1
 
 kubectl get po --namespace cert-manager
 ```
@@ -112,7 +120,13 @@ helm repo add rancher-latest https://releases.rancher.com/server-charts/stable
 
 kubectl create namespace cattle-system
 
-helm install rancher-stable/rancher -name rancher --namespace cattle-system --set hostname=rancher.production.com --set ingress.tls.source=letsEncrypt --set letsEncrypt.email=admin@gmail.com
+helm install rancher rancher-latest/rancher \
+  --namespace cattle-system \
+  --set hostname=rancher.my.org \
+  --set replicas=3 \
+  --set ingress.tls.source=letsEncrypt \
+  --set letsEncrypt.email=me@example.org \
+  --set letsEncrypt.ingress.class=nginx
 
 kubectl -n cattle-system get deploy rancher
 ```
