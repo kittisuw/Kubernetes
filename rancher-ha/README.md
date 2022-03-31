@@ -9,7 +9,14 @@
 ```shell
 rke config
 ```
-## Step 2 - Deploy RKE cluster
+## Step 2 - Deploying Kubernetes with RKE
 ```shell
 rke up
 ```
+
+## Step 2 - Test cluster
+```shell
+export KUBECONFIG=$(pwd)/kube_config_cluster.yml
+```
+Note : 
+https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/
