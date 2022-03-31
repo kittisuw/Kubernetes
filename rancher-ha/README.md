@@ -17,7 +17,7 @@ which rke
 rke --help
 ```
 Ref: https://github.com/rancher/rke/releases
-## Step 2 - Prepare 3 node for RKE
+## Step 2 - Prepare node for RKE
 ```shell
 ##### Prepare the kubernetes nodes
 
