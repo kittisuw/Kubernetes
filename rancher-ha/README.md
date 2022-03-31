@@ -11,20 +11,14 @@
 ## Step 1 - Download RKE Binary
 ```shell
 wget https://github.com/rancher/rke/releases/download/v1.2.19/rke_linux-amd64
-chmod +x rke_linux-amd64
-cp rke_linux-amd64 /usr/local/bin/rke 
+sudo cp rke_linux-amd64 /usr/local/bin/rke
+sudo chmod +x /usr/local/bin/rke
 which rke
 rke --help
 ```
 Ref: https://github.com/rancher/rke/releases
 ## Step 2 - Prepare 3 node for RKE
 ```shell
-#Set up passwordless SSH Logins on all nodes
-ssh-keygen -t rsa -b 2048
-ssh-copy-id root@172.17.1.100
-ssh-copy-id root@172.17.1.101
-ssh-copy-id root@172.17.1.102
-
 ##### Prepare the kubernetes nodes
 
 #Disable swap and firewall
@@ -47,6 +41,12 @@ curl https://releases.rancher.com/install-docker/20.10.sh | sh
 sudo adduser rkeuser
 sudo passwd rkeuser >/dev/null 2>&1
 sudo usermod -aG docker rkeuser
+
+#Set up passwordless SSH Logins on all nodes
+ssh-keygen -t rsa -b 2048
+ssh-copy-id rkeuser@172.17.1.100
+ssh-copy-id rkeuser@172.17.1.101
+ssh-copy-id rkeuser@172.17.1.102
 ```
 Ref :   
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04   
