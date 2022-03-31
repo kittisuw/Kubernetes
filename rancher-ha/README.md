@@ -8,7 +8,7 @@
 3. helm
 4. kubectl
 
-## Step x - Download RKE Binary
+## Step 1 - Download RKE Binary
 ```shell
 wget https://github.com/rancher/rke/releases/download/v1.2.9/rke_linux-amd64
 chmod +x rke_linux-amd64
@@ -17,7 +17,7 @@ which rke
 rke --help
 ```
 Ref: https://github.com/rancher/rke/releases
-## Step 0 - Prepare 3 node for RKE
+## Step 2 - Prepare 3 node for RKE
 ```shell
 #Set up passwordless SSH Logins on all nodes
 ssh-keygen -t rsa -b 2048
@@ -48,17 +48,17 @@ sudo usermod -aG docker ${USER}
 Ref :   
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04   
 https://www.linkedin.com/pulse/deploy-highly-available-kubernetes-cluster-using-rancher-elemam/
-## Step 1 - Genarate RKE cluster configuaration
+## Step 3 - Genarate RKE cluster configuaration
 ```shell
 rke config --empty
 ```
-## Step 2 - Deploying RKE Cluster
+## Step 4 - Deploying RKE Cluster
 ```shell
 rke up
 cp kube_config_cluster.yml ~/.kube/
 ```
 
-## Step 2 - Check RKE cluster
+## Step 5 - Check RKE cluster
 ```shell
 kubectl get nodes
 
@@ -70,7 +70,7 @@ NAME                          STATUS    ROLES                      AGE       VER
 Note :   
 https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/   
 https://computingforgeeks.com/install-kubernetes-production-cluster-using-rancher-rke/
-## Step 3 - Install the cert manager
+## Step 6 - Install the cert manager
 ```
 helm repo add jetstack https://charts.jetstack.io
 
@@ -82,7 +82,7 @@ helm install cert-manager jetstack/cert-manager --namespace cert-manager --versi
 
 kubectl get po --namespace cert-manager
 ```
-## Step 4 - Install Rancher
+## Step 7 - Install Rancher
 ```shell
 helm repo add rancher-latest https://releases.rancher.com/server-charts/stable
 
