@@ -12,6 +12,13 @@ nodes:
       user: rkeuser
       internal_address: 10.1.1.238 #internal
       role: [controlplane, etcd, worker]
+network:
+  plugin: calico
+  options: {}
+  mtu: 0
+  node_selector: {}
+  update_strategy: null
+  tolerations: []
 services:
   etcd:
     snapshot: true
