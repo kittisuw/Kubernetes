@@ -42,7 +42,7 @@ sudo adduser rkeuser
 sudo passwd rkeuser >/dev/null 2>&1
 sudo usermod -aG docker rkeuser
 
-#Set up passwordless SSH Logins on all nodes (copy plubic key to all node)
+#Set up passwordless SSH Logins on all nodes (Copy public key to all node)
 ssh-keygen -t rsa -b 2048
 ssh-copy-id rkeuser@172.17.1.100
 ssh-copy-id rkeuser@172.17.1.101
