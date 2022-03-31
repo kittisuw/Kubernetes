@@ -74,6 +74,6 @@ helm install rancher-stable/rancher -name rancher --namespace cattle-system --se
 kubectl -n cattle-system get deploy rancher
 ```
 
-Ref:
+Ref:   
 https://www.youtube.com/watch?v=IEoyxoLqPVc   
 https://gist.github.com/kiranchavala/893ec350dd55f9fb4747b602208bb4fc
