@@ -31,16 +31,23 @@ https://computingforgeeks.com/install-kubernetes-production-cluster-using-ranche
 ## Step 3 - Install the cert manager
 ```
 helm repo add jetstack https://charts.jetstack.io
+
 kubectl create namespace cert-manager
+
 kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.5.1/cert-manager.crds.yaml
+
 helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.5.1
 kubectl get pods --namespace cert-manager
 ```
 ## Step 4 - Install Rancher
 ```shell
 helm repo add rancher-latest https://releases.rancher.com/server-charts/stable
+
 kubectl create namespace cattle-system
+
 helm install rancher-stable/rancher -name rancher --namespace cattle-system --set hostname=rancher.production.com --set ingress.tls.source=letsEncrypt --set letsEncrypt.email=admin@gmail.com
+
+kubectl -n cattle-system get deploy rancher
 ```
 
 Ref:
