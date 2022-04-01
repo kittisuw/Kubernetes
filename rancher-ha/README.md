@@ -82,7 +82,12 @@ rke config --empty
 ```shell
 rke up
 ```
-
+If you are adding/removing nodes in the cluster, after updating the cluster.yml run the following
+```shell
+rke up --update-only
+```
+Note that if you are deploying your Cluster in one of the popular cloud providers, you will want to consider registering that cloud provider so that your cluster can talk to the cloud environment for things like setting up volumes e.t.c.
+[RKE Cloud Provider Configuration](https://rancher.com/docs/rke/latest/en/config-options/cloud-providers/)
 ## Step 5 - Check RKE cluster
 ```shell
 export KUBECONFIG=$(pwd)/kube_config_cluster.yml
