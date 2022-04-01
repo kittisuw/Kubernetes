@@ -7,7 +7,7 @@
 2. Prepare 3 VMs and install [Requirements](https://rancher.com/docs/rke/latest/en/os/)
 3. helm
 4. kubectl
-
+5. kustomize
 ## Step 1 - Prepare node for RKE
 ```shell
 ##### Prepare the kubernetes nodes
@@ -103,6 +103,7 @@ rancher-cluster.rkestate: The Kubernetes Cluster State file, this file contains 
 ## Step x - Install metal-lb with nginx-ingress
 ```shell
 https://www.youtube.com/watch?v=iqVt5mbvlJ0
+kustomize build . |kubectl apply -f -
 ```
 ## Step 6 - Install the cert manager   
 * You should skip this step if you are bringing your own certificate files
