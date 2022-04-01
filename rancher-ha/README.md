@@ -1,4 +1,4 @@
-# Install Rancher on a RKE
+# Install Rancher on a RKE Cluster
 ## Table of contents
   - [Prerequisites](#prerequisites)
   - [Step 1 - Download RKE Binary](#step-1---download-rke-binary)
