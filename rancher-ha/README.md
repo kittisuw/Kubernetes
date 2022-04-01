@@ -132,8 +132,11 @@ Ref : https://medium.com/@jodywan/cloud-native-devops-11a-metallb-with-nginx-ing
 ## Step 7 - Install the cert manager   
 * You should skip this step if you are bringing your own certificate files
 ```shell
-# If you have installed the CRDs manually instead of with the `--set installCRDs=true` option added to your Helm install command, you should upgrade your CRD resources before upgrading the Helm chart:
-kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.1/cert-manager.crds.yaml
+# Install the CustomResourceDefinition resources separately
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.4/cert-manager.crds.yaml
+
+# Create the namespace for cert-manager
+kubectl create namespace cert-manager
 
 # Add the Jetstack Helm repository
 helm repo add jetstack https://charts.jetstack.io
@@ -142,14 +145,26 @@ helm repo add jetstack https://charts.jetstack.io
 helm repo update
 
 # Install the cert-manager Helm chart
-helm install cert-manager jetstack/cert-manager \
+helm install \
+  cert-manager jetstack/cert-manager \
   --namespace cert-manager \
-  --create-namespace \
-  --version v1.5.1 \
-  --ingress.tls.source=letsEncrypt
+  --version v1.0.4
 
 kubectl get po --namespace cert-manager
 ```
+
+## Step 7 - Install nginx-ingress
+```shell
+helm install nginx-ingress ingress-nginx/ingress-nginx \
+    --version 4.0.13 \
+    --namespace ingress-nginx --create-namespace \
+    -f internal-ingress.yaml \
+    --set controller.replicaCount=2 \
+    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux
+```
+
 ## Step 7 - Install Rancher
 ```shell
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
@@ -159,7 +174,7 @@ helm repo update
 
 kubectl create namespace cattle-system
 
-kbj-prod-basion-01% helm install rancher rancher-stable/rancher \
+helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
   --set hostname=rancher.kbjcapital.co.th \
   --set replicas=3 \
