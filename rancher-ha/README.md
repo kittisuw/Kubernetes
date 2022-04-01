@@ -74,11 +74,11 @@ ssh-copy-id rkeuser@kbj-prod-k8s-rancher-01
 ssh-copy-id rkeuser@kbj-prod-k8s-rancher-02
 ssh-copy-id rkeuser@kbj-prod-k8s-rancher-03
 ```
-## Step 3 - Genarate RKE cluster configuaration
+## Step 3 - Genarate thr RKE cluster configuaration
 ```shell
 rke config --empty
 ```
-## Step 4 - Deploying RKE Cluster
+## Step 4 - Deploy the RKE cluster without the ingress controller
 ```shell
 rke up
 ```
@@ -101,7 +101,7 @@ rancher-cluster.yml: The RKE cluster configuration file.
 kube_config_cluster.yml: The Kubeconfig file for the cluster, this file contains credentials for full access to the cluster.   
 rancher-cluster.rkestate: The Kubernetes Cluster State file, this file contains credentials for full access to the cluster.   
 
-## Step 6 - Install metal-lb with nginx-ingress
+## Step 6 - Deploy MetalLB
   6.1 install metallb
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml

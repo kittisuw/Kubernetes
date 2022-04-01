@@ -25,6 +25,10 @@ services:
     creation: 6h
     retention: 24h
 
+# Disable ingress
+ingress:
+    provider: none
+
 # Required for external TLS termination with
 # ingress-nginx v0.22+
 #ingress:
