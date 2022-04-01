@@ -18,10 +18,12 @@ sudo swapoff -a
 sudo sed -i '/swap/d' /etc/fstab
 
 #Update sysctl settings for Kubernetes networking
-sudo cat >>/etc/sysctl.d/kubernetes.conf<<EOF
+sudo -i 
+cat >>/etc/sysctl.d/kubernetes.conf<<EOF
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
+exit
 sudo sysctl --system
 
 #Install docker
