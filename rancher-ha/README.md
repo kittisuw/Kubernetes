@@ -13,15 +13,16 @@
 ##### Prepare the kubernetes nodes
 
 #Disable swap and firewall
-ufw disable
-swapoff -a; sed -i '/swap/d' /etc/fstab
+sudo ufw disable
+sudo swapoff -a
+sudo sed -i '/swap/d' /etc/fstab
 
 #Update sysctl settings for Kubernetes networking
-cat >>/etc/sysctl.d/kubernetes.conf<<EOF
+sudo cat >>/etc/sysctl.d/kubernetes.conf<<EOF
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
-sysctl --system
+sudo sysctl --system
 
 #Install docker
 sudo apt-get update
@@ -30,7 +31,6 @@ curl https://releases.rancher.com/install-docker/20.10.sh | sh
 
 #Add new User and add to docker group
 sudo adduser rkeuser
-#sudo passwd rkeuser >/dev/null 2>&1
 sudo usermod -aG docker rkeuser
 ```
 Ref :   
