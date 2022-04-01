@@ -1,4 +1,4 @@
-# Deploy rancher HA mode on RKE
+# Install Rancher on a RKE
 ## Table of contents
   - [Prerequisites](#prerequisites)
   - [Step 1 - Download RKE Binary](#step-1---download-rke-binary)
@@ -194,17 +194,6 @@ kubectl -n cattle-system get deploy rancher
 ```
 
 Ref:   
-https://www.youtube.com/watch?v=IEoyxoLqPVc   
-https://gist.github.com/kiranchavala/893ec350dd55f9fb4747b602208bb4fc   
-https://blog.tekspace.io/rancher-kubernetes-single-node-setup   
-https://cloudraya.com/knowledge-base/high-availability-kubernetes-using-rke-in-cloudraya-part-1/   
-https://itnext.io/setup-a-basic-kubernetes-cluster-with-ease-using-rke-a5f3cc44f26f   
-https://www.youtube.com/watch?v=I9kNkoWdlwc     
-https://rancher.com/docs/rancher/v2.5/en/installation/resources/k8s-tutorials/ha-rke/   
-https://computingforgeeks.com/install-kubernetes-production-cluster-using-rancher-rke/   
-
-
 Install rancher ok K8s : https://rancher.com/docs/rancher/v2.5/en/installation/install-rancher-on-k8s/   
 Rancher release : https://github.com/rancher/rke/releases   
 Port requirement : https://rancher.com/docs/rancher/v2.5/en/installation/requirements/ports/   
-install RKE : https://www.youtube.com/watch?v=1j5lhDzlFUM
