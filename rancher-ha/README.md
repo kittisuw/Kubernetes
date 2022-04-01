@@ -100,12 +100,35 @@ rancher-cluster.yml: The RKE cluster configuration file.
 kube_config_cluster.yml: The Kubeconfig file for the cluster, this file contains credentials for full access to the cluster.   
 rancher-cluster.rkestate: The Kubernetes Cluster State file, this file contains credentials for full access to the cluster.   
 
-## Step x - Install metal-lb with nginx-ingress
+## Step 6 - Install metal-lb with nginx-ingress
+  6.1 install metallb
 ```shell
-https://www.youtube.com/watch?v=iqVt5mbvlJ0
-kustomize build . |kubectl apply -f -
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
+#On first install only
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 ```
-## Step 6 - Install the cert manager   
+  6.2 Apply config 
+```
+vi config.yaml
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 192.168.40.183
+---
+kubectl apply -f config.yaml
+```
+Ref : https://medium.com/@jodywan/cloud-native-devops-11a-metallb-with-nginx-ingress-and-rancher-2da396c1ae70
+## Step 7 - Install the cert manager   
 * You should skip this step if you are bringing your own certificate files
 ```shell
 # If you have installed the CRDs manually instead of with the `--set installCRDs=true` option added to your Helm install command, you should upgrade your CRD resources before upgrading the Helm chart:
