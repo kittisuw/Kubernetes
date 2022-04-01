@@ -62,16 +62,17 @@ chmod 700 get_helm.sh
 #Add mapping host by public IP
 sudo vi /etc/hosts
 ...
-10.51.234.165 rke-poc-0001
-10.51.138.250 rke-poc-0002
-10.51.204.135 rke-poc-0003
+#rancher
+192.168.40.177 kbj-prod-k8s-rancher-01
+192.168.40.178 kbj-prod-k8s-rancher-02
+192.168.40.179 kbj-prod-k8s-rancher-03
 ...
 
 #Set up passwordless SSH Logins on all nodes (Copy public key to all node)
 ssh-keygen -t rsa -b 2048
-ssh-copy-id rkeuser@rke-poc-0001
-ssh-copy-id rkeuser@rke-poc-0002
-ssh-copy-id rkeuser@rke-poc-0003
+ssh-copy-id rkeuser@kbj-prod-k8s-rancher-01
+ssh-copy-id rkeuser@kbj-prod-k8s-rancher-02
+ssh-copy-id rkeuser@kbj-prod-k8s-rancher-03
 ```
 ## Step 3 - Genarate RKE cluster configuaration
 ```shell
@@ -166,37 +167,18 @@ kbj-prod-basion-01% helm install rancher rancher-stable/rancher \
   --set letsEncrypt.email=tanic@kbjcapital.co.th \
   --set letsEncrypt.ingress.class=nginx
 
-W0401 07:30:45.718162 3002390 warnings.go:70] cert-manager.io/v1beta1 Issuer is deprecated in v1.4+, unavailable in v1.6+; use cert-manager.io/v1 Issuer
-NAME: rancher
-LAST DEPLOYED: Fri Apr  1 07:30:44 2022
-NAMESPACE: cattle-system
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
-NOTES:
-Rancher Server has been installed.
-
-NOTE: Rancher may take several minutes to fully initialize. Please standby while Certificates are being issued, Containers are started and the Ingress rule comes up.
-
-Check out our docs at https://rancher.com/docs/
-
+...
 If you provided your own bootstrap password during installation, browse to https://rancher.kbjcapital.co.th to get started.
-
 If this is the first time you installed Rancher, get started by running this command and clicking the URL it generates:
 
 ```
 echo https://rancher.kbjcapital.co.th/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
 ```
-
 To get just the bootstrap password on its own, run:
-
 ```
 kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}{{ "\n" }}'
 ```
-
-
 Happy Containering!
-
 
 
 kubectl -n cattle-system get deploy rancher
