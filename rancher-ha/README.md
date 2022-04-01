@@ -120,7 +120,8 @@ helm repo update
 helm install cert-manager jetstack/cert-manager \
   --namespace cert-manager \
   --create-namespace \
-  --version v1.5.1
+  --version v1.5.1 \
+  --ingress.tls.source=letsEncrypt
 
 kubectl get po --namespace cert-manager
 ```
@@ -128,15 +129,51 @@ kubectl get po --namespace cert-manager
 ```shell
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 
+# Update your local Helm chart repository cache
+helm repo update
+
 kubectl create namespace cattle-system
 
-helm install rancher rancher-stable/rancher \
+kbj-prod-basion-01% helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
-  --set hostname=rancher.my.org \
+  --set hostname=rancher.kbjcapital.co.th \
   --set replicas=3 \
   --set ingress.tls.source=letsEncrypt \
-  --set letsEncrypt.email=me@example.org \
+  --set letsEncrypt.email=tanic@kbjcapital.co.th \
   --set letsEncrypt.ingress.class=nginx
+
+W0401 07:30:45.718162 3002390 warnings.go:70] cert-manager.io/v1beta1 Issuer is deprecated in v1.4+, unavailable in v1.6+; use cert-manager.io/v1 Issuer
+NAME: rancher
+LAST DEPLOYED: Fri Apr  1 07:30:44 2022
+NAMESPACE: cattle-system
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+Rancher Server has been installed.
+
+NOTE: Rancher may take several minutes to fully initialize. Please standby while Certificates are being issued, Containers are started and the Ingress rule comes up.
+
+Check out our docs at https://rancher.com/docs/
+
+If you provided your own bootstrap password during installation, browse to https://rancher.kbjcapital.co.th to get started.
+
+If this is the first time you installed Rancher, get started by running this command and clicking the URL it generates:
+
+```
+echo https://rancher.kbjcapital.co.th/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
+```
+
+To get just the bootstrap password on its own, run:
+
+```
+kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}{{ "\n" }}'
+```
+
+
+Happy Containering!
+
+
 
 kubectl -n cattle-system get deploy rancher
 ```
