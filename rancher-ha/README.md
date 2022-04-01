@@ -88,10 +88,10 @@ export KUBECONFIG=$(pwd)/kube_config_cluster.yml
 kubectl get node
 #By default, kubectl checks ~/.kube/config.You can copy this file to $HOME/.kube/config if you don’t have any other kubernetes cluster.
 
-NAME           STATUS   ROLES                      AGE   VERSION
-rke-poc-0001   Ready    controlplane,etcd,worker   19m   v1.20.15
-rke-poc-0002   Ready    controlplane,etcd,worker   19m   v1.20.15
-rke-poc-0003   Ready    controlplane,etcd,worker   19m   v1.20.15
+NAME                      STATUS   ROLES                      AGE     VERSION
+kbj-prod-k8s-rancher-01   Ready    controlplane,etcd,worker   5h18m   v1.20.15
+kbj-prod-k8s-rancher-02   Ready    controlplane,etcd,worker   5h18m   v1.20.15
+kbj-prod-k8s-rancher-03   Ready    controlplane,etcd,worker   5h18m   v1.20.15
 ```
 The files mentioned below are needed to maintain, troubleshoot and upgrade your cluster.   
 Save a copy of the following files in a secure location:
