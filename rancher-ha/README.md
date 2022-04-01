@@ -124,7 +124,7 @@ data:
     - name: default
       protocol: layer2
       addresses:
-      - 192.168.40.183
+      - 192.168.40.183-192.168.40.183
 ---
 kubectl apply -f config.yaml
 ```
@@ -132,37 +132,33 @@ Ref : https://medium.com/@jodywan/cloud-native-devops-11a-metallb-with-nginx-ing
 ## Step 7 - Install the cert manager   
 * You should skip this step if you are bringing your own certificate files
 ```shell
-# Install the CustomResourceDefinition resources separately
-kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.4/cert-manager.crds.yaml
-
-# Create the namespace for cert-manager
-kubectl create namespace cert-manager
-
 # Add the Jetstack Helm repository
 helm repo add jetstack https://charts.jetstack.io
 
 # Update your local Helm chart repository cache
 helm repo update
 
+# Install the CustomResourceDefinition resources separately
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.4/cert-manager.crds.yaml
+
 # Install the cert-manager Helm chart
 helm install \
   cert-manager jetstack/cert-manager \
-  --namespace cert-manager \
+  --namespace cert-manager --create-namespace \
   --version v1.0.4
 
 kubectl get po --namespace cert-manager
 ```
-
-## Step 7 - Install nginx-ingress
+## Step 8 - Install nginx-ingress
 ```shell
-helm install nginx-ingress ingress-nginx/ingress-nginx \
+helm install ingress-nginx ingress-nginx/ingress-nginx \
     --version 4.0.13 \
     --namespace ingress-nginx --create-namespace \
     -f internal-ingress.yaml \
     --set controller.replicaCount=2 \
     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
-    --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux
+    --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux \
 ```
 
 ## Step 7 - Install Rancher
