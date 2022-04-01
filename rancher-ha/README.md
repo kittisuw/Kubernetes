@@ -134,7 +134,6 @@ Ref : https://medium.com/@jodywan/cloud-native-devops-11a-metallb-with-nginx-ing
 ```shell
 # Add the Jetstack Helm repository
 helm repo add jetstack https://charts.jetstack.io
-
 # Update your local Helm chart repository cache
 helm repo update
 
@@ -161,10 +160,9 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
     --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux
 ```
 
-## Step 7 - Install Rancher
+## Step 9 - Install Rancher
 ```shell
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
-
 # Update your local Helm chart repository cache
 helm repo update
 
