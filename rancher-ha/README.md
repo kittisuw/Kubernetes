@@ -176,10 +176,7 @@ kubectl create namespace cattle-system
 helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
   --set hostname=rancher.kbjcapital.co.th \
-  --set replicas=3 \
-  --set ingress.tls.source=letsEncrypt \
-  --set letsEncrypt.email=tanic@kbjcapital.co.th \
-  --set letsEncrypt.ingress.class=nginx
+  --set replicas=3
 
 ...
 NAME: rancher
