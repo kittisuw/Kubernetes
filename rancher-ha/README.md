@@ -182,19 +182,31 @@ helm install rancher rancher-stable/rancher \
   --set letsEncrypt.ingress.class=nginx
 
 ...
+NAME: rancher
+LAST DEPLOYED: Mon Apr  4 10:33:37 2022
+NAMESPACE: cattle-system
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+Rancher Server has been installed.
+
+NOTE: Rancher may take several minutes to fully initialize. Please standby while Certificates are being issued, Containers are started and the Ingress rule comes up.
+
+Check out our docs at https://rancher.com/docs/
+
 If you provided your own bootstrap password during installation, browse to https://rancher.kbjcapital.co.th to get started.
+
 If this is the first time you installed Rancher, get started by running this command and clicking the URL it generates:
 
-```
 echo https://rancher.kbjcapital.co.th/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
-```
+
 To get just the bootstrap password on its own, run:
-```
+
 kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}{{ "\n" }}'
+
 ```
-Happy Containering!
-
-
+```shell
 kubectl -n cattle-system get deploy rancher
 ```
 
@@ -204,3 +216,6 @@ Rancher release : https://github.com/rancher/rke/releases
 Port requirement : https://rancher.com/docs/rancher/v2.5/en/installation/requirements/ports/     
 
 https://github.com/odytrice/kubernetes/blob/master/rancher.md
+
+
+
