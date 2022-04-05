@@ -115,8 +115,10 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manife
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
 #On first install only
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+# Check pod status
+kubectl get pods -n metallb-system
 ```
-  5.2 Apply config 
+  5.2 Apply configmap for metallb control over IPs
 ```shell
 vi metallb/config.yaml
 ---
