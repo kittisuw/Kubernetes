@@ -183,10 +183,10 @@ helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
   --set hostname=rancher.kbjcapital.co.th \
   --set replicas=3
-```
-Wait for Rancher to be rolled out:
-```shell
+
+# Verify that the Rancher Server is Successfully Deployed
 kubectl -n cattle-system rollout status deploy/rancher
+kubectl -n cattle-system get deploy rancher
 ```
 
 Ref:   
