@@ -155,7 +155,7 @@ helm install cert-manager jetstack/cert-manager \
   --create-namespace \
   --version v1.5.1
 # Check running pod
-kubectl get pods --n cert-manager
+kubectl get pods -n cert-manager
 ```
 ## Step 7 - Install nginx-ingress
 ```shell
