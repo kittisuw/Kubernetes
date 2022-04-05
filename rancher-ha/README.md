@@ -159,14 +159,17 @@ kubectl get pods -n cert-manager
 ```
 ## Step 7 - Install nginx-ingress
 ```shell
+#Install rancher
 helm install ingress-nginx ingress-nginx/ingress-nginx \
     --version 4.0.13 \
     --namespace ingress-nginx --create-namespace \
-    -f internal-ingress.yaml \
+    -f ingress-nginx/internal-ingress.yaml \
     --set controller.replicaCount=2 \
     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux
+#Check running pod
+k get po -n ingress-nginx
 ```
 ## Step 8 - Install Rancher
 ```shell
