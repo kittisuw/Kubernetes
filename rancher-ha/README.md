@@ -3,15 +3,14 @@
   - [Prerequisites](#prerequisites)
   - [Step 1 - Prepare node for RKE](#step-1---prepare-node-for-rke)
   - [Step 2 - Prepare node for RKE Client](#step-2---prepare-node-for-rke-client)
-  - [Step 3 - Genarate thr RKE cluster configuaration](#step-3---genarate-thr-rke-cluster-configuaration)
-  - [Step 4 - Deploy the RKE cluster without the ingress controller](#step-4---deploy-the-rke-cluster-without-the-ingress-controller)
-  - [Step 5 - Check RKE cluster](#step-5---check-rke-cluster)
-  - [Step 6 - Deploy MetalLB](#step-6---deploy-metallb)
-  - [Step 7 - Install the cert manager](#step-7---install-the-cert-manager)
-  - [Step 8 - Install nginx-ingress](#step-8---install-nginx-ingress)
-  - [Step 9 - Install Rancher](#step-9---install-rancher)
+  - [Step 3 - Deploy the RKE cluster without the ingress controller](#step-4---deploy-the-rke-cluster-without-the-ingress-controller)
+  - [Step 4 - Check RKE cluster](#step-5---check-rke-cluster)
+  - [Step 5 - Deploy MetalLB](#step-6---deploy-metallb)
+  - [Step 6 - Install the cert manager](#step-7---install-the-cert-manager)
+  - [Step 7 - Install nginx-ingress](#step-8---install-nginx-ingress)
+  - [Step 8 - Install Rancher](#step-9---install-rancher)
 ## Prerequisites
-1. Download RKE binary [Dowload](https://rancher.com/docs/rke/latest/en/installation/#download-the-rke-binary)
+1. Download RKE binary [Download](https://rancher.com/docs/rke/latest/en/installation/#download-the-rke-binary)
 2. Prepare 3 VMs and install [Requirements](https://rancher.com/docs/rke/latest/en/os/)
 3. helm
 4. kubectl
@@ -82,11 +81,7 @@ ssh-copy-id rkeuser@kbj-prod-k8s-rancher-01
 ssh-copy-id rkeuser@kbj-prod-k8s-rancher-02
 ssh-copy-id rkeuser@kbj-prod-k8s-rancher-03
 ```
-## Step 3 - Genarate thr RKE cluster configuaration
-```shell
-rke config --empty
-```
-## Step 4 - Deploy the RKE cluster without the ingress controller
+## Step 3 - Deploy the RKE cluster without the ingress controller
 ```shell
 rke up
 ```
@@ -96,7 +91,7 @@ rke up --update-only
 ```
 Note that if you are deploying your Cluster in one of the popular cloud providers, you will want to consider registering that cloud provider so that your cluster can talk to the cloud environment for things like setting up volumes e.t.c.   
 [RKE Cloud Provider Configuration](https://rancher.com/docs/rke/latest/en/config-options/cloud-providers/)
-## Step 5 - Check RKE cluster
+## Step 4 - Check RKE cluster
 ```shell
 export KUBECONFIG=$(pwd)/kube_config_cluster.yml
 kubectl get node
@@ -113,16 +108,15 @@ Save a copy of the following files in a secure location:
 rancher-cluster.yml: The RKE cluster configuration file.   
 kube_config_cluster.yml: The Kubeconfig file for the cluster, this file contains credentials for full access to the cluster.   
 rancher-cluster.rkestate: The Kubernetes Cluster State file, this file contains credentials for full access to the cluster.   
-
-## Step 6 - Deploy MetalLB
-  6.1 install metallb
+## Step 5 - Deploy MetalLB
+  5.1 install metallb
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
 #On first install only
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 ```
-  6.2 Apply config 
+  5.2 Apply config 
 ```shell
 vi config.yaml
 ---
@@ -142,7 +136,7 @@ data:
 kubectl apply -f config.yaml
 ```
 Ref : https://medium.com/@jodywan/cloud-native-devops-11a-metallb-with-nginx-ingress-and-rancher-2da396c1ae70
-## Step 7 - Install the cert manager   
+## Step 6 - Install the cert manager   
 * You should skip this step if you are bringing your own certificate files
 ```shell
 # Add the Jetstack Helm repository
@@ -162,7 +156,7 @@ helm install cert-manager jetstack/cert-manager \
 # Check running pod
 kubectl get pods --n cert-manager
 ```
-## Step 8 - Install nginx-ingress
+## Step 7 - Install nginx-ingress
 ```shell
 helm install ingress-nginx ingress-nginx/ingress-nginx \
     --version 4.0.13 \
@@ -173,7 +167,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux
 ```
-## Step 9 - Install Rancher
+## Step 8 - Install Rancher
 ```shell
 # Add the Helm Chart Repositorylink
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
@@ -195,7 +189,6 @@ helm install rancher rancher-stable/rancher \
 kubectl -n cattle-system rollout status deploy/rancher
 kubectl -n cattle-system get deploy rancher
 ```
-
 Reference:    
 Install rancher ok K8s : https://rancher.com/docs/rancher/v2.5/en/installation/install-rancher-on-k8s/   
 Rancher release : https://github.com/rancher/rke/releases   
