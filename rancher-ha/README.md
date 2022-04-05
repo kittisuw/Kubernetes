@@ -7,7 +7,7 @@
   - [Step 4 - Check RKE cluster](#step-4---check-rke-cluster)
   - [Step 5 - Deploy MetalLB](#step-5---deploy-metallb)
   - [Step 6 - Install the cert manager](#step-6---install-the-cert-manager)
-  - [Step 7 - Install nginx-ingress](#step-7---install-nginx-ingress)
+  - [Step 7 - Install NGINX Ingress Controller](#step-7---install-nginx-ingress-controller)
   - [Step 8 - Install Rancher](#step-8---install-rancher)
 ## Prerequisites
 1. Download RKE binary [Download](https://rancher.com/docs/rke/latest/en/installation/#download-the-rke-binary)
@@ -157,7 +157,7 @@ helm install cert-manager jetstack/cert-manager \
 # Check running pod
 kubectl get pods -n cert-manager
 ```
-## Step 7 - Install nginx-ingress
+## Step 7 - Install NGINX Ingress Controller
 ```shell
 #Install NGINX Ingress Controller
 helm install ingress-nginx ingress-nginx/ingress-nginx \
