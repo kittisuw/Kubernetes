@@ -109,7 +109,7 @@ rancher-cluster.yml: The RKE cluster configuration file.
 kube_config_cluster.yml: The Kubeconfig file for the cluster, this file contains credentials for full access to the cluster.   
 rancher-cluster.rkestate: The Kubernetes Cluster State file, this file contains credentials for full access to the cluster.   
 ## Step 5 - Deploy MetalLB
-  5.1 install metallb
+  5.1 Install metallb
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
