@@ -118,7 +118,7 @@ kubectl create secret generic -n metallb-system memberlist --from-literal=secret
 ```
   5.2 Apply config 
 ```shell
-vi config.yaml
+vi metallb/config.yaml
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -133,7 +133,7 @@ data:
       addresses:
       - 192.168.40.183-192.168.40.183
 ---
-kubectl apply -f config.yaml
+kubectl apply -f metallb/config.yaml
 ```
 Ref : https://medium.com/@jodywan/cloud-native-devops-11a-metallb-with-nginx-ingress-and-rancher-2da396c1ae70
 ## Step 6 - Install the cert manager   
