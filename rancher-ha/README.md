@@ -189,7 +189,7 @@ kubectl -n cattle-system rollout status deploy/rancher
 kubectl -n cattle-system get deploy rancher
 ```
 
-Ref:   
+Reference:    
 Install rancher ok K8s : https://rancher.com/docs/rancher/v2.5/en/installation/install-rancher-on-k8s/   
 Rancher release : https://github.com/rancher/rke/releases   
 Port requirement : https://rancher.com/docs/rancher/v2.5/en/installation/requirements/ports/     
