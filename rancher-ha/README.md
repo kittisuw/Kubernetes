@@ -173,19 +173,19 @@ k get po -n ingress-nginx
 ```
 ## Step 8 - Install Rancher
 ```shell
-# Add the Helm Chart Repositorylink
+#Add the Helm Chart Repositorylink
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
-# Update your local Helm chart repository cache
+#Update your local Helm chart repository cache
 helm repo update
-# Create a Namespace for Rancher
+#Create a Namespace for Rancher
 kubectl create namespace cattle-system
-# Install Rancher with Helm
+#Install Rancher with Helm
 helm install rancher rancher-stable/rancher \
   --version 2.6.4 \
   --namespace cattle-system \
   --set hostname=rancher.kbjcapital.co.th \
   --set replicas=3
-# Verify that the Rancher Server is Successfully Deployed
+#Verify that the Rancher Server is Successfully Deployed
 kubectl -n cattle-system rollout status deploy/rancher
 kubectl -n cattle-system get deploy rancher
 ```
