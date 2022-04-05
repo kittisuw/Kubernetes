@@ -159,7 +159,7 @@ kubectl get pods -n cert-manager
 ```
 ## Step 7 - Install nginx-ingress
 ```shell
-#Install rancher
+#Install NGINX Ingress Controller
 helm install ingress-nginx ingress-nginx/ingress-nginx \
     --version 4.0.13 \
     --namespace ingress-nginx --create-namespace \
