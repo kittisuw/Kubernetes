@@ -111,11 +111,13 @@ rancher-cluster.rkestate: The Kubernetes Cluster State file, this file contains 
 ## Step 5 - Deploy MetalLB
   5.1 Install metallb
 ```shell
+#Create namespace
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
+#Install metallb
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
 #On first install only
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-# Check pod status
+#Check pod status
 kubectl get pods -n metallb-system
 ```
   5.2 Apply configmap for metallb control over IPs
