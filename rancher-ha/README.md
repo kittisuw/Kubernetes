@@ -193,8 +193,7 @@ Reference:
 Install rancher ok K8s : https://rancher.com/docs/rancher/v2.5/en/installation/install-rancher-on-k8s/   
 Rancher release : https://github.com/rancher/rke/releases   
 Port requirement : https://rancher.com/docs/rancher/v2.5/en/installation/requirements/ports/     
-
-https://github.com/odytrice/kubernetes/blob/master/rancher.md   
-https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nginx-ingress-on-digitalocean-kubernetes-using-helm
+Rancher install using your own Certificates : https://github.com/odytrice/kubernetes/blob/master/rancher.md  
+Install nginx-ingress : https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nginx-ingress-on-digitalocean-kubernetes-using-helm
 
 
