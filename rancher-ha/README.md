@@ -1,7 +1,15 @@
 # Rancher High Availability (HA) on a RKE Cluster
 ## Table of contents
   - [Prerequisites](#prerequisites)
-  - [Step 1 - Download RKE Binary](#step-1---download-rke-binary)
+  - [Step 1 - Prepare node for RKE](#step-1---prepare-node-for-rke)
+  - [Step 2 - Prepare node for RKE Client](#step-2---prepare-node-for-rke-client)
+  - [Step 3 - Genarate thr RKE cluster configuaration](#step-3---genarate-thr-rke-cluster-configuaration)
+  - [Step 4 - Deploy the RKE cluster without the ingress controller](#step-4---deploy-the-rke-cluster-without-the-ingress-controller)
+  - [Step 5 - Check RKE cluster](#step-5---check-rke-cluster)
+  - [Step 6 - Deploy MetalLB](#step-6---deploy-metallb)
+  - [Step 7 - Install the cert manager](#step-7---install-the-cert-manager)
+  - [Step 8 - Install nginx-ingress](#step-8---install-nginx-ingress)
+  - [Step 9 - Install Rancher](#step-9---install-rancher)
 ## Prerequisites
 1. Download RKE binary [Dowload](https://rancher.com/docs/rke/latest/en/installation/#download-the-rke-binary)
 2. Prepare 3 VMs and install [Requirements](https://rancher.com/docs/rke/latest/en/os/)
@@ -165,7 +173,6 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux
 ```
-
 ## Step 9 - Install Rancher
 ```shell
 # Add the Helm Chart Repositorylink
