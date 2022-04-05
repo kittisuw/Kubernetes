@@ -1,4 +1,4 @@
-# Install Rancher on a RKE Cluster
+# Rancher High Availability (HA) on a RKE Cluster
 ## Table of contents
   - [Prerequisites](#prerequisites)
   - [Step 1 - Download RKE Binary](#step-1---download-rke-binary)
@@ -143,13 +143,14 @@ helm repo add jetstack https://charts.jetstack.io
 helm repo update
 
 # Install the CustomResourceDefinition resources separately
-kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.4/cert-manager.crds.yaml
+#kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.4/cert-manager.crds.yaml
+kubectl apply --validate=false -f https://github.com/cert-manager/cert-manager/releases/download/v1.7.2/cert-manager.yaml
 
 # Install the cert-manager Helm chart
 helm install \
   cert-manager jetstack/cert-manager \
   --namespace cert-manager --create-namespace \
-  --version v1.0.4
+  --version v1.7.2
 
 kubectl get po --namespace cert-manager
 ```
@@ -174,6 +175,7 @@ helm repo update
 kubectl create namespace cattle-system
 
 helm install rancher rancher-stable/rancher \
+  --version 2.6.4 \
   --namespace cattle-system \
   --set hostname=rancher.kbjcapital.co.th \
   --set replicas=3
