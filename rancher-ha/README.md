@@ -188,6 +188,12 @@ helm install rancher rancher-stable/rancher \
 #Verify that the Rancher Server is Successfully Deployed
 kubectl -n cattle-system rollout status deploy/rancher
 kubectl -n cattle-system get deploy rancher
+
+#If you provided your own bootstrap password during installation, browse to https://rancher.kbjcapital.co.th to get started.
+#If this is the first time you installed Rancher, get started by running this command and clicking the URL it generates:
+echo https://rancher.kbjcapital.co.th/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
+#To get just the bootstrap password on its own, run:
+kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}{{ "\n" }}'
 ```
 Reference:    
 Install rancher ok K8s : https://rancher.com/docs/rancher/v2.5/en/installation/install-rancher-on-k8s/   
