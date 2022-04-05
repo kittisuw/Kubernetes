@@ -143,16 +143,16 @@ helm repo add jetstack https://charts.jetstack.io
 helm repo update
 
 # Install the CustomResourceDefinition resources separately
-#kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.4/cert-manager.crds.yaml
-kubectl apply --validate=false -f https://github.com/cert-manager/cert-manager/releases/download/v1.7.2/cert-manager.yaml
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.1/cert-manager.crds.yaml
 
 # Install the cert-manager Helm chart
-helm install \
-  cert-manager jetstack/cert-manager \
-  --namespace cert-manager --create-namespace \
-  --version v1.7.2
+helm install cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version v1.5.1
 
-kubectl get po --namespace cert-manager
+# Check running pod
+kubectl get pods --n cert-manager
 ```
 ## Step 8 - Install nginx-ingress
 ```shell
