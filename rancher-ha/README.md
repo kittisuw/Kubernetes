@@ -9,6 +9,7 @@
   - [Step 6 - Install the cert manager](#step-6---install-the-cert-manager)
   - [Step 7 - Install NGINX Ingress Controller](#step-7---install-nginx-ingress-controller)
   - [Step 8 - Install Rancher](#step-8---install-rancher)
+  - [Step 9 - Create Ingress resource](#step-9---create-ingress-resource)
 ## Prerequisites
 1. Download RKE binary [Download](https://rancher.com/docs/rke/latest/en/installation/#download-the-rke-binary)
 2. Prepare 3 VMs and install [Requirements](https://rancher.com/docs/rke/latest/en/os/)
