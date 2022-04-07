@@ -117,7 +117,7 @@ kubectl get pods -n metallb-system
 ```
   5.2 Apply configmap for metallb control over IPs
 ```shell
-vi metallb/config.yaml
+vi assets/manifests/metallb/config.yaml
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -132,7 +132,7 @@ data:
       addresses:
       - 192.168.40.183-192.168.40.183
 ---
-kubectl apply -f metallb/config.yaml
+kubectl apply -f assets/manifests/metallb/config.yaml
 ```
 Ref : https://medium.com/@jodywan/cloud-native-devops-11a-metallb-with-nginx-ingress-and-rancher-2da396c1ae70
 ## Step 6 - Install the cert manager   
@@ -158,7 +158,7 @@ kubectl get pods -n cert-manager
 helm install ingress-nginx ingress-nginx/ingress-nginx \
     --version 4.0.13 \
     --namespace ingress-nginx --create-namespace \
-    -f ingress-nginx/internal-ingress.yaml \
+    -f assets/manifests/ingress-nginx/internal-ingress.yaml \
     --set controller.replicaCount=2 \
     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
