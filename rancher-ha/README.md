@@ -41,10 +41,6 @@ curl https://releases.rancher.com/install-docker/20.10.sh | sh
 sudo adduser rkeuser
 sudo usermod -aG docker rkeuser
 ```
-Ref :   
-https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04   
-https://www.linkedin.com/pulse/deploy-highly-available-kubernetes-cluster-using-rancher-elemam/   
-https://rancher.com/docs/rancher/v2.5/en/installation/requirements/installing-docker/   
 ## Step 2 - Prepare node for RKE Client
 ```shell
 #Install kubectl
