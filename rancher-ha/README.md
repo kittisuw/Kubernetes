@@ -12,9 +12,7 @@
 ## Prerequisites
 1. Download RKE binary [Download](https://rancher.com/docs/rke/latest/en/installation/#download-the-rke-binary)
 2. Prepare 3 VMs and install [Requirements](https://rancher.com/docs/rke/latest/en/os/)
-3. helm
-4. kubectl
-5. kustomize
+3. CLI Tools: [kubectl](https://kubernetes.io/docs/tasks/tools/#install-kubectl), [helm](https://docs.helm.sh/using_helm/#installing-helm)
 ## Step 1 - Prepare node for RKE
 ```shell
 ##### Prepare the kubernetes nodes
