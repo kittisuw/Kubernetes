@@ -193,6 +193,10 @@ echo https://rancher.kbjcapital.co.th/dashboard/?setup=$(kubectl get secret --na
 #To get just the bootstrap password on its own, run:
 kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}{{ "\n" }}'
 ```
+## Step 9 - Create Ingress resource
+```shell
+
+```
 Reference:    
 Install rancher ok K8s : https://rancher.com/docs/rancher/v2.5/en/installation/install-rancher-on-k8s/   
 Rancher release : https://github.com/rancher/rke/releases   
