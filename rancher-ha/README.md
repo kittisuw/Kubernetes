@@ -195,6 +195,7 @@ echo https://rancher.kbjcapital.co.th/dashboard/?setup=$(kubectl get secret --na
 kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}{{ "\n" }}'
 ```
 ## Step 9 - Create Ingress resource
+  Create ingress resource and brows to https://rancher.kbjcapital.co.th
 ```shell
 #Create ingress resource
 k apply -f ingress-nginx/rancher-ingress.yaml
