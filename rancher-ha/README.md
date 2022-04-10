@@ -208,5 +208,4 @@ Port requirement : https://rancher.com/docs/rancher/v2.5/en/installation/require
 Rancher install using your own Certificates : https://github.com/odytrice/kubernetes/blob/master/rancher.md  
 Install nginx-ingress : https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nginx-ingress-on-digitalocean-kubernetes-using-helm   
 Building a Highly Available Kubernetes Cluster : https://www.suse.com/c/rancher_blog/building-a-highly-available-kubernetes-cluster/
-
-
+Nginx-ingress configuration : https://loft.sh/blog/kubernetes-nginx-ingress-10-useful-configuration-options/
