@@ -108,10 +108,10 @@ rancher-cluster.rkestate: The Kubernetes Cluster State file, this file contains 
 ```shell
 #Create namespace
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
-#Install metallb
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
 #On first install only
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+#Install metallb
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
 #Check pod status
 kubectl get pods -n metallb-system
 ```
