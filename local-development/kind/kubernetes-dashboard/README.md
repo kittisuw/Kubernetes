@@ -3,7 +3,7 @@
   - [Prerequisites](#prerequisites)
   - [Step 1 - Install Kubernetes dashboard](#step-1---install-kubernetes-dashboard)
   - [Step 2 - Create service Account](#step-2---create-service-account)
-  - [Step 3 - Get token for access dashboard](#step-3---get-token-for-access-dashboard)
+  - [Step 3 - Geting a bearer token](#step-3---getting-a-bearer-token)
   - [Step 4 - Set port-forwarding](#step-4---set-port-forwarding)
   - [Step 5 - Create Kubernetes test resorce Eg. pod with log 100mb](#step-5---create-kubernetes-test-resorce-eg-pod-with-log-100mb)
   - [Reference](#reference)
