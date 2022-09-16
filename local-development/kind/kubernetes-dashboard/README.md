@@ -11,7 +11,7 @@
 1. [Install cluster](../README.md)
 ## Step 1 - Install Kubernetes dashboard
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.1/aio/deploy/recommended.yaml
 ```
 ## Step 2 - Create service Account
 ```shell
@@ -40,9 +40,9 @@ subjects:
   namespace: kubernetes-dashboard
 EOF
 ```
-## Step 3 - Get token for access dashboard
+## Step 3 - Getting a Bearer Token
 ```shell
-kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+kubectl -n kubernetes-dashboard create token admin-user
 ```
 ## Step 4 - Set port-forwarding
 ```shell
