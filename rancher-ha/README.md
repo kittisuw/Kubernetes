@@ -2,7 +2,7 @@
 ![rke-setup](asset/../assets/images/rke-setup.jpeg)
 ## Table of contents
   - [Prerequisites](#1)
-  - [Step 1 - Prepare 3 VMs for RKE nodes](#step--1-prepare-3-vms-for-rke-nodes)
+  - [Step 1 - Prepare 3 VMs for RKE nodes](#step-1---prepare-3-vms-for-rke-nodes)
   - [Step 2 - Prepare RKE Client](#step-2-prepare-workstation-or-vm-for-rke-client))
   - [Step 3 - Deploy the RKE cluster without the ingress controller](#step-3-deploy-the-rke-cluster-without-the-ingress-controller)
   - [Step 4 - Check RKE cluster](#step-4-check-rke-cluster)
