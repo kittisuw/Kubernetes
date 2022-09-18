@@ -80,7 +80,7 @@ test-cluster-worker2         Ready    <none>                 2m7s    v1.22.5
 ```
 ## Advance
 - [Deploy ingress-nginx](ingress/../ingress-nginx/README.md)
-- [Deploy and Access the Kubernetes Dashboard](kubernetes-dashboard/README.md)
+- [Deploy and Access the Kubernetes Dashboard](../../kubernetes-dashboard/README.md)
 ## Clean up
 ```shell
 kind delete cluster --name test-cluster
