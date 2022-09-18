@@ -1,5 +1,5 @@
 # Rancher High Availability (HA) on a RKE Cluster   
-![rke-setup](assets/images/rke-setup.jpg)
+![rke-setup](asset/../assets/images/rke-setup.jpeg)
 ## Table of contents
   - [Prerequisites](#1)
   - [Step 1 - Prepare 3 VMs for RKE nodes](#step-1-prepare-3-vms-for-rke-nodes)
