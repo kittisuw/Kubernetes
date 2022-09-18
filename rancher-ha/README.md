@@ -3,14 +3,14 @@
 ## Table of contents
   - [Prerequisites](#1)
   - [Step 1 - Prepare 3 VMs for RKE nodes](#step-1---prepare-3-vms-for-rke-nodes)
-  - [Step 2 - Prepare RKE Client](#step-2-prepare-workstation-or-vm-for-rke-client))
-  - [Step 3 - Deploy the RKE cluster without the ingress controller](#step-3-deploy-the-rke-cluster-without-the-ingress-controller)
-  - [Step 4 - Check RKE cluster](#step-4-check-rke-cluster)
-  - [Step 5 - Deploy MetalLB](#step-5-deploy-metallb)
-  - [Step 6 - Install the cert manager](#step-6-install-the-cert-manager)
-  - [Step 7 - Install NGINX Ingress Controller](#step-7-install-nginx-ingress-controller)
-  - [Step 8 - Install Rancher](#step-8-install-rancher)
-  - [Step 9 - Create Ingress resource](#step-9-create-ingress-resource)
+  - [Step 2 - Prepare RKE Client](#step-2---prepare-workstation-or-vm-for-rke-client))
+  - [Step 3 - Deploy the RKE cluster without the ingress controller](#step-3---deploy-the-rke-cluster-without-the-ingress-controller)
+  - [Step 4 - Check RKE cluster](#step-4---check-rke-cluster)
+  - [Step 5 - Deploy MetalLB](#step-5---deploy-metallb)
+  - [Step 6 - Install the cert manager](#step-6---install-the-cert-manager)
+  - [Step 7 - Install NGINX Ingress Controller](#step-7---install-nginx-ingress-controller)
+  - [Step 8 - Install Rancher](#step-8---install-rancher)
+  - [Step 9 - Create Ingress resource](#step-9---create-ingress-resource)
 ## Prerequisites
 1. Download RKE binary [Download](https://rancher.com/docs/rke/latest/en/installation/#download-the-rke-binary) @RKE Client
 2. CLI Tools: [kubectl](https://kubernetes.io/docs/tasks/tools/#install-kubectl), [helm](https://docs.helm.sh/using_helm/#installing-helm) @RKE Client   
