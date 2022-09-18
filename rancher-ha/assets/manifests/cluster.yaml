@@ -3,15 +3,15 @@ kubernetes_version: "v1.20.15-rancher1-2"
 enable_cri_dockerd: true
 
 nodes:
-    - address: kbj-prod-k8s-rancher-01 #The public DNS or IP address
+    - address: prod-k8s-rancher-01 #The public DNS or IP address
       user: rkeuser #A user that can run docker commands
       internal_address: 10.250.250.177 #The private DNS or IP address for internal cluster traffic
       role: [controlplane, etcd, worker]
-    - address: kbj-prod-k8s-rancher-02 #The public DNS or IP address
+    - address: prod-k8s-rancher-02 #The public DNS or IP address
       user: rkeuser #A user that can run docker commands
       internal_address: 10.250.250.178 #The private DNS or IP address for internal cluster traffic
       role: [controlplane, etcd, worker]
-    - address: kbj-prod-k8s-rancher-03 #The public DNS or IP address
+    - address: prod-k8s-rancher-03 #The public DNS or IP address
       user: rkeuser #A user that can run docker commands
       internal_address: 10.250.250.179 #The private DNS or IP address for internal cluster traffic
       role: [controlplane, etcd, worker]
@@ -28,10 +28,3 @@ services:
 # Disable ingress
 ingress:
     provider: none
-
-# Required for external TLS termination with
-# ingress-nginx v0.22+
-#ingress:
-#  provider: nginx
-#  options:
-#    use-forwarded-headers: "true"

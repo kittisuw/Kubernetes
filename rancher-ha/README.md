@@ -208,9 +208,9 @@ rancher       <none>   rancher.mydomain.com                    80, 443   40h
 rancher-ing   <none>   rancher.mydomain.com   192.168.40.183   80        6m34s
 ```
 ## Reference    
-Install rancher on K8s : https://docs.ranchermanager.rancher.io/pages-for-subheaders/install-upgrade-on-a-kubernetes-cluster
+Install rancher on K8s : https://docs.ranchermanager.rancher.io/pages-for-subheaders/install-upgrade-on-a-kubernetes-cluster   
 Rancher release : https://github.com/rancher/rke/releases   
-Port requirement : https://rancher.com/docs/rancher/v2.5/en/installation/requirements/ports/     
+Port requirement : https://docs.ranchermanager.rancher.io/getting-started/installation-and-upgrade/installation-requirements/port-requirements       
 Rancher install using your own Certificates : https://github.com/odytrice/kubernetes/blob/master/rancher.md  
 Install nginx-ingress : https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nginx-ingress-on-digitalocean-kubernetes-using-helm   
 Building a Highly Available Kubernetes Cluster : https://www.suse.com/c/rancher_blog/building-a-highly-available-kubernetes-cluster/
