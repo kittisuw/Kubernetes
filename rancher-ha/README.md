@@ -1,20 +1,25 @@
-# Rancher High Availability (HA) on a RKE Cluster
+# Rancher High Availability (HA) on a RKE Cluster   
+![rke-setup](assets/images/rke-setup.jpg)
 ## Table of contents
-  - [Prerequisites](#prerequisites)
-  - [Step 1 - Prepare node for RKE](#step-1---prepare-node-for-rke)
-  - [Step 2 - Prepare node for RKE Client](#step-2---prepare-node-for-rke-client)
-  - [Step 3 - Deploy the RKE cluster without the ingress controller](#step-3---deploy-the-rke-cluster-without-the-ingress-controller)
-  - [Step 4 - Check RKE cluster](#step-4---check-rke-cluster)
-  - [Step 5 - Deploy MetalLB](#step-5---deploy-metallb)
-  - [Step 6 - Install the cert manager](#step-6---install-the-cert-manager)
-  - [Step 7 - Install NGINX Ingress Controller](#step-7---install-nginx-ingress-controller)
-  - [Step 8 - Install Rancher](#step-8---install-rancher)
-  - [Step 9 - Create Ingress resource](#step-9---create-ingress-resource)
+  - [Prerequisites](#1)
+  - [Step 1 - Prepare 3 VMs for RKE nodes](#step-1-prepare-3-vms-for-rke-nodes)
+  - [Step 2 - Prepare RKE Client](#step-2-prepare-workstation-or-vm-for-rke-client))
+  - [Step 3 - Deploy the RKE cluster without the ingress controller](#step-3-deploy-the-rke-cluster-without-the-ingress-controller)
+  - [Step 4 - Check RKE cluster](#step-4-check-rke-cluster)
+  - [Step 5 - Deploy MetalLB](#step-5-deploy-metallb)
+  - [Step 6 - Install the cert manager](#step-6-install-the-cert-manager)
+  - [Step 7 - Install NGINX Ingress Controller](#step-7-install-nginx-ingress-controller)
+  - [Step 8 - Install Rancher](#step-8-install-rancher)
+  - [Step 9 - Create Ingress resource](#step-9-create-ingress-resource)
 ## Prerequisites
-1. Download RKE binary [Download](https://rancher.com/docs/rke/latest/en/installation/#download-the-rke-binary)
-2. Prepare 3 VMs and install [Requirements](https://rancher.com/docs/rke/latest/en/os/)
-3. CLI Tools: [kubectl](https://kubernetes.io/docs/tasks/tools/#install-kubectl), [helm](https://docs.helm.sh/using_helm/#installing-helm)
-## Step 1 - Prepare node for RKE
+1. Download RKE binary [Download](https://rancher.com/docs/rke/latest/en/installation/#download-the-rke-binary) @RKE Client
+2. CLI Tools: [kubectl](https://kubernetes.io/docs/tasks/tools/#install-kubectl), [helm](https://docs.helm.sh/using_helm/#installing-helm) @RKE Client   
+3. Prepare 3 VMs and install [Requirements](https://rancher.com/docs/rke/latest/en/os/)
+## Step 0 - Clone this repository
+```
+git clone xxx
+```
+## Step 1 - Prepare 3 VMs for RKE nodes
 ```shell
 ##### Prepare the kubernetes nodes
 
@@ -41,7 +46,7 @@ curl https://releases.rancher.com/install-docker/20.10.sh | sh
 sudo adduser rkeuser
 sudo usermod -aG docker rkeuser
 ```
-## Step 2 - Prepare node for RKE Client
+## Step 2 - Prepare Workstation or VM for RKE Client
 ```shell
 #Install kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -78,9 +83,10 @@ ssh-copy-id rkeuser@kbj-prod-k8s-rancher-03
 ```
 ## Step 3 - Deploy the RKE cluster without the ingress controller
 ```shell
+cd 02-setup-rancher/assets/manifests/rke
 rke up
 ```
-If you are adding/removing nodes in the cluster, after updating the cluster.yml run the following
+If you are adding/removing nodes in the cluster or upgrade Kubernetes version, after updating the cluster.yml run the following
 ```shell
 rke up --update-only
 ```
@@ -130,7 +136,7 @@ data:
     - name: default
       protocol: layer2
       addresses:
-      - 192.168.40.183-192.168.40.183
+      - 192.168.40.183-192.168.40.183  #This line is Loadbalancer IP
 ---
 kubectl apply -f assets/manifests/metallb/config.yaml
 ```
@@ -202,7 +208,7 @@ rancher       <none>   rancher.kbjcapital.co.th                    80, 443   40h
 rancher-ing   <none>   rancher.kbjcapital.co.th   192.168.40.183   80        6m34s
 ```
 ## Reference    
-Install rancher on K8s : https://docs.ranchermanager.rancher.io/pages-for-subheaders/install-upgrade-on-a-kubernetes-cluster  
+Install rancher on K8s : https://docs.ranchermanager.rancher.io/pages-for-subheaders/install-upgrade-on-a-kubernetes-cluster
 Rancher release : https://github.com/rancher/rke/releases   
 Port requirement : https://rancher.com/docs/rancher/v2.5/en/installation/requirements/ports/     
 Rancher install using your own Certificates : https://github.com/odytrice/kubernetes/blob/master/rancher.md  
