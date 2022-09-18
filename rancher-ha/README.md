@@ -70,20 +70,20 @@ chmod 700 get_helm.sh
 sudo vi /etc/hosts
 ...
 #rancher
-192.168.40.177 kbj-prod-k8s-rancher-01
-192.168.40.178 kbj-prod-k8s-rancher-02
-192.168.40.179 kbj-prod-k8s-rancher-03
+192.168.40.177 prod-k8s-rancher-01
+192.168.40.178 prod-k8s-rancher-02
+192.168.40.179 prod-k8s-rancher-03
 ...
 
 #Set up passwordless SSH Logins on all nodes (Copy public key to all node)
 ssh-keygen -t rsa -b 2048
-ssh-copy-id rkeuser@kbj-prod-k8s-rancher-01
-ssh-copy-id rkeuser@kbj-prod-k8s-rancher-02
-ssh-copy-id rkeuser@kbj-prod-k8s-rancher-03
+ssh-copy-id rkeuser@prod-k8s-rancher-01
+ssh-copy-id rkeuser@prod-k8s-rancher-02
+ssh-copy-id rkeuser@prod-k8s-rancher-03
 ```
 ## Step 3 - Deploy the RKE cluster without the ingress controller
 ```shell
-cd 02-setup-rancher/assets/manifests/rke
+cd assets/manifests/rke
 rke up
 ```
 If you are adding/removing nodes in the cluster or upgrade Kubernetes version, after updating the cluster.yml run the following
@@ -99,9 +99,9 @@ kubectl get node
 #By default, kubectl checks ~/.kube/config.You can copy this file to $HOME/.kube/config if you don’t have any other kubernetes cluster.
 
 NAME                      STATUS   ROLES                      AGE     VERSION
-kbj-prod-k8s-rancher-01   Ready    controlplane,etcd,worker   5h18m   v1.20.15
-kbj-prod-k8s-rancher-02   Ready    controlplane,etcd,worker   5h18m   v1.20.15
-kbj-prod-k8s-rancher-03   Ready    controlplane,etcd,worker   5h18m   v1.20.15
+prod-k8s-rancher-01   Ready    controlplane,etcd,worker   5h18m   v1.20.15
+prod-k8s-rancher-02   Ready    controlplane,etcd,worker   5h18m   v1.20.15
+prod-k8s-rancher-03   Ready    controlplane,etcd,worker   5h18m   v1.20.15
 ```
 The files mentioned below are needed to maintain, troubleshoot and upgrade your cluster.   
 Save a copy of the following files in a secure location:
@@ -184,28 +184,28 @@ kubectl create namespace cattle-system
 helm install rancher rancher-stable/rancher \
   --version 2.6.4 \
   --namespace cattle-system \
-  --set hostname=rancher.kbjcapital.co.th \
+  --set hostname=rancher.mydomain.com \
   --set replicas=3
 #Verify that the Rancher Server is Successfully Deployed
 kubectl -n cattle-system rollout status deploy/rancher
 kubectl -n cattle-system get deploy rancher
 
-#If you provided your own bootstrap password during installation, browse to https://rancher.kbjcapital.co.th to get started.
+#If you provided your own bootstrap password during installation, browse to https://rancher.mydomain.com to get started.
 #If this is the first time you installed Rancher, get started by running this command and clicking the URL it generates:
-echo https://rancher.kbjcapital.co.th/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
+echo https://rancher.mydomain.com/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
 #To get just the bootstrap password on its own, run:
 kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}{{ "\n" }}'
 ```
 ## Step 9 - Create Ingress resource
-  Create ingress resource and brows to https://rancher.kbjcapital.co.th
+  Create ingress resource and brows to https://rancher.mydomain.com
 ```shell
 #Create ingress resource
 k apply -f ingress-nginx/rancher-ingress.yaml
 #Check ingress resorce
 k get ing -n cattle-system
 NAME          CLASS    HOSTS                      ADDRESS          PORTS     AGE
-rancher       <none>   rancher.kbjcapital.co.th                    80, 443   40h
-rancher-ing   <none>   rancher.kbjcapital.co.th   192.168.40.183   80        6m34s
+rancher       <none>   rancher.mydomain.com                    80, 443   40h
+rancher-ing   <none>   rancher.mydomain.com   192.168.40.183   80        6m34s
 ```
 ## Reference    
 Install rancher on K8s : https://docs.ranchermanager.rancher.io/pages-for-subheaders/install-upgrade-on-a-kubernetes-cluster
