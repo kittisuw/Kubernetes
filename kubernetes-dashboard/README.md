@@ -13,6 +13,7 @@
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.1/aio/deploy/recommended.yaml
 ```
+> Check release support K8s version: https://github.com/kubernetes/dashboard/releases
 ## Step 2 - Create service Account
 ```shell
 cat <<EOF |kubectl apply -f -
@@ -57,4 +58,3 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/a
 ## Reference
  - [Deploy and Access the Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)
  - [Kubernetes dashbord test resource](https://github.com/kubernetes/dashboard/tree/master/aio/test-resources)
- - [Release](https://github.com/kubernetes/dashboard/releases)
