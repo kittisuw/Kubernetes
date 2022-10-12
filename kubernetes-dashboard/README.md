@@ -57,3 +57,4 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/a
 ## Reference
  - [Deploy and Access the Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)
  - [Kubernetes dashbord test resource](https://github.com/kubernetes/dashboard/tree/master/aio/test-resources)
+ - [Release](https://github.com/kubernetes/dashboard/releases)
