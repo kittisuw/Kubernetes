@@ -1,12 +1,16 @@
-## 🧰 Install kubectx, kubens, and fzf on Ubuntu 22.04 with Oh-My-Zsh and Bash Integration
+## 🧰 Install kubectx, kubens, and fzf with Oh-My-Zsh, Powerlevel10k
 
 > ✅ This setup is tested and compatible with the following OS versions:
 >
-> | OS Version        | Compatibility                            |
-> | ----------------- | ---------------------------------------- |
-> | Ubuntu 20.04      | ✅ Fully Supported                        |
-> | Ubuntu 22.04      | ✅ Fully Supported                        |
-> | macOS (Intel/ARM) | ✅ Fully Supported (Homebrew recommended) |
+> | OS Version   | Compatibility     |
+> | ------------ | ----------------- |
+> | Ubuntu 20.04 | ✅ Fully Supported |
+> | Ubuntu 22.04 | ✅ Fully Supported |
+> | Ubuntu 24.04 | ✅ Fully Supported |
+
+\| Ubuntu 24.04     | ✅ Fully Supported |
+
+> \| macOS (Intel/ARM)| ✅ Fully Supported (Homebrew recommended) |
 >
 > All tools used here (kubectx, kubens, fzf, oh-my-zsh, and kube-ps1) work seamlessly on these platforms without modification.
 
@@ -165,7 +169,30 @@ kubectl config view --minify | grep namespace
 
 ---
 
-### (Optional) Show Current Context/Namespace in Prompt with kube-ps1
+### (Optional) Enhance Prompt with Powerlevel10k and kube-ps1
+
+You can combine `Powerlevel10k` with `kube-ps1` to create a beautiful and informative Zsh prompt that includes the current Kubernetes context and namespace.
+
+#### 0. Install Powerlevel10k (Zsh only)
+
+```bash
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+
+Then in `~/.zshrc`, set:
+
+```zsh
+ZSH_THEME="powerlevel10k/powerlevel10k"
+```
+
+Run:
+
+```bash
+source ~/.zshrc
+p10k configure  # follow the wizard to customize
+```
+
+You can still use kube-ps1 together with Powerlevel10k, or rely on Powerlevel10k's built-in support for Kubernetes.
 
 You can use the `kube-ps1` prompt helper to display the current Kubernetes context and namespace in your shell prompt.
 
@@ -204,6 +231,76 @@ You should now see something like this in your prompt:
 ```
 
 This shows the current context and namespace, making it easier to avoid mistakes across environments!
+
+---
+
+### 8. (Optional) Install k9s - Terminal UI for Kubernetes
+
+`k9s` is a powerful terminal-based UI to manage Kubernetes clusters more interactively.
+
+#### Install k9s (Latest Binary Method):
+
+```bash
+curl -sSLo k9s.tar.gz https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz
+mkdir -p ~/.local/bin && tar -xzf k9s.tar.gz -C ~/.local/bin
+chmod +x ~/.local/bin/k9s
+```
+
+#### Add to PATH:
+
+##### For Bash:
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+##### For Zsh:
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+#### Or Install via Homebrew (on macOS/Linux):
+
+```bash
+brew install k9s
+```
+
+Then simply run:
+
+```bash
+k9s
+```
+
+`k9s` is a powerful terminal-based UI to manage Kubernetes clusters more interactively.
+
+#### Install k9s (Latest Binary Method):
+
+```bash
+curl -sSLo k9s.tar.gz https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz
+mkdir -p ~/.local/bin && tar -xzf k9s.tar.gz -C ~/.local/bin
+chmod +x ~/.local/bin/k9s
+```
+
+Add to your PATH if not already:
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc  # or ~/.zshrc
+```
+
+#### Or Install via Homebrew (on macOS/Linux):
+
+```bash
+brew install k9s
+```
+
+Then simply run:
+
+```bash
+k9s
+```
 
 ---
 
