@@ -7,10 +7,8 @@
 > | Ubuntu 20.04 | ✅ Fully Supported |
 > | Ubuntu 22.04 | ✅ Fully Supported |
 > | Ubuntu 24.04 | ✅ Fully Supported |
-
-\| Ubuntu 24.04     | ✅ Fully Supported |
-
-> \| macOS (Intel/ARM)| ✅ Fully Supported (Homebrew recommended) |
+> | Ubuntu 24.04 | ✅ Fully Supported |
+> | macOS (Intel/ARM)| ✅ Fully Supported (Homebrew recommended) |
 >
 > All tools used here (kubectx, kubens, fzf, oh-my-zsh, and kube-ps1) work seamlessly on these platforms without modification.
 
