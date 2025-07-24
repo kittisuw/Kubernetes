@@ -1,107 +1,195 @@
-# Karpenter on AWS EKS
+# Karpenter Installation Guide on Amazon EKS
 
-Karpenter is a modern, high-performance cluster autoscaler that provisions nodes directly, bypassing the need for node groups.
+## ✅ Prerequisites
 
-### Prerequisites
+* EKS cluster already created
+* IAM OIDC provider enabled on the EKS cluster (see step below)
+* Tools installed: `aws`, `eksctl`, `helm`, `kubectl`
+* IAM role with permissions to create IAM roles and instance profiles (or coordinate with AWS admin if using SSO)
 
-*   An EKS cluster version 1.20 or later.
-*   `kubectl`, `helm`, and AWS CLI installed.
-*   Permissions to create IAM roles and instance profiles.
+---
 
-### 1. Set Environment Variables
+## 🔑 How to Enable IAM OIDC Provider on EKS
+
+To allow EKS workloads (e.g., Karpenter controller) to assume IAM roles via IRSA (IAM Roles for Service Accounts), enable the OIDC provider:
 
 ```bash
-export CLUSTER_NAME="<your-cluster-name>"
-export AWS_REGION="ap-southeast-1" # Region
-export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-```
-
-### 2. Create IAM Resources
-
-Karpenter requires an IAM role for its controller and an EC2 instance profile for the nodes it creates. `eksctl` can automate this.
-
-Create the `karpenter-cloudformation.yaml` template:
-```bash
-eksctl create iamserviceaccount \
-  --cluster "${CLUSTER_NAME}" \
-  --name karpenter \
-  --namespace karpenter \
-  --attach-policy-arn "arn:aws:iam::${AWS_ACCOUNT_ID}:policy/KarpenterControllerPolicy-${CLUSTER_NAME}" \
-  --role-name "KarpenterControllerRole-${CLUSTER_NAME}" \
+eksctl utils associate-iam-oidc-provider \
+  --cluster <your-cluster-name> \
   --approve
 ```
 
-### 3. Install Karpenter with Helm
+This command requires the following IAM permissions:
 
-Add the Karpenter Helm repository and install it.
-
-```bash
-helm repo add karpenter https://charts.karpenter.sh/
-helm repo update
-
-helm upgrade --install karpenter karpenter/karpenter \
-  --namespace karpenter \
-  --create-namespace \
-  --set serviceAccount.create=false \
-  --set controller.clusterName=${CLUSTER_NAME} \
-  --set controller.clusterEndpoint=$(aws eks describe-cluster --name ${CLUSTER_NAME} --query "cluster.endpoint" --output text) \
-  --wait
+```json
+{
+  "Effect": "Allow",
+  "Action": [
+    "iam:GetOpenIDConnectProvider",
+    "iam:CreateOpenIDConnectProvider",
+    "iam:TagOpenIDConnectProvider"
+  ],
+  "Resource": "*"
+}
 ```
 
-### 4. Create a Provisioner
+If using AWS SSO, ensure your assigned role has these permissions.
 
-A Provisioner tells Karpenter what kind of nodes to create. Save as `default-provisioner.yaml`:
+---
+
+## 1. Add Karpenter Helm Repository
+
+```bash
+helm repo add karpenter https://charts.karpenter.sh
+helm repo update
+```
+
+---
+
+## 🔐 Required IAM Permissions (for Steps 2, 3, 4, and 5)
+
+If you are using AWS SSO, ensure the Permission Set includes the following actions:
+
+```json
+{
+  "Effect": "Allow",
+  "Action": [
+    "iam:CreateRole",
+    "iam:AttachRolePolicy",
+    "iam:PassRole",
+    "iam:GetRole",
+    "iam:TagRole",
+    "iam:CreateInstanceProfile",
+    "iam:AddRoleToInstanceProfile",
+    "iam:CreateServiceLinkedRole",
+    "iam:GetInstanceProfile"
+  ],
+  "Resource": "*"
+}
+```
+
+This allows creating IAM roles, attaching policies, configuring Karpenter controller IAM identity, and setting up instance profiles and service-linked roles used by EC2 and Karpenter provisioning.
+
+---
+
+## 2. Create IAM Role for Karpenter Controller
+
+```bash
+CLUSTER_NAME="<your-cluster-name>"
+AWS_REGION="<your-region>"
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+
+eksctl utils associate-iam-oidc-provider \
+  --cluster $CLUSTER_NAME \
+  --approve
+
+eksctl create iamserviceaccount \
+  --name karpenter \
+  --namespace karpenter \
+  --cluster $CLUSTER_NAME \
+  --attach-policy-arn arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy \
+  --attach-policy-arn arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy \
+  --attach-policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly \
+  --attach-policy-arn arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore \
+  --approve
+```
+
+---
+
+## 3. Install Karpenter using Helm
+
+```bash
+helm upgrade --install karpenter karpenter/karpenter \
+  --namespace karpenter --create-namespace \
+  --set serviceAccount.create=false \
+  --set serviceAccount.name=karpenter \
+  --set settings.aws.clusterName=$CLUSTER_NAME \
+  --set settings.aws.defaultInstanceProfile=KarpenterNodeInstanceProfile-$CLUSTER_NAME \
+  --set settings.aws.interruptionQueueName=karpenter-interruption-queue \
+  --set controller.resources.requests.cpu=1 \
+  --set controller.resources.requests.memory=1Gi
+```
+
+---
+
+## 4. Create EC2 Instance Profile for Nodes (One-time setup)
+
+```bash
+aws iam create-instance-profile \
+  --instance-profile-name KarpenterNodeInstanceProfile-$CLUSTER_NAME
+
+aws iam add-role-to-instance-profile \
+  --instance-profile-name KarpenterNodeInstanceProfile-$CLUSTER_NAME \
+  --role-name <EC2NodeRole>
+```
+
+---
+
+## 5. Create Karpenter Provisioner
 
 ```yaml
-apiVersion: karpenter.sh/v1alpha5
+# provisioner.yaml
+apiVersion: karpenter.sh/v1beta1
 kind: Provisioner
 metadata:
   name: default
 spec:
   requirements:
-    - key: karpenter.sh/capacity-type
+    - key: "node.kubernetes.io/instance-type"
       operator: In
-      values: ["on-demand"]
+      values: ["t3.medium", "t3.large"]
   limits:
     resources:
       cpu: 1000
   providerRef:
     name: default
-  ttlSecondsAfterEmpty: 30
+  ttlSecondsAfterEmpty: 60
+```
+
+```bash
+kubectl apply -f provisioner.yaml
+```
+
 ---
-apiVersion: karpenter.k8s.aws/v1alpha1
-kind: AWSNodeTemplate
+
+## 6. Deploy Sample Workload to Trigger Autoscaling
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: default
+  name: inflate
 spec:
-  subnetSelector:
-    karpenter.sh/discovery: ${CLUSTER_NAME}
-  securityGroupSelector:
-    karpenter.sh/discovery: ${CLUSTER_NAME}
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inflate
+  template:
+    metadata:
+      labels:
+        app: inflate
+    spec:
+      containers:
+      - name: inflate
+        image: public.ecr.aws/eks-distro/kube-apiserver:v1.27.1
+        resources:
+          requests:
+            cpu: "2"
+            memory: "1Gi"
 ```
 
-Apply it: `kubectl apply -f default-provisioner.yaml`
-
-### 5. Verify the Installation
-
-Check the Karpenter controller logs:
-
 ```bash
-kubectl logs -f -n karpenter -l app.kubernetes.io/name=karpenter
+kubectl apply -f inflate.yaml
 ```
 
-You can now test it by deploying pods that are too large for existing nodes, and Karpenter will provision a new node to fit them.
+---
 
-### 6. Accessing the Cluster
+## ✅ Notes
 
-If you are using AWS IAM Identity Center (AWS SSO) for authentication, first log in to obtain temporary credentials. If you use a named profile, be sure to specify it.
-
-```bash
-aws sso login
-```
-
-Once authenticated, run the following command to configure `kubectl`:
+* No need to create managed node groups manually.
+* Ensure your IAM user/role has required permissions if using AWS SSO.
+* Monitor logs using:
 
 ```bash
-aws eks update-kubeconfig --region ap-southeast-1 --name <your-cluster-name> # Singapore
+kubectl logs -n karpenter deployment/karpenter
 ```
