@@ -24,8 +24,8 @@ Deploy the Cluster Autoscaler using the official Helm chart.
 helm repo add autoscaler https://kubernetes.github.io/autoscaler
 helm repo update
 
-CLUSTER_NAME="lendo-eks-backend"
-AWS_REGION="ap-southeast-1"
+CLUSTER_NAME="lendo-eks-backend" #Cluster Name
+AWS_REGION="ap-southeast-1" #Region
 
 helm upgrade --install cluster-autoscaler autoscaler/cluster-autoscaler 
   --namespace kube-system 
@@ -41,8 +41,12 @@ helm upgrade --install cluster-autoscaler autoscaler/cluster-autoscaler
   --wait
 # v1.32.2 matches Kubernetes v1.29.x
 ```
-
-### 2. Verify the Deployment
+### 2. Prevent CA From Evicting Itself
+```bash
+kubectl -n kube-system annotate deployment cluster-autoscaler \
+  cluster-autoscaler.kubernetes.io/safe-to-evict="false"
+```
+### 3. Verify the Deployment
 
 Check the logs to ensure it's running correctly.
 
