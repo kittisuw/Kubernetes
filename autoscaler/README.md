@@ -6,7 +6,4 @@ Autoscaling is a critical component for managing modern, cloud-native applicatio
 
 ## Cloud-Specific Implementations
 
-*   **[AWS](./aws/README.md)**: A comprehensive guide to three different autoscaling methods on Amazon EKS:
-    1.  **Cluster Autoscaler**: For node-level scaling based on pod requests.
-    2.  **EKS Auto Mode**: A simplified, managed autoscaling solution from AWS.
-    3.  **Karpenter**: A flexible, high-performance cluster autoscaler.
+*   **[AWS](./aws/README.md)**: A comprehensive guide to various autoscaling methods on Amazon EKS.
