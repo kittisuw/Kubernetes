@@ -193,3 +193,8 @@ kubectl apply -f inflate.yaml
 ```bash
 kubectl logs -n karpenter deployment/karpenter
 ```
+
+
+REF : 
+https://karpenter.sh/v1.0/getting-started/migrating-from-cas/.  
+https://www.youtube.com/watch?v=dS6UIovSXpA&t=532s
