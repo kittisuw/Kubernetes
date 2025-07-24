@@ -24,7 +24,7 @@ This method involves the traditional Kubernetes Cluster Autoscaler that interact
 If you don't already have one, create an IAM OIDC provider for your cluster.
 
 ```bash
-eksctl utils associate-iam-oidc-provider --region <your-region> --cluster <your-cluster-name> --approve
+eksctl utils associate-iam-oidc-provider --region ap-southeast-1 # Singapore --cluster <your-cluster-name> --approve
 ```
 
 ### 2. Create the IAM Policy
@@ -83,7 +83,7 @@ helm repo update
 helm install cluster-autoscaler autoscaler/cluster-autoscaler \
   --namespace kube-system \
   --set "autoDiscovery.clusterName=<your-cluster-name>" \
-  --set "awsRegion=<your-region>" \
+  --set "awsRegion=ap-southeast-1" # Singapore \
   --set "rbac.serviceAccount.create=false" \
   --set "rbac.serviceAccount.name=cluster-autoscaler"
 ```
@@ -94,6 +94,20 @@ Check the logs to ensure it's running correctly.
 
 ```bash
 kubectl logs -f deployment/cluster-autoscaler-autoscaler -n kube-system
+```
+
+### 6. Accessing the Cluster
+
+If you are using AWS IAM Identity Center (AWS SSO) for authentication, first log in to obtain temporary credentials. If you use a named profile, be sure to specify it.
+
+```bash
+aws sso login
+```
+
+Once authenticated, run the following command to configure `kubectl`:
+
+```bash
+aws eks update-kubeconfig --region ap-southeast-1 --name <your-cluster-name> # Singapore
 ```
 
 ---
@@ -123,6 +137,20 @@ EKS Auto Mode simplifies cluster creation and management by providing a pre-conf
 
 EKS will provision an Auto Mode cluster with a default configuration that includes automatic scaling of nodes and pods, managed by AWS.
 
+### Accessing the Cluster
+
+If you are using AWS IAM Identity Center (AWS SSO) for authentication, first log in to obtain temporary credentials. If you use a named profile, be sure to specify it.
+
+```bash
+aws sso login
+```
+
+Once authenticated, run the following command to configure `kubectl`:
+
+```bash
+aws eks update-kubeconfig --region ap-southeast-1 --name <your-cluster-name> # Singapore
+```
+
 ---
 
 ## Method 3: Karpenter
@@ -139,7 +167,7 @@ Karpenter is a modern, high-performance cluster autoscaler that provisions nodes
 
 ```bash
 export CLUSTER_NAME="<your-cluster-name>"
-export AWS_REGION="<your-region>"
+export AWS_REGION="ap-southeast-1" # Singapore
 export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 ```
 
@@ -218,3 +246,17 @@ kubectl logs -f -n karpenter -l app.kubernetes.io/name=karpenter
 ```
 
 You can now test it by deploying pods that are too large for existing nodes, and Karpenter will provision a new node to fit them.
+
+### 6. Accessing the Cluster
+
+If you are using AWS IAM Identity Center (AWS SSO) for authentication, first log in to obtain temporary credentials. If you use a named profile, be sure to specify it.
+
+```bash
+aws sso login
+```
+
+Once authenticated, run the following command to configure `kubectl`:
+
+```bash
+aws eks update-kubeconfig --region ap-southeast-1 --name <your-cluster-name> # Singapore
+```
