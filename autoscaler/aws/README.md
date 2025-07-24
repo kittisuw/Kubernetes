@@ -3,7 +3,7 @@
 This guide provides instructions for setting up three different autoscaling methods on an AWS EKS cluster:
 
 1.  **Cluster Autoscaler**: Adjusts the number of nodes in your cluster based on pod resource requests.
-2.  **Horizontal Pod Autoscaler (HPA)**: Automatically scales the number of pods in a deployment or replicaset based on observed CPU utilization or other select metrics.
+2.  **EKS Auto Mode**: A simplified, managed autoscaling solution from AWS.
 3.  **Karpenter**: An open-source, flexible, high-performance Kubernetes cluster autoscaler built by AWS that provisions new nodes in response to unschedulable pods.
 
 ---
