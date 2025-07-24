@@ -25,7 +25,7 @@ helm repo add autoscaler https://kubernetes.github.io/autoscaler
 helm repo update
 ```
 ```bash
-CLUSTER_NAME="lendo-eks-backend" #Cluster Name
+CLUSTER_NAME="<your-cluster-name>"
 AWS_REGION="ap-southeast-1" #Region
 ```
 ```bash
@@ -113,7 +113,7 @@ Karpenter is a modern, high-performance cluster autoscaler that provisions nodes
 
 ```bash
 export CLUSTER_NAME="<your-cluster-name>"
-export AWS_REGION="ap-southeast-1" # Singapore
+export AWS_REGION="ap-southeast-1" # Region
 export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 ```
 
