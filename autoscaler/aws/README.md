@@ -80,12 +80,22 @@ Deploy the Cluster Autoscaler using the official Helm chart.
 helm repo add autoscaler https://kubernetes.github.io/autoscaler
 helm repo update
 
-helm install cluster-autoscaler autoscaler/cluster-autoscaler \
-  --namespace kube-system \
-  --set "autoDiscovery.clusterName=<your-cluster-name>" \
-  --set "awsRegion=ap-southeast-1" # Singapore \
-  --set "rbac.serviceAccount.create=false" \
-  --set "rbac.serviceAccount.name=cluster-autoscaler"
+CLUSTER_NAME="lendo-eks-backend"
+AWS_REGION="ap-southeast-1"
+
+helm upgrade --install cluster-autoscaler autoscaler/cluster-autoscaler 
+  --namespace kube-system 
+  --set awsRegion=${AWS_REGION} 
+  --set autoDiscovery.clusterName=${CLUSTER_NAME} 
+  --set extraArgs.expander=least-waste 
+  --set extraArgs.skip-nodes-with-local-storage=false 
+  --set extraArgs.balance-similar-node-groups=true 
+  --set extraArgs.node-group-auto-discovery="asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler=${CLUSTER_NAME}" 
+  --set rbac.serviceAccount.create=true 
+  --set rbac.serviceAccount.name=cluster-autoscaler 
+  --set image.tag=v1.32.2 
+  --wait
+# v1.32.2 matches Kubernetes v1.29.x
 ```
 
 ### 5. Verify the Deployment
