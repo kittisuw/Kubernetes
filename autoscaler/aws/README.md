@@ -23,10 +23,12 @@ Deploy the Cluster Autoscaler using the official Helm chart.
 ```bash
 helm repo add autoscaler https://kubernetes.github.io/autoscaler
 helm repo update
-
+```
+```bash
 CLUSTER_NAME="lendo-eks-backend" #Cluster Name
 AWS_REGION="ap-southeast-1" #Region
-
+```
+```bash
 helm upgrade --install cluster-autoscaler autoscaler/cluster-autoscaler 
   --namespace kube-system 
   --set awsRegion=${AWS_REGION} 
