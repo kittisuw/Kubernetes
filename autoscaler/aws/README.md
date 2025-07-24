@@ -148,6 +148,14 @@ helm upgrade --install karpenter karpenter/karpenter \
   --set controller.clusterEndpoint=$(aws eks describe-cluster --name ${CLUSTER_NAME} --query "cluster.endpoint" --output text) \
   --wait
 ```
+### ℹ️ Cluster Autoscaler Behavior
+
+| Action         | Trigger                                        | Timeframe           |
+| -------------- | ---------------------------------------------- | ------------------- |
+| **Scale-Up**   | When pods are pending due to lack of resources | \~2–3 mins          |
+| **Scale-Down** | When nodes are underutilized for \~10 minutes  | \~10 mins (tunable) |
+
+> Tunables like `--scale-down-delay-after-add` can adjust behavior.
 
 ### 4. Create a Provisioner
 
