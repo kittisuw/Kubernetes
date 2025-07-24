@@ -46,13 +46,56 @@ Check the logs to ensure it's running correctly.
 kubectl logs -f deployment/cluster-autoscaler-autoscaler -n kube-system
 ```
 
-### 5. Cordon All Nodes in Target Old Node Group
+### 5. Scale test
+```bash
+# ca-test.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ca-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ca-test
+  template:
+    metadata:
+      labels:
+        app: ca-test
+    spec:
+      containers:
+      - name: ca-test
+        image: nginx
+        resources:
+          requests:
+            cpu: "4"       # ต้องเกิน resource ที่ node ปัจจุบันมี
+            memory: "4Gi"
+```
+```bash
+kubectl apply -f ca-test.yaml
+```
+```bash
+kubectl -n kube-system logs -l app.kubernetes.io/name=cluster-autoscaler --tail=100 -f
+```
+```bash
+No schedulable nodes for pending pod
+Scale-up: setting desired capacity from 1 to 2
+```
+Confirm Node
+```bash
+kubectl get nodes
+```
+Delete Deployment
+```
+kubectl delete -f  ca-test.yaml
+```
+### 6. Cordon All Nodes in Target Old Node Group
 ```bash
 kubectl get nodes -l eks.amazonaws.com/nodegroup=nonprod-nodegroup
 kubectl cordon <each-node-name>
 ```
 
-### 6. Decommission Old Node Group
+### 7. Decommission Old Node Group
 ```bash
 # Step 1: Drain each node
 kubectl drain <each-node-name> --ignore-daemonsets
@@ -65,8 +108,6 @@ kubectl -n kube-system logs -l app.kubernetes.io/name=cluster-autoscaler --tail=
 
 # Step 4: Delete node group via AWS Console
 ```
-
-
 ### ℹ️ Cluster Autoscaler Behavior
 
 | Action         | Trigger                                        | Timeframe           |
