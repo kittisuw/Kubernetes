@@ -16,64 +16,8 @@ This method involves the traditional Kubernetes Cluster Autoscaler that interact
 
 *   An existing EKS cluster with managed node groups or self-managed Auto Scaling Groups.
 *   `kubectl` configured to connect to your EKS cluster.
-*   `eksctl` and AWS CLI configured with necessary permissions.
-*   An IAM OIDC provider for your EKS cluster.
 
-### 1. Create an IAM OIDC Provider
-
-If you don't already have one, create an IAM OIDC provider for your cluster.
-
-```bash
-eksctl utils associate-iam-oidc-provider --region ap-southeast-1 # Singapore --cluster <your-cluster-name> --approve
-```
-
-### 2. Create the IAM Policy
-
-Create an IAM policy that grants the permissions required by the Cluster Autoscaler. Save the following as `cluster-autoscaler-policy.json`:
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "autoscaling:DescribeAutoScalingGroups",
-                "autoscaling:DescribeAutoScalingInstances",
-                "autoscaling:DescribeLaunchConfigurations",
-                "autoscaling:DescribeTags",
-                "autoscaling:SetDesiredCapacity",
-                "autoscaling:TerminateInstanceInAutoScalingGroup",
-                "ec2:DescribeLaunchTemplateVersions"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-```
-
-Create the policy:
-
-```bash
-aws iam create-policy --policy-name AmazonEKSClusterAutoscalerPolicy --policy-document file://cluster-autoscaler-policy.json
-```
-
-### 3. Create IAM Role and Service Account (IRSA)
-
-Create an IAM role for the `cluster-autoscaler` Kubernetes service account.
-
-```bash
-eksctl create iamserviceaccount \
-  --cluster=<your-cluster-name> \
-  --namespace=kube-system \
-  --name=cluster-autoscaler \
-  --attach-policy-arn=arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):policy/AmazonEKSClusterAutoscalerPolicy \
-  --override-existing-serviceaccounts \
-  --approve
-```
-
-### 4. Deploy the Cluster Autoscaler
-
+### 1. Deploy the Cluster Autoscaler.  
 Deploy the Cluster Autoscaler using the official Helm chart.
 
 ```bash
@@ -98,26 +42,12 @@ helm upgrade --install cluster-autoscaler autoscaler/cluster-autoscaler
 # v1.32.2 matches Kubernetes v1.29.x
 ```
 
-### 5. Verify the Deployment
+### 2. Verify the Deployment
 
 Check the logs to ensure it's running correctly.
 
 ```bash
 kubectl logs -f deployment/cluster-autoscaler-autoscaler -n kube-system
-```
-
-### 6. Accessing the Cluster
-
-If you are using AWS IAM Identity Center (AWS SSO) for authentication, first log in to obtain temporary credentials. If you use a named profile, be sure to specify it.
-
-```bash
-aws sso login
-```
-
-Once authenticated, run the following command to configure `kubectl`:
-
-```bash
-aws eks update-kubeconfig --region ap-southeast-1 --name <your-cluster-name> # Singapore
 ```
 
 ---
