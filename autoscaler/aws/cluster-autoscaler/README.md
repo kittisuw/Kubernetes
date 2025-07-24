@@ -71,17 +71,20 @@ spec:
             cpu: "4"       # ต้องเกิน resource ที่ node ปัจจุบันมี
             memory: "4Gi"
 ```
+Apply test deployment
 ```bash
 kubectl apply -f ca-test.yaml
 ```
+View Scale log
 ```bash
 kubectl -n kube-system logs -l app.kubernetes.io/name=cluster-autoscaler --tail=100 -f
 ```
+Expectation: 
 ```bash
 No schedulable nodes for pending pod
 Scale-up: setting desired capacity from 1 to 2
 ```
-Confirm Node
+Confirm Node Scale
 ```bash
 kubectl get nodes
 ```
